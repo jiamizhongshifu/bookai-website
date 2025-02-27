@@ -270,4 +270,175 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // 侧边栏浮动广告模块功能
+    const floatingAd = document.getElementById('floatingAd');
+    const adToggle = document.getElementById('adToggle');
+    const adToggleCollapsed = document.getElementById('adToggleCollapsed');
+    const adGrid = document.getElementById('adGrid');
+
+    // 默认广告数据
+    const defaultAds = [
+        {
+            id: 1,
+            title: 'ChatGPT Plus会员',
+            description: '解锁AI对话的无限可能',
+            image: 'https://via.placeholder.com/150x100?text=ChatGPT+Plus',
+            link: '#'
+        },
+        {
+            id: 2,
+            title: 'Midjourney高级账户',
+            description: 'AI绘画神器，释放创意',
+            image: 'https://via.placeholder.com/150x100?text=Midjourney',
+            link: '#'
+        },
+        {
+            id: 3,
+            title: 'Claude Pro订阅',
+            description: '体验更强大的AI助手',
+            image: 'https://via.placeholder.com/150x100?text=Claude+Pro',
+            link: '#'
+        },
+        {
+            id: 4,
+            title: 'AI学习资源包',
+            description: '从入门到精通的完整指南',
+            image: 'https://via.placeholder.com/150x100?text=AI+学习资源',
+            link: '#'
+        }
+    ];
+
+    // 从本地存储加载广告数据
+    function loadAds() {
+        const savedAds = localStorage.getItem('adData');
+        return savedAds ? JSON.parse(savedAds) : defaultAds;
+    }
+
+    // 保存广告数据到本地存储
+    function saveAds(ads) {
+        localStorage.setItem('adData', JSON.stringify(ads));
+    }
+
+    // 渲染广告内容
+    function renderAds() {
+        const ads = loadAds();
+        adGrid.innerHTML = '';
+        
+        ads.forEach(ad => {
+            const adItem = document.createElement('div');
+            adItem.className = 'ad-item';
+            adItem.innerHTML = `
+                <img src="${ad.image}" alt="${ad.title}" class="ad-image">
+                <div class="ad-info">
+                    <h4>${ad.title}</h4>
+                    <p>${ad.description}</p>
+                    <a href="${ad.link}" class="ad-link" target="_blank">了解更多</a>
+                </div>
+            `;
+            adGrid.appendChild(adItem);
+        });
+    }
+
+    // 初始化广告模块
+    function initAds() {
+        renderAds();
+        
+        // 检查广告模块状态
+        const isCollapsed = localStorage.getItem('adCollapsed') === 'true';
+        if (isCollapsed) {
+            floatingAd.classList.add('collapsed');
+            adToggleCollapsed.style.display = 'flex';
+        }
+        
+        // 切换广告模块展开/收起状态
+        adToggle.addEventListener('click', () => {
+            floatingAd.classList.add('collapsed');
+            adToggleCollapsed.style.display = 'flex';
+            localStorage.setItem('adCollapsed', 'true');
+        });
+        
+        // 展开广告模块
+        adToggleCollapsed.addEventListener('click', () => {
+            floatingAd.classList.remove('collapsed');
+            adToggleCollapsed.style.display = 'none';
+            localStorage.setItem('adCollapsed', 'false');
+        });
+    }
+
+    // 管理员功能：更新广告
+    function initAdminFeatures() {
+        // 检查是否在管理页面
+        if (window.location.pathname.includes('/admin')) {
+            // 创建广告管理界面
+            const adminContainer = document.createElement('div');
+            adminContainer.className = 'admin-ad-container';
+            adminContainer.innerHTML = `
+                <h2>广告位管理</h2>
+                <div id="adManager"></div>
+                <button id="saveAdsBtn" class="btn btn-primary">保存更改</button>
+            `;
+            
+            // 添加到页面
+            const adminContent = document.querySelector('.admin-content');
+            if (adminContent) {
+                adminContent.appendChild(adminContainer);
+                
+                // 渲染广告管理界面
+                const adManager = document.getElementById('adManager');
+                const saveAdsBtn = document.getElementById('saveAdsBtn');
+                
+                // 加载当前广告
+                const currentAds = loadAds();
+                
+                // 创建编辑表单
+                adManager.innerHTML = '';
+                currentAds.forEach((ad, index) => {
+                    const adForm = document.createElement('div');
+                    adForm.className = 'ad-form';
+                    adForm.innerHTML = `
+                        <h3>广告 #${index + 1}</h3>
+                        <div class="form-group">
+                            <label>标题</label>
+                            <input type="text" class="ad-title" value="${ad.title}">
+                        </div>
+                        <div class="form-group">
+                            <label>描述</label>
+                            <input type="text" class="ad-description" value="${ad.description}">
+                        </div>
+                        <div class="form-group">
+                            <label>图片URL</label>
+                            <input type="text" class="ad-image" value="${ad.image}">
+                        </div>
+                        <div class="form-group">
+                            <label>链接URL</label>
+                            <input type="text" class="ad-link" value="${ad.link}">
+                        </div>
+                    `;
+                    adManager.appendChild(adForm);
+                });
+                
+                // 保存更改
+                saveAdsBtn.addEventListener('click', () => {
+                    const adForms = document.querySelectorAll('.ad-form');
+                    const updatedAds = Array.from(adForms).map((form, index) => {
+                        return {
+                            id: currentAds[index].id,
+                            title: form.querySelector('.ad-title').value,
+                            description: form.querySelector('.ad-description').value,
+                            image: form.querySelector('.ad-image').value,
+                            link: form.querySelector('.ad-link').value
+                        };
+                    });
+                    
+                    saveAds(updatedAds);
+                    alert('广告设置已保存！');
+                });
+            }
+        }
+    }
+
+    // 初始化广告功能
+    initAds();
+    initAdminFeatures();
 }); 
