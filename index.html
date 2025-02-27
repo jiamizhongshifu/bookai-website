@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookAI - AI工具教程与资源</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 添加预加载关键资源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                    <span class="logo-text-bold">BookAI</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="#chatgpt">ChatGPT教程</a></li>
+                    <li><a href="#cursor">Cursor教程</a></li>
+                    <li><a href="#deepseek">Deepseek教程</a></li>
+                    <li><a href="#deepseek-flow">Deepseek流畅对话</a></li>
+                </ul>
+            </nav>
+            <div class="nav-tools">
+                <div class="search-container">
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="搜索教程...">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="search-results"></div>
+                </div>
+                <button class="dark-mode-toggle" aria-label="切换深色模式">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 主要内容区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1>探索AI的无限可能</h1>
+                <p>提供最新、最实用的AI工具教程和资源</p>
+                <div class="cta-buttons">
+                    <a href="#tutorials" class="btn btn-primary">浏览教程</a>
+                    <a href="#resources" class="btn btn-secondary">获取资源</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教程区域 -->
+        <section id="tutorials" class="tutorials">
+            <div class="container">
+                <h2 class="section-title">热门教程</h2>
+                <div class="tutorial-grid">
+                    <!-- ChatGPT教程 -->
+                    <div class="tutorial-card">
+                        <div class="tutorial-image">
+                            <img src="images/chatgpt.svg" alt="ChatGPT教程">
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>ChatGPT使用指南：从入门到精通</h3>
+                            <p>掌握ChatGPT的各种使用技巧，让你的AI助手变得更加高效和智能</p>
+                            <a href="chatgpt-guide.html" class="read-more">阅读更多</a>
+                        </div>
+                    </div>
+                
+                    <!-- Deepseek教程 -->
+                    <div class="tutorial-card">
+                        <div class="tutorial-image">
+                            <img src="images/deepseek.svg" alt="Deepseek教程">
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>Deepseek简介</h3>
+                            <p>了解Deepseek AI的基本功能和使用方法</p>
+                            <a href="#" class="read-more">阅读更多</a>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-card">
+                        <div class="tutorial-image">
+                            <img src="images/deepseek-tips.svg" alt="Deepseek使用技巧">
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</h3>
+                            <p>全面的DeepSeek使用技巧和最佳实践</p>
+                            <a href="deepseek-tips.html" class="read-more">阅读更多</a>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-card">
+                        <div class="tutorial-image">
+                            <img src="images/deepseek-money.svg" alt="DeepSeek赚钱">
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>我用DeepSeek流量赚到的第一笔钱：联盟营销</h3>
+                            <p>如何利用DeepSeek进行联盟营销赚取收入</p>
+                            <a href="#" class="read-more">阅读更多</a>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-card">
+                        <div class="tutorial-image">
+                            <img src="images/deepseek-alt.svg" alt="DeepSeek替代方案">
+                        </div>
+                        <div class="tutorial-content">
+                            <h3>DeepSeek太卡了？这有5+1种DeepSeek R1最强满血替代方案等你查收！</h3>
+                            <p>探索DeepSeek的替代方案和解决方法</p>
+                            <a href="#" class="read-more">阅读更多</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 资源区域 -->
+        <section id="resources" class="resources">
+            <div class="container">
+                <h2 class="section-title">精选资源</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>CursorAI编程知识星球</h3>
+                        <p>我的cursor教学视频已经超100万人观看，可能是中文互联网最佳了</p>
+                        <div class="resource-footer">
+                            <span class="price">365/年</span>
+                            <span class="members">800+人已加入</span>
+                        </div>
+                        <a href="#" class="btn btn-outline">立即查看</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>通过Monica免费使用满血可联网DeepSeek R1</h3>
+                        <p>Monica接入DeepSeek R1、OpenAI o1、GPT-4o、Claude 3.5 和 Gemini 1.5，来提升您的聊天、搜索、写作和编程体验。</p>
+                        <div class="resource-footer">
+                            <span class="price">免费</span>
+                            <span class="tag">一站式 AI 助手</span>
+                        </div>
+                        <a href="#" class="btn btn-outline">立即查看</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 开发的应用 -->
+        <section class="apps">
+            <div class="container">
+                <h2 class="section-title">我开发的iOS App</h2>
+                <div class="app-grid">
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>📱 拍照学单词</h3>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>🔦 Light屏幕手电筒</h3>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-cat"></i>
+                        </div>
+                        <h3>💡 小猫补光灯</h3>
+                    </div>
+                </div>
+
+                <h2 class="section-title">我开发的AI网站</h2>
+                <div class="app-grid">
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h3>🎨 Image 2046图像魔方</h3>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>💻 CodeWithAI编程教程</h3>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <h3>✍️ HumanizeAI文本优化</h3>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>📊 用户反馈分析工具</h3>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>👔 穿搭锐评大师</h3>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-cat"></i>
+                        </div>
+                        <h3>😺 猫咪颜值测评</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>GPTs</h4>
+                        <ul>
+                            <li><a href="#">更勤奋更聪明的GPT4</a></li>
+                            <li><a href="#">AI使用助手 by 花生</a></li>
+                            <li><a href="#">AI阅读助手</a></li>
+                            <li><a href="#">GPT翻译-专业中英双语翻译</a></li>
+                            <li><a href="#">Claude 3 Opus</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>更多</h4>
+                        <ul>
+                            <li><a href="#">跟我学Cursor</a></li>
+                            <li><a href="#">即刻</a></li>
+                            <li><a href="#">Youtube</a></li>
+                            <li><a href="#">Bilibili</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Bookai, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 检测用户登录状态
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

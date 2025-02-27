@@ -1,0 +1,82 @@
+backend:
+  name: git-gateway
+  branch: main # 您的主分支名称，可能是main或master
+
+# 媒体文件存储位置
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# 启用编辑预览
+locale: 'zh_Hans'
+site_url: https://your-bookai-site.netlify.app
+display_url: https://your-bookai-site.netlify.app
+
+# 内容集合
+collections:
+  - name: "articles"
+    label: "文章"
+    folder: "_articles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "布局模板", name: "layout", widget: "hidden", default: "article"}
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
+      - {label: "作者", name: "author", widget: "string", default: "AI进化论-花生"}
+      - {label: "封面图", name: "thumbnail", widget: "image", required: false}
+      - {label: "摘要", name: "excerpt", widget: "text"}
+      - {label: "正文", name: "body", widget: "markdown"}
+      - label: "目录"
+        name: "toc"
+        widget: "list"
+        fields:
+          - {label: "标题", name: "title", widget: "string"}
+          - {label: "锚点ID", name: "id", widget: "string"}
+      - label: "相关文章"
+        name: "related_articles"
+        widget: "list"
+        fields:
+          - {label: "标题", name: "title", widget: "string"}
+          - {label: "链接", name: "url", widget: "string"}
+      - {label: "标签", name: "tags", widget: "list"}
+      - {label: "分类", name: "categories", widget: "list"}
+      
+  - name: "resources"
+    label: "资源"
+    folder: "_resources"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "图标", name: "icon", widget: "string", default: "fas fa-book"}
+      - {label: "描述", name: "description", widget: "text"}
+      - {label: "价格", name: "price", widget: "string"}
+      - {label: "标签", name: "tag", widget: "string", required: false}
+      - {label: "成员数", name: "members", widget: "string", required: false}
+      - {label: "链接", name: "url", widget: "string"}
+      
+  - name: "apps"
+    label: "应用"
+    folder: "_apps"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "图标", name: "icon", widget: "string", default: "fas fa-mobile-alt"}
+      - {label: "类型", name: "type", widget: "select", options: ["iOS App", "AI网站"]}
+      - {label: "链接", name: "url", widget: "string", required: false}
+      
+  - name: "settings"
+    label: "网站设置"
+    files:
+      - label: "导航菜单"
+        name: "navigation"
+        file: "_data/navigation.yml"
+        fields:
+          - label: "导航链接"
+            name: "links"
+            widget: "list"
+            fields:
+              - {label: "文本", name: "text", widget: "string"}
+              - {label: "链接", name: "url", widget: "string"}
+              - {label: "新窗口打开", name: "new_window", widget: "boolean", default: false, required: false} 

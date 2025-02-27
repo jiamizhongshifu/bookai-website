@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！ - BookAI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/article.css">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 添加预加载关键资源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="css/article.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                    <span class="logo-text-bold">BookAI</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html#chatgpt">ChatGPT教程</a></li>
+                    <li><a href="index.html#cursor">Cursor教程</a></li>
+                    <li><a href="index.html#deepseek">Deepseek教程</a></li>
+                    <li><a href="index.html#deepseek-flow">Deepseek流畅对话</a></li>
+                </ul>
+            </nav>
+            <div class="nav-tools">
+                <div class="search-container">
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="搜索教程...">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="search-results"></div>
+                </div>
+                <button class="dark-mode-toggle" aria-label="切换深色模式">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article-container">
+            <div class="container">
+                <div class="article-header">
+                    <h1>爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</h1>
+                    <div class="article-meta">
+                        <span class="article-date">发布于：2025年1月25日</span>
+                        <span class="article-author">作者：AI进化论-花生</span>
+                    </div>
+                </div>
+
+                <div class="article-content">
+                    <div class="article-toc">
+                        <h3>目录</h3>
+                        <ul>
+                            <li><a href="#part1">第一部分：推理模型与指令模型</a></li>
+                            <li><a href="#part2">第二部分：理解大型语言模型的本质特征</a></li>
+                            <li><a href="#part3">第三部分：有效的R1使用技巧</a></li>
+                            <li><a href="#part4">第四部分：无效的提示词技巧</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="article-intro">
+                        <p>DeepSeek app上架18天之后，便在全球160多个国家登顶，日活跃用户数突破1500万，成了全球增速最快的AI应用。</p>
+                        <p>并且在这个过程中，它曾一度让美股市值一晚上蒸发超1万亿美金，英伟达股价单日下跌16%。</p>
+                        <p>能获得这个成就的原因只有一个，那就是：他们发布了一个免费，且无比聪明的模型——DeepSeek R1。</p>
+                        <p>尤其是"聪明"这个特性，让大量的提示词技巧开始失效，你只需要很简单地表述你的需求，便能获得超出预期的回答。如果回顾大语言模型发展历程的话，2025年1月20日DeepSeek R1的发布会是一个注定被记录的时间节点，2022年11月30日ChatGPT的发布让大模型进入了大众视野，而2年后的DeepSeek R1则是让一个足够优秀的模型变得触手可及。</p>
+                    </div>
+
+                    <section id="part1" class="article-section">
+                        <h2>第一部分：推理模型与指令模型</h2>
+                        <p>在阐述任何技巧之前，你最先需要知道的事，DeepSeek的R1是个与你日常使用的对话类AI非常不同的模型。</p>
+                        <p><strong>像</strong>OpenAI的GPT-4o、DeepSeek V3、豆包等都属于<strong>指令模型</strong>（instruct model），这类模型是专门设计用于<strong>遵循指令</strong>生成内容或执行任务的。</p>
+                        <p><strong>而DeepSeek R1属于推理模型</strong>（reasoning model），专注于<strong>逻辑推理、问题解决</strong>的模型，能够自主处理需要多步骤分析、因果推断或复杂决策的任务。</p>
+                        <p>实际上，还有一个知名的模型，也就是OpenAI的o1也是推理模型，但你必须每个月花20美元成为plus会员才能使用，且每周只有50次的使用权限。想要更多，那请掏出200美金/每月，也就是1437元。</p>
+                        <p>而DeepSeek R1现在完全免费！！</p>
+                        <p>从我实际的体验来说，R1在大量的写作、写代码的任务上甚至比o1更强。</p>
+                        <p>按理说，R1擅长数学推理、编程竞赛是很合理的事，它也只应该擅长这些任务。但是令人意外的是，有了超强的推理能力之后，R1似乎在所有任务上都获得了质的飞跃，"涌现"出了意料之外的技能。</p>
+                    </section>
+
+                    <section id="part2" class="article-section">
+                        <h2>第二部分：理解大型语言模型的本质特征</h2>
+                        <p>尽管像DeepSeek R1这样的推理模型相比指令模型有了非常大的进步，你不需要那么多技巧了，但他依然是个大型语言模型（LLM），他依然存在语言模型的局限性，理解它的特点将会帮助你更好的应用他。</p>
+                        
+                        <h3>特点1: 大模型在训练时是将内容token化的，大模型所看到和理解的世界与你不一样</h3>
+                        <p>在理解模型行为之前，我们需要了解它是如何"学习"的。大型语言模型的预训练本质上是让模型建立文本片段之间的关联规律。为了实现这个目标，所有训练数据（包括书籍、网页、对话记录等）都会经过特殊处理：首先将文本切割成称为token的基本单元（类似文字的"碎片"），然后将这些token转化为数字编码。这个过程就像把现实世界的语言，翻译成只有模型能理解的"密码本"。</p>
+                        
+                        <h3>特点2：大模型知识是存在截止时间的</h3>
+                        <p>虽然DeepSeek R1在2025年1月才正式发布，但其基础模型的训练数据窗口期早在数月前就已关闭。这就像出版一本百科全书——从资料收集到最终付印需要完整的生产周期。具体来说存在三重时间壁垒：1）预训练阶段需要处理PB级原始数据；2）数据清洗需要经历去重、脱敏、质量验证等工序；3）后期还要进行监督微调、强化学习、基于人类反馈的强化学习（RLHF）等迭代优化。</p>
+                        
+                        <h3>特点3：大模型缺乏自我认知/自我意识</h3>
+                        <p>DeepSeek R1或者任何模型其实都缺乏「我是谁」的概念，如果他自发有了，那可能说明AGI临近，我们可能反而该警惕了。</p>
+                        <p>很多模型都不知道自己叫xx模型，这是很正常的现象，除非大模型厂商在部署的时候在系统提示词中做了设定，或者预训练完成后用了特定的语料进行微调。</p>
+                        
+                        <h3>特点4：记忆有限</h3>
+                        <p>多数大模型都有上下文长度的限制，deepseek R1目前提供的上下文只有64k token长度（官方API文档的说明，实际聊天对话的长度待确认），对应到中文字符大概是3-4万字，这带来的问题是，你没法一次投喂太长的文档给他，以及你没法与他进行太多轮次的对话。</p>
+                        
+                        <h3>特点5：输出长度有限</h3>
+                        <p>相比上下文对话的输入长度，大模型的输出长度则会更短得多，多数大模型会将输出长度控制在4k或者8k，也就是单次对话最多给你2-4千中文字符。</p>
+                    </section>
+
+                    <section id="part3" class="article-section">
+                        <h2>第三部分：有效的R1使用技巧</h2>
+                        
+                        <h3>技巧1：提出明确的要求</h3>
+                        <p>能说清楚的信息，不要让DeepSeek去猜。DeepSeek虽然很聪明，但它不是你肚子中的蛔虫，你需要明确告诉DeepSeek需要他帮你做什么，做到什么程度。比如：如果你复制一段英文文本给它，你需要明确表达你的指令，也就是你需要它做什么。否则，DeepSeek并不会理解你想要做什么。是翻译？总结？还是你要学英语让他出题？这些信息不要让R1去猜。</p>
+                        
+                        <h3>技巧2：要求特定的风格</h3>
+                        <p>具有思维链的R1在进行特定风格的写作时，相比其他模型，我发现R1已经出现了断层领先的水平，比如让R1用李白的风格写诗，按贴吧暴躁老哥的风格骂人，用鲁迅的文风进行讽刺，或者模仿任意作家风格进行写作，按脱口秀演员风格创作脱口秀脚本等，其他模型在这方面的表现都追不上R1的车尾。</p>
+                        
+                        <h3>技巧3：提供充分的任务背景信息</h3>
+                        <p>当你让DeepSeek帮助你完成某项工作时，提供充分的上下文背景信息，告诉他你为什么做这件事，你面临的现实背景是什么或问题是什么，让DeepSeek将其纳入所生成文本的思考中，这可以让结果更符合你的需要。</p>
+                        
+                        <h3>技巧4：主动标注自己的知识状态</h3>
+                        <p>当你向DeepSeek寻求知识型帮助时，最好能明确标注自己相对应的知识状态。就像老师备课前需要了解学生学力水平，清晰的知识坐标能让AI输出的内容精准匹配你的理解层次。</p>
+                        
+                        <h3>技巧5：定义目标，而非过程</h3>
+                        <p>R1作为推理模型，现在完成任务的思维过程非常令人印象深刻。所以我很建议你提供清楚你的目标让R1具备一定的思考空间去帮助你执行得更好，而非提供一个机械化执行指令。你应该像产品经理提需求般描述「要什么」，而不是像程序员写代码般规定「怎么做」。</p>
+                        
+                        <h3>技巧6：提供AI不具备的知识背景</h3>
+                        <p>我们在第二部分提到过，AI模型具有「知识截止时间」的特性，当任务涉及模型训练截止后的新信息（如2024年赛事结果、行业趋势）时，或者你们公司有一些内部信息是AI不具备的时，你需要像拼图者般主动填补缺失的图块。通过结构化输入帮助AI突破知识限制，避免因信息缺乏导致出现错误回答。</p>
+                        
+                        <h3>技巧7：从开放到收敛</h3>
+                        <p>R1的思维链是全透明在你明前展开的，我常常会觉得我从R1思考的过程中能收获的信息比他给我提供的结果还多，尤其是他在展开思考你提的需求时，会做一个可能性的推测。有时，在看到这部分推测后你才发现原来自己没有考虑到某些方面的信息，如果把对应的内容补充得更完善的话，就不需要R1去猜了。</p>
+                    </section>
+
+                    <section id="part4" class="article-section">
+                        <h2>第四部分：无效的提示词技巧</h2>
+                        <p><strong>在使用R1时，以下prompt策略经验证已基本失效，甚至部分会技巧会起反作用，比如：</strong></p>
+                        <ol>
+                            <li>思维链提示，比如要求模型一步步思考，或者提供解答问题的思维思路等，这都是完全无效甚至起反作用的策略，R1通过强化学习自己能产生更好的思维链了。</li>
+                            <li>结构化提示词，可以有，但也没那么需要，你依然可以使用markdown格式的语句去让信息结构更清晰，人类查看和机器阅读的时候更好理解，但是因为你需要提示的内容少了， 所以必要性也大大衰减。</li>
+                            <li>要求扮演专家角色，已经变得完全没必要，现在R1本身就是专家模型专家思维，除非你是需要R1从特定学科视角为你提供解答，在那种情况下，你只需要去提示学科即可，不需要药企专家了。</li>
+                            <li>假装完成任务后给奖励之类的小技巧，也无效，甚至会被R1是笑话，所以就不要再骗AI了，省得他觉醒之后要来找你麻烦的。</li>
+                            <li>少示例提示（few-shot)，这是DeepSeek团队在发布R1技术报告时明确建议规避的一个提示技巧，不要有示例你说清楚要求比给示例更重要。</li>
+                            <li>角色扮演，R1不太擅长，你很难用R1去搭建一个AI女友/男友，可能是因为情感化的对话都是依赖直觉，是反深思熟虑的。</li>
+                            <li>对已知概念进行解释，没必要进行解释，比如我们文章前面提到的，当你让AI去模仿某个作家、名人的风格时，你没必要解释那个作家是谁，他的风格是什么样的，AI有自己的理解，并且在思考过程中对你所提供的概念能完成丰富和深入的解构。</li>
+                        </ol>
+                    </section>
+
+                    <div class="article-conclusion">
+                        <h2>总结</h2>
+                        <p>你不再需要那么多的提示词技巧，但是还有两点非常关键：</p>
+                        <ol>
+                            <li>你需要理解大语言模型的工作原理与局限，这能帮助你更好的知道AI可完成任务的边界；</li>
+                            <li>在和R1合作时，你最好有管理者的思维和经验，你需要知道如何向R1这个聪明程度比你高很多的下属布置你的任务。</li>
+                        </ol>
+                        <p>希望这19条帮助你更好使用DeepSeek R1的经验，能够帮助你更好地利用这个强大的AI工具！</p>
+                    </div>
+
+                    <div class="article-share">
+                        <h3>分享这篇文章</h3>
+                        <div class="share-buttons">
+                            <a href="#" class="share-button"><i class="fab fa-weixin"></i> 微信</a>
+                            <a href="#" class="share-button"><i class="fab fa-weibo"></i> 微博</a>
+                            <a href="#" class="share-button"><i class="fab fa-twitter"></i> Twitter</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 评论系统 -->
+                    <div class="comments-section">
+                        <h3>评论 <span class="comments-count">0</span></h3>
+                        <div class="comments-list">
+                            <!-- 评论将通过JavaScript动态加载 -->
+                        </div>
+                        <div class="comment-form-container">
+                            <h4>发表评论</h4>
+                            <form class="comment-form">
+                                <div class="form-group">
+                                    <label for="comment-name">姓名</label>
+                                    <input type="text" id="comment-name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment-email">邮箱（不会公开）</label>
+                                    <input type="email" id="comment-email" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment-content">评论内容</label>
+                                    <textarea id="comment-content" name="comment" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">提交评论</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-sidebar">
+                    <div class="author-card">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>AI进化论-花生</h3>
+                        <p>AI教程博主，B站/YouTube播放量超400万</p>
+                        <div class="author-social">
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-weibo"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="related-articles">
+                        <h3>相关文章</h3>
+                        <ul>
+                            <li><a href="#">Deepseek简介</a></li>
+                            <li><a href="#">我用DeepSeek流量赚到的第一笔钱：联盟营销</a></li>
+                            <li><a href="#">DeepSeek太卡了？这有5+1种DeepSeek R1最强满血替代方案等你查收！</a></li>
+                            <li><a href="#">满血DeepSeek-R1的极速接入方式-火山方舟</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>GPTs</h4>
+                        <ul>
+                            <li><a href="#">更勤奋更聪明的GPT4</a></li>
+                            <li><a href="#">AI使用助手 by 花生</a></li>
+                            <li><a href="#">AI阅读助手</a></li>
+                            <li><a href="#">GPT翻译-专业中英双语翻译</a></li>
+                            <li><a href="#">Claude 3 Opus</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>更多</h4>
+                        <ul>
+                            <li><a href="#">跟我学Cursor</a></li>
+                            <li><a href="#">即刻</a></li>
+                            <li><a href="#">Youtube</a></li>
+                            <li><a href="#">Bilibili</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Bookai, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

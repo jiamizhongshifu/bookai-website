@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - BookAI</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/article.css">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 添加预加载关键资源 -->
+    <link rel="preload" href="/css/style.css" as="style">
+    <link rel="preload" href="/css/article.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="/js/main.js" as="script">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/index.html">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                    <span class="logo-text-bold">BookAI</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    {% for link in site.data.navigation.links %}
+                    <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <div class="nav-tools">
+                <div class="search-container">
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="搜索教程...">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="search-results"></div>
+                </div>
+                <button class="dark-mode-toggle" aria-label="切换深色模式">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article-container">
+            <div class="container">
+                <div class="article-header">
+                    <h1>{{ page.title }}</h1>
+                    <div class="article-meta">
+                        <span class="article-date">发布于：{{ page.date | date: "%Y年%m月%d日" }}</span>
+                        <span class="article-author">作者：{{ page.author }}</span>
+                    </div>
+                </div>
+
+                <div class="article-content">
+                    {% if page.toc %}
+                    <div class="article-toc">
+                        <h3>目录</h3>
+                        <ul>
+                            {% for item in page.toc %}
+                            <li><a href="#{{ item.id }}">{{ item.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    <div class="article-intro">
+                        {{ content }}
+                    </div>
+
+                    <div class="article-share">
+                        <h3>分享这篇文章</h3>
+                        <div class="share-buttons">
+                            <a href="#" class="share-button"><i class="fab fa-weixin"></i> 微信</a>
+                            <a href="#" class="share-button"><i class="fab fa-weibo"></i> 微博</a>
+                            <a href="#" class="share-button"><i class="fab fa-twitter"></i> Twitter</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 评论系统 -->
+                    <div class="comments-section">
+                        <h3>评论 <span class="comments-count">0</span></h3>
+                        <div class="comments-list">
+                            <!-- 评论将通过JavaScript动态加载 -->
+                        </div>
+                        <div class="comment-form-container">
+                            <h4>发表评论</h4>
+                            <form class="comment-form">
+                                <div class="form-group">
+                                    <label for="comment-name">姓名</label>
+                                    <input type="text" id="comment-name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment-email">邮箱（不会公开）</label>
+                                    <input type="email" id="comment-email" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment-content">评论内容</label>
+                                    <textarea id="comment-content" name="comment" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">提交评论</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-sidebar">
+                    <div class="author-card">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>{{ page.author }}</h3>
+                        <p>AI教程博主，B站/YouTube播放量超400万</p>
+                        <div class="author-social">
+                            <a href="#"><i class="fab fa-bilibili"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-weibo"></i></a>
+                        </div>
+                    </div>
+
+                    {% if page.related_articles %}
+                    <div class="related-articles">
+                        <h3>相关文章</h3>
+                        <ul>
+                            {% for article in page.related_articles %}
+                            <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>GPTs</h4>
+                        <ul>
+                            <li><a href="#">更勤奋更聪明的GPT4</a></li>
+                            <li><a href="#">AI使用助手 by 花生</a></li>
+                            <li><a href="#">AI阅读助手</a></li>
+                            <li><a href="#">GPT翻译-专业中英双语翻译</a></li>
+                            <li><a href="#">Claude 3 Opus</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>更多</h4>
+                        <ul>
+                            <li><a href="#">跟我学Cursor</a></li>
+                            <li><a href="#">即刻</a></li>
+                            <li><a href="#">Youtube</a></li>
+                            <li><a href="#">Bilibili</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Bookai, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html> 

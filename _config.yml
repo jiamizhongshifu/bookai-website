@@ -1,0 +1,43 @@
+title: BookAI - AI工具教程与资源
+description: 提供最新、最实用的AI工具教程和资源，包括ChatGPT、Cursor、Deepseek等AI工具的使用技巧。
+url: https://your-bookai-site.netlify.app
+baseurl: ""
+
+# 构建设置
+markdown: kramdown
+permalink: pretty
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 集合设置
+collections:
+  articles:
+    output: true
+    permalink: /:collection/:name/
+  resources:
+    output: false
+  apps:
+    output: false
+
+# 默认布局设置
+defaults:
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "article"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# 排除文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .gitignore
+  - README.md
+  - netlify.toml 

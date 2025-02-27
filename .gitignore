@@ -1,0 +1,21 @@
+# Jekyll生成的文件
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# 本地配置文件
+.bundle/
+vendor/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE文件
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace 

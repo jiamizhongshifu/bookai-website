@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066ff" />
+      <stop offset="100%" stop-color="#4d4dff" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700" />
+      <stop offset="100%" stop-color="#FFA500" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="#f0f0f0" />
+  <g transform="translate(40, 40)">
+    <!-- 钱袋 -->
+    <path d="M60 20 C30 20 20 40 20 50 L20 100 C20 110 30 120 60 120 C90 120 100 110 100 100 L100 50 C100 40 90 20 60 20 Z" fill="url(#gradient)" />
+    <!-- 钱袋绳子 -->
+    <path d="M20 50 C20 40 40 40 60 40 C80 40 100 40 100 50" stroke="#333" stroke-width="3" fill="none" />
+    <!-- 钱币 -->
+    <circle cx="60" cy="75" r="20" fill="url(#goldGradient)" />
+    <text x="60" y="80" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="white">$</text>
+    <!-- 小钱币 -->
+    <circle cx="40" cy="50" r="8" fill="url(#goldGradient)" />
+    <circle cx="80" cy="50" r="8" fill="url(#goldGradient)" />
+    <circle cx="35" cy="90" r="8" fill="url(#goldGradient)" />
+    <circle cx="85" cy="90" r="8" fill="url(#goldGradient)" />
+  </g>
+</svg> 
