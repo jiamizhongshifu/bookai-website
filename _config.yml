@@ -9,6 +9,31 @@ permalink: pretty
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
+
+# SEO设置
+seo:
+  auto_generate_title: true
+  auto_generate_description: true
+  auto_generate_keywords: true
+  category_structure:
+    - ai_tools
+    - ai_tutorials
+    - ai_resources
+    - ai_news
+  tag_structure:
+    - chatgpt
+    - deepseek
+    - cursor
+    - midjourney
+    - claude
+    - gemini
+    - stable_diffusion
+    - ai_writing
+    - ai_coding
+    - ai_image
+    - ai_video
+    - ai_audio
 
 # 集合设置
 collections:
@@ -16,9 +41,20 @@ collections:
     output: true
     permalink: /:collection/:name/
   resources:
-    output: false
+    output: true
+    permalink: /resources/:name/
   apps:
-    output: false
+    output: true
+    permalink: /apps/:name/
+  categories:
+    output: true
+    permalink: /category/:name/
+  tags:
+    output: true
+    permalink: /tag/:name/
+  tools:
+    output: true
+    permalink: /tool/:name/
 
 # 默认布局设置
 defaults:
@@ -29,8 +65,40 @@ defaults:
       layout: "article"
   - scope:
       path: ""
+      type: "resources"
+    values:
+      layout: "resource"
+  - scope:
+      path: ""
+      type: "apps"
+    values:
+      layout: "app"
+  - scope:
+      path: ""
+      type: "categories"
+    values:
+      layout: "category"
+  - scope:
+      path: ""
+      type: "tags"
+    values:
+      layout: "tag"
+  - scope:
+      path: ""
+      type: "tools"
+    values:
+      layout: "tool"
+  - scope:
+      path: ""
     values:
       layout: "default"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      thumbnail: "/images/placeholder.svg"
 
 # 排除文件
 exclude:

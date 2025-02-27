@@ -1,7 +1,7 @@
 {
-  "name": "BookAI - AI工具教程与资源",
-  "short_name": "BookAI",
-  "description": "提供最新、最实用的AI工具教程和资源",
+  "name": "爱学霸 - AI学习助手",
+  "short_name": "爱学霸",
+  "description": "专注于AI学习和应用的教程平台，帮助你掌握人工智能技术",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -58,45 +58,51 @@
   ],
   "shortcuts": [
     {
-      "name": "搜索",
-      "short_name": "搜索",
-      "description": "搜索文章和教程",
-      "url": "/search.html",
-      "icons": [{ "src": "/images/icons/search-icon.png", "sizes": "192x192" }]
+      "name": "最新教程",
+      "short_name": "教程",
+      "description": "查看最新AI教程",
+      "url": "/tutorials",
+      "icons": [{ "src": "/images/icons/tutorials.png", "sizes": "192x192" }]
     },
     {
-      "name": "最新文章",
-      "short_name": "最新",
-      "description": "查看最新文章",
-      "url": "/latest.html",
-      "icons": [{ "src": "/images/icons/latest-icon.png", "sizes": "192x192" }]
+      "name": "AI工具",
+      "short_name": "工具",
+      "description": "浏览AI工具集合",
+      "url": "/tools",
+      "icons": [{ "src": "/images/icons/tools.png", "sizes": "192x192" }]
     }
   ],
   "screenshots": [
     {
-      "src": "/images/screenshots/homepage.png",
+      "src": "/images/screenshots/home.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "BookAI首页"
+      "label": "爱学霸首页"
     },
     {
-      "src": "/images/screenshots/article.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "文章页面"
-    },
-    {
-      "src": "/images/screenshots/mobile-home.png",
-      "sizes": "540x1200",
+      "src": "/images/screenshots/mobile.png",
+      "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "移动端首页"
+      "label": "爱学霸移动版"
     }
   ],
-  "related_applications": [],
   "prefer_related_applications": false,
-  "orientation": "any",
-  "categories": ["education", "productivity", "utilities"]
+  "related_applications": [],
+  "categories": ["education", "productivity", "utilities"],
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "scope": "/",
+  "id": "aixueba-pwa",
+  "iarc_rating_id": "",
+  "share_target": {
+    "action": "/share-target",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 } 

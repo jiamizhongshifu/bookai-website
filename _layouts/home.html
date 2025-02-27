@@ -1,0 +1,150 @@
+---
+layout: default
+---
+
+<section class="hero">
+    <div class="container">
+        <h1>AI学霸 - 你的AI学习伙伴</h1>
+        <p>探索AI工具的使用技巧，掌握前沿AI技术，提升学习和工作效率</p>
+        <div class="cta-buttons">
+            <a href="/articles/" class="btn btn-primary">浏览教程</a>
+            <a href="/resources/" class="btn btn-secondary">AI资源</a>
+        </div>
+    </div>
+</section>
+
+<section class="featured-articles">
+    <div class="container">
+        <h2 class="section-title">精选文章</h2>
+        <div class="featured-grid">
+            {% assign featured_articles = site.articles | where: "featured", true | sort: "date" | reverse %}
+            {% if featured_articles.size > 0 %}
+                {% for article in featured_articles limit:3 %}
+                <div class="featured-card">
+                    <div class="featured-image">
+                        {% if article.thumbnail %}
+                        <img src="{{ article.thumbnail }}" alt="{{ article.title }}">
+                        {% else %}
+                        <div class="featured-image-placeholder">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="featured-content">
+                        <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                        <div class="featured-meta">
+                            <span class="featured-date">
+                                <i class="fas fa-calendar-alt"></i> {{ article.date | date: "%Y-%m-%d" }}
+                            </span>
+                            {% if article.author %}
+                            <span class="featured-author">
+                                <i class="fas fa-user"></i> {{ article.author }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        <p class="featured-excerpt">{{ article.excerpt | strip_html | truncate: 120 }}</p>
+                        <a href="{{ article.url }}" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-articles">
+                    <p>暂无精选文章</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="latest-articles">
+    <div class="container">
+        <h2 class="section-title">最新文章</h2>
+        <div class="article-grid">
+            {% assign latest_articles = site.articles | sort: "date" | reverse %}
+            {% for article in latest_articles limit:6 %}
+            <div class="article-card">
+                <div class="article-image">
+                    {% if article.thumbnail %}
+                    <img src="{{ article.thumbnail }}" alt="{{ article.title }}">
+                    {% else %}
+                    <div class="article-image-placeholder">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="article-content">
+                    <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                    <div class="article-meta">
+                        <span class="article-date">
+                            <i class="fas fa-calendar-alt"></i> {{ article.date | date: "%Y-%m-%d" }}
+                        </span>
+                        {% if article.categories %}
+                        <span class="article-category">
+                            <i class="fas fa-folder"></i>
+                            <a href="/category/{{ article.categories[0] | slugify }}/">{{ article.categories[0] }}</a>
+                        </span>
+                        {% endif %}
+                    </div>
+                    <p class="article-excerpt">{{ article.excerpt | strip_html | truncate: 100 }}</p>
+                    <a href="{{ article.url }}" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="view-all">
+            <a href="/articles/" class="btn btn-outline">查看所有文章</a>
+        </div>
+    </div>
+</section>
+
+<section class="categories-section">
+    <div class="container">
+        <h2 class="section-title">热门分类</h2>
+        <div class="category-grid">
+            {% for category in site.categories limit:4 %}
+            <a href="{{ category.url }}" class="category-item">
+                <div class="category-icon">
+                    <i class="fas fa-folder"></i>
+                </div>
+                <h3>{{ category.title }}</h3>
+                <p>{{ category.description | truncate: 60 }}</p>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="view-all">
+            <a href="/categories/" class="btn btn-outline">查看所有分类</a>
+        </div>
+    </div>
+</section>
+
+<section class="tags-section">
+    <div class="container">
+        <h2 class="section-title">热门标签</h2>
+        <div class="tag-cloud">
+            {% for tag in site.tags limit:20 %}
+            <a href="/tag/{{ tag.title | slugify }}/" class="tag {% if forloop.index <= 5 %}tag-popular{% endif %}">
+                {{ tag.title }}
+            </a>
+            {% endfor %}
+        </div>
+        <div class="view-all">
+            <a href="/tags/" class="btn btn-outline">查看所有标签</a>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>订阅我们的通讯</h2>
+            <p>获取最新的AI工具教程、技巧和资源，直接发送到您的邮箱</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="您的邮箱地址" required>
+                <button type="submit" class="btn btn-primary">订阅</button>
+            </form>
+            <div class="newsletter-privacy">
+                我们尊重您的隐私，不会发送垃圾邮件
+            </div>
+        </div>
+    </div>
+</section> 

@@ -3,242 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>离线模式 - BookAI</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>网络连接不可用 - 爱学霸</title>
     <style>
-        .offline-container {
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: #fff;
+            --border-color: #e0e0e0;
+        }
+        
+        body.dark-mode {
+            --primary-color: #4dabf7;
+            --secondary-color: #339af0;
+            --text-color: #e0e0e0;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
-            min-height: 70vh;
+            align-items: center;
             text-align: center;
-            padding: 2rem;
         }
         
         .offline-icon {
-            font-size: 5rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            animation: pulse 2s infinite;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
         }
         
-        .offline-title {
-            font-size: 2.5rem;
+        h1 {
+            font-size: 2rem;
             margin-bottom: 1rem;
-            color: var(--text-color);
+            color: var(--primary-color);
         }
         
-        .offline-message {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            color: var(--text-color-secondary);
-            line-height: 1.6;
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
         }
         
         .cached-content {
-            background-color: var(--bg-color-secondary);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 2rem;
+            margin-top: 40px;
             width: 100%;
-            max-width: 800px;
-        }
-        
-        .cached-content h3 {
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-            font-size: 1.5rem;
+            max-width: 600px;
         }
         
         .cached-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .cached-item {
-            background-color: var(--bg-color);
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            overflow: hidden;
+            background-color: var(--card-bg);
         }
         
-        .cached-item:hover {
-            transform: translateY(-5px);
+        .cached-list li {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .cached-item a {
-            text-decoration: none;
+        .cached-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .cached-list a {
             color: var(--primary-color);
-            font-weight: 500;
+            text-decoration: none;
             display: block;
         }
         
-        .retry-button {
-            margin-top: 2rem;
-            padding: 0.8rem 2rem;
-            background-color: var(--primary-color);
-            color: white;
+        .cached-list a:hover {
+            text-decoration: underline;
+        }
+        
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
             border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 500;
+            color: var(--text-color);
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
         
-        .retry-button:hover {
-            background-color: var(--primary-color-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
         }
         
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
             }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.8;
+            
+            h1 {
+                font-size: 1.8rem;
             }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            .cached-item {
-                background-color: var(--bg-color-dark);
+            
+            .offline-icon {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="/">
-                    <span class="logo-text">BOOKAI.TOP</span>
-                    <span class="logo-text-bold">BookAI</span>
-                </a>
+    <button class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+    
+    <div class="container">
+        <svg class="offline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+            <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+            <line x1="12" y1="20" x2="12.01" y2="20"></line>
+        </svg>
+        
+        <h1>网络连接不可用</h1>
+        <p>您当前处于离线状态，无法访问网络内容。<br>您可以查看已缓存的页面或尝试重新连接。</p>
+        
+        <div>
+            <button class="btn" id="reloadBtn">重新加载</button>
+            <button class="btn btn-outline" id="homeBtn">返回首页</button>
+        </div>
+        
+        <div class="cached-content">
+            <h2>可离线访问的内容</h2>
+            <div id="cachedPages">
+                <p>正在加载已缓存内容...</p>
             </div>
         </div>
-    </header>
-
-    <main>
-        <div class="offline-container">
-            <div class="offline-icon">
-                <i class="fas fa-wifi-slash"></i>
-            </div>
-            <h1 class="offline-title">您当前处于离线状态</h1>
-            <p class="offline-message">
-                看起来您的网络连接已断开。不用担心，您仍然可以访问之前浏览过的内容。
-                我们的PWA功能确保您可以在离线状态下继续阅读已缓存的文章和教程。
-            </p>
-            
-            <button class="retry-button" id="retryButton">
-                <i class="fas fa-sync-alt"></i> 重试连接
-            </button>
-            
-            <div class="cached-content">
-                <h3>可离线访问的内容</h3>
-                <ul class="cached-list" id="cachedList">
-                    <!-- 缓存的内容将通过JavaScript动态加载 -->
-                    <li class="cached-item">
-                        <a href="/">首页</a>
-                    </li>
-                    <li class="cached-item">
-                        <a href="/search.html">搜索页面</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </main>
-
+    </div>
+    
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">BOOKAI.TOP</span>
-                </div>
-                <p>© 2025 BookAI. 离线模式下可用。</p>
-            </div>
-        </div>
+        <p>© 2023 爱学霸 - 离线模式</p>
     </footer>
-
+    
     <script>
-        // 重试连接按钮
-        document.getElementById('retryButton').addEventListener('click', function() {
+        // 深色模式切换
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // 检查本地存储中的主题设置
+        const savedTheme = localStorage.getItem('theme');
+        
+        // 应用主题
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        }
+        
+        // 切换深色模式
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // 更新图标
+            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+            
+            // 保存设置
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+        
+        // 重新加载按钮
+        document.getElementById('reloadBtn').addEventListener('click', () => {
             window.location.reload();
         });
         
-        // 获取缓存的页面列表
-        async function getCachedPages() {
+        // 返回首页按钮
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            window.location.href = '/';
+        });
+        
+        // 获取缓存的页面
+        async function loadCachedPages() {
+            const cachedPagesElement = document.getElementById('cachedPages');
+            
             try {
-                const cache = await caches.open('bookai-cache-v1.0.0');
-                const keys = await cache.keys();
-                const cachedList = document.getElementById('cachedList');
+                // 获取所有缓存
+                const cacheNames = await caches.keys();
+                let cachedUrls = [];
                 
-                // 清空列表
-                cachedList.innerHTML = '';
-                
-                // 添加首页和搜索页
-                cachedList.innerHTML += `
-                    <li class="cached-item">
-                        <a href="/">首页</a>
-                    </li>
-                    <li class="cached-item">
-                        <a href="/search.html">搜索页面</a>
-                    </li>
-                `;
-                
-                // 过滤HTML页面并添加到列表
-                const htmlPages = keys.filter(request => 
-                    request.url.endsWith('.html') && 
-                    !request.url.includes('/offline.html') &&
-                    !request.url.includes('/index.html') &&
-                    !request.url.includes('/search.html')
-                );
-                
-                htmlPages.forEach(request => {
-                    const url = new URL(request.url);
-                    const path = url.pathname;
-                    const title = path.split('/').pop().replace('.html', '').replace(/-/g, ' ');
+                // 从每个缓存中获取所有请求
+                for (const cacheName of cacheNames) {
+                    const cache = await caches.open(cacheName);
+                    const requests = await cache.keys();
                     
-                    const listItem = document.createElement('li');
-                    listItem.className = 'cached-item';
-                    listItem.innerHTML = `<a href="${path}">${title}</a>`;
-                    cachedList.appendChild(listItem);
-                });
+                    // 过滤出HTML页面
+                    const htmlRequests = requests.filter(request => {
+                        return request.url.endsWith('.html') || 
+                               request.url.endsWith('/') || 
+                               !request.url.includes('.');
+                    });
+                    
+                    cachedUrls = [...cachedUrls, ...htmlRequests.map(req => req.url)];
+                }
                 
-                // 如果没有缓存的页面，显示提示
-                if (htmlPages.length === 0) {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'cached-item';
-                    listItem.style.gridColumn = '1 / -1';
-                    listItem.innerHTML = '暂无其他缓存内容，请在有网络连接时浏览更多页面以便离线访问。';
-                    cachedList.appendChild(listItem);
+                // 去重
+                cachedUrls = [...new Set(cachedUrls)];
+                
+                // 排除当前页面
+                cachedUrls = cachedUrls.filter(url => !url.includes('offline.html'));
+                
+                // 显示缓存的页面
+                if (cachedUrls.length > 0) {
+                    let html = '<ul class="cached-list">';
+                    
+                    cachedUrls.forEach(url => {
+                        // 提取页面标题
+                        let title = url.split('/').pop();
+                        if (title === '' || title === 'index.html') {
+                            title = '首页';
+                        } else {
+                            // 移除.html后缀并美化标题
+                            title = title.replace('.html', '').replace(/-/g, ' ');
+                            title = title.charAt(0).toUpperCase() + title.slice(1);
+                        }
+                        
+                        html += `<li><a href="${url}">${title}</a></li>`;
+                    });
+                    
+                    html += '</ul>';
+                    cachedPagesElement.innerHTML = html;
+                } else {
+                    cachedPagesElement.innerHTML = '<p>没有找到已缓存的页面</p>';
                 }
             } catch (error) {
                 console.error('获取缓存页面失败:', error);
+                cachedPagesElement.innerHTML = '<p>无法加载已缓存的页面</p>';
             }
         }
         
-        // 页面加载时获取缓存的页面
-        window.addEventListener('load', getCachedPages);
+        // 页面加载完成后获取缓存的页面
+        window.addEventListener('DOMContentLoaded', loadCachedPages);
     </script>
 </body>
 </html> 

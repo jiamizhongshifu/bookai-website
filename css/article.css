@@ -168,12 +168,28 @@
     font-size: 0.9rem;
 }
 
+/* 文章布局 */
+.article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 40px;
+}
+
+.article-main {
+    min-width: 0; /* 防止内容溢出 */
+}
+
 /* 文章目录样式 */
 .article-toc {
     background-color: var(--light-bg);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 30px;
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    transition: all 0.3s ease;
 }
 
 .toc-title {
@@ -181,6 +197,35 @@
     font-weight: 600;
     margin-bottom: 15px;
     color: var(--heading-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toc-toggle {
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 5px;
+    transition: transform 0.3s;
+}
+
+.toc-toggle.collapsed {
+    transform: rotate(180deg);
+}
+
+.toc-content {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: 500px;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.toc-content.collapsed {
+    max-height: 0;
+    opacity: 0;
 }
 
 .article-toc ul {
@@ -191,6 +236,11 @@
 
 .article-toc li {
     margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.article-toc li li {
+    padding-left: 15px;
 }
 
 .article-toc a {
@@ -199,10 +249,19 @@
     display: block;
     padding: 5px 0;
     transition: color 0.2s;
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .article-toc a:hover {
     color: var(--primary-color);
+}
+
+.article-toc a.active {
+    color: var(--primary-color);
+    font-weight: 500;
 }
 
 /* 文章内容样式 */
@@ -520,7 +579,127 @@
     background-color: var(--primary-hover);
 }
 
+/* 侧边栏样式 */
+.article-sidebar {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+}
+
+.sidebar-widget {
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.sidebar-widget h3 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 作者信息 */
+.author-info {
+    display: flex;
+    align-items: center;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-bio h4 {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+}
+
+.author-bio p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--light-text);
+    line-height: 1.5;
+}
+
+/* 热门文章 */
+.popular-articles ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popular-articles li {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.popular-articles li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.popular-articles a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.2s;
+}
+
+.popular-articles a:hover {
+    color: var(--primary-color);
+}
+
+.popular-article-title {
+    font-weight: 500;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.popular-article-date {
+    font-size: 0.8rem;
+    color: var(--light-text);
+}
+
+/* 标签云 */
+.tag-cloud-widget .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-cloud-widget .tag {
+    font-size: 0.85rem;
+}
+
 /* 响应式设计 */
+@media (max-width: 992px) {
+    .article-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .article-sidebar {
+        position: static;
+        margin-top: 40px;
+    }
+}
+
 @media (max-width: 768px) {
     .article-title {
         font-size: 1.8rem;
@@ -579,8 +758,14 @@
     .related-articles,
     .article-rating,
     .reading-progress-container,
-    .back-to-top {
+    .back-to-top,
+    .article-sidebar,
+    .article-toc {
         display: none;
+    }
+    
+    .article-layout {
+        display: block;
     }
     
     .article-content {

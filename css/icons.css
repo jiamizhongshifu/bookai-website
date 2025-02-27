@@ -1,0 +1,73 @@
+/* 
+ * 本地图标字体定义
+ * 替代外部阿里图标字体，减少对外部资源的依赖
+ */
+
+/* 基础图标样式 */
+.icon {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+/* 使用Font Awesome的基本图标 */
+@font-face {
+  font-family: 'FontAwesome';
+  font-display: swap;
+  src: url('/fonts/fontawesome-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 图标基础类 */
+.fa {
+  font-family: 'FontAwesome';
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+/* 常用图标定义 */
+.fa-search:before { content: "\f002"; }
+.fa-moon:before { content: "\f186"; }
+.fa-sun:before { content: "\f185"; }
+.fa-bars:before { content: "\f0c9"; }
+.fa-chevron-left:before { content: "\f053"; }
+.fa-chevron-right:before { content: "\f054"; }
+.fa-calendar-alt:before { content: "\f073"; }
+.fa-folder:before { content: "\f07b"; }
+.fa-file-alt:before { content: "\f15c"; }
+.fa-code:before { content: "\f121"; }
+.fa-robot:before { content: "\f544"; }
+.fa-camera:before { content: "\f030"; }
+.fa-lightbulb:before { content: "\f0eb"; }
+.fa-cat:before { content: "\f6be"; }
+.fa-image:before { content: "\f03e"; }
+.fa-pen:before { content: "\f304"; }
+.fa-chart-bar:before { content: "\f080"; }
+.fa-tshirt:before { content: "\f553"; }
+
+/* 图标大小变体 */
+.fa-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+/* 错误处理降级方案 */
+.icon-fallback {
+  display: none;
+}
+
+/* 当图标字体加载失败时显示文本替代 */
+.font-failed .fa {
+  display: none;
+}
+
+.font-failed .icon-fallback {
+  display: inline;
+} 

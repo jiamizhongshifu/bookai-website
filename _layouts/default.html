@@ -8,11 +8,12 @@
     <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ',' }}{% else %}AI工具,AI教程,AI学习,ChatGPT,Deepseek,Cursor{% endif %}">
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
     <link rel="stylesheet" href="/css/style.css">
-    <!-- 引入字体图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入本地图标字体 -->
+    <link rel="stylesheet" href="/css/icons.css">
     <!-- 添加预加载关键资源 -->
     <link rel="preload" href="/css/style.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="/css/icons.css" as="style">
+    <link rel="preload" href="/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/js/main.js" as="script">
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -221,7 +222,8 @@
     
     <!-- 预加载关键资源 -->
     <link rel="preload" href="/css/style.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="/css/icons.css" as="style">
+    <link rel="preload" href="/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/js/main.js" as="script">
 </head>
 <body>

@@ -1,0 +1,24 @@
+{
+  "name": "aixueba-website",
+  "version": "1.0.0",
+  "description": "AiXueba - AI工具教程与资源网站",
+  "main": "index.js",
+  "scripts": {
+    "convert-webp": "node convert-to-webp.js",
+    "build": "jekyll build",
+    "serve": "jekyll serve",
+    "dev": "jekyll serve --livereload"
+  },
+  "keywords": [
+    "ai",
+    "tutorial",
+    "deepseek",
+    "chatgpt",
+    "cursor"
+  ],
+  "author": "AI进化论-花生",
+  "license": "MIT",
+  "dependencies": {
+    "sharp": "^0.33.2"
+  }
+} 

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookAI - AI工具教程与资源</title>
+    <title>AiXueba - AI工具教程与资源</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- 引入字体图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入本地图标字体 -->
+    <link rel="stylesheet" href="css/icons.css">
     <!-- 添加预加载关键资源 -->
     <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="css/icons.css" as="style">
+    <link rel="preload" href="fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="js/main.js" as="script">
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -19,8 +20,8 @@
         <div class="container">
             <div class="logo">
                 <a href="/">
-                    <span class="logo-text">BOOKAI.TOP</span>
-                    <span class="logo-text-bold">BookAI</span>
+                    <span class="logo-text">AiXueba.club</span>
+                    <span class="logo-text-bold">AiXueba</span>
                 </a>
             </div>
             <nav>
@@ -79,11 +80,17 @@
                                 <div class="article-card">
                                     {% if article.thumbnail %}
                                     <div class="article-thumbnail">
-                                        <img src="{{ article.thumbnail }}" alt="{{ article.title }}">
+                                        <img data-src="{{ article.thumbnail | relative_url }}" 
+                                             {% if article.thumbnail contains '.jpg' or article.thumbnail contains '.jpeg' or article.thumbnail contains '.png' %}
+                                             data-webp="{{ article.thumbnail | relative_url | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' }}"
+                                             {% endif %}
+                                             src="/images/placeholder.svg" 
+                                             alt="{{ article.title | escape }}" 
+                                             loading="lazy">
                                     </div>
                                     {% else %}
-                                    <div class="article-thumbnail no-image">
-                                        <i class="fas fa-file-alt"></i>
+                                    <div class="article-thumbnail">
+                                        <img src="/images/placeholder.svg" alt="{{ article.title | escape }}" loading="lazy">
                                     </div>
                                     {% endif %}
                                     <div class="article-info">
@@ -126,7 +133,10 @@
                     <!-- ChatGPT教程 -->
                     <div class="tutorial-card">
                         <div class="tutorial-image">
-                            <img src="images/chatgpt.svg" alt="ChatGPT教程">
+                            <img data-src="images/chatgpt.svg" 
+                                 src="/images/placeholder.svg" 
+                                 alt="ChatGPT教程" 
+                                 loading="lazy">
                         </div>
                         <div class="tutorial-content">
                             <h3>ChatGPT使用指南：从入门到精通</h3>
@@ -138,7 +148,10 @@
                     <!-- Deepseek教程 -->
                     <div class="tutorial-card">
                         <div class="tutorial-image">
-                            <img src="images/deepseek.svg" alt="Deepseek教程">
+                            <img data-src="images/deepseek.svg" 
+                                 src="/images/placeholder.svg" 
+                                 alt="Deepseek教程" 
+                                 loading="lazy">
                         </div>
                         <div class="tutorial-content">
                             <h3>Deepseek简介</h3>
@@ -149,7 +162,10 @@
 
                     <div class="tutorial-card">
                         <div class="tutorial-image">
-                            <img src="images/deepseek-tips.svg" alt="Deepseek使用技巧">
+                            <img data-src="images/deepseek-tips.svg" 
+                                 src="/images/placeholder.svg" 
+                                 alt="Deepseek使用技巧" 
+                                 loading="lazy">
                         </div>
                         <div class="tutorial-content">
                             <h3>爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</h3>
@@ -160,7 +176,10 @@
 
                     <div class="tutorial-card">
                         <div class="tutorial-image">
-                            <img src="images/deepseek-money.svg" alt="DeepSeek赚钱">
+                            <img data-src="images/deepseek-money.svg" 
+                                 src="/images/placeholder.svg" 
+                                 alt="DeepSeek赚钱" 
+                                 loading="lazy">
                         </div>
                         <div class="tutorial-content">
                             <h3>我用DeepSeek流量赚到的第一笔钱：联盟营销</h3>
@@ -171,7 +190,10 @@
 
                     <div class="tutorial-card">
                         <div class="tutorial-image">
-                            <img src="images/deepseek-alt.svg" alt="DeepSeek替代方案">
+                            <img data-src="images/deepseek-alt.svg" 
+                                 src="/images/placeholder.svg" 
+                                 alt="DeepSeek替代方案" 
+                                 loading="lazy">
                         </div>
                         <div class="tutorial-content">
                             <h3>DeepSeek太卡了？这有5+1种DeepSeek R1最强满血替代方案等你查收！</h3>
