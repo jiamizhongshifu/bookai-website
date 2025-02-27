@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3.2"
 gem "webrick", "~> 1.8"
+gem "google-protobuf", "~> 3.23"
 
 # Jekyll插件
 group :jekyll_plugins do

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 添加预加载关键资源 -->
+    <link rel="preload" href="/css/style.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="/js/main.js" as="script">
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    {% if page.layout == "article" %}
+    <link rel="stylesheet" href="/css/article.css">
+    <link rel="preload" href="/css/article.css" as="style">
+    {% endif %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                    <span class="logo-text-bold">BookAI</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    {% for link in site.data.navigation.links %}
+                    <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <div class="nav-tools">
+                <div class="search-container">
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="搜索教程...">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="search-results"></div>
+                </div>
+                <button class="dark-mode-toggle" aria-label="切换深色模式">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>GPTs</h4>
+                        <ul>
+                            <li><a href="#">更勤奋更聪明的GPT4</a></li>
+                            <li><a href="#">AI使用助手 by 花生</a></li>
+                            <li><a href="#">AI阅读助手</a></li>
+                            <li><a href="#">GPT翻译-专业中英双语翻译</a></li>
+                            <li><a href="#">Claude 3 Opus</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>更多</h4>
+                        <ul>
+                            <li><a href="#">跟我学Cursor</a></li>
+                            <li><a href="#">即刻</a></li>
+                            <li><a href="#">Youtube</a></li>
+                            <li><a href="#">Bilibili</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 Bookai, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        // 检测用户登录状态
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html> 
