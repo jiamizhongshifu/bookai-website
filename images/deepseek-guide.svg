@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f7ff" />
+      <stop offset="100%" stop-color="#e8edff" />
+    </linearGradient>
+    <linearGradient id="cardGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285f4" />
+      <stop offset="100%" stop-color="#2a75f3" />
+    </linearGradient>
+    <linearGradient id="cardGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34a853" />
+      <stop offset="100%" stop-color="#2d9249" />
+    </linearGradient>
+    <linearGradient id="cardGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbc05" />
+      <stop offset="100%" stop-color="#f2b101" />
+    </linearGradient>
+    <linearGradient id="cardGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea4335" />
+      <stop offset="100%" stop-color="#d33426" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- 背景矩形 -->
+  <rect width="800" height="600" fill="url(#bgGradient)" rx="20" ry="20" />
+  
+  <!-- 中心圆形 -->
+  <circle cx="400" cy="300" r="240" fill="white" filter="url(#shadow)" />
+  
+  <!-- 指南书本图标 -->
+  <g transform="translate(400, 200)">
+    <!-- 书本封面 -->
+    <path d="M-100,-80 L100,-80 L100,80 L-100,80 Z" fill="#4285f4" />
+    
+    <!-- 书本内页 -->
+    <path d="M-100,-80 L-90,-80 C-40,-70 -40,70 -90,80 L-100,80 Z" fill="#f5f5f5" />
+    
+    <!-- 书本标题 -->
+    <text x="0" y="-40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">DeepSeek</text>
+    <text x="0" y="-10" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">新手指南</text>
+    
+    <!-- 书本装饰线 -->
+    <rect x="-70" y="10" width="140" height="2" rx="1" ry="1" fill="white" opacity="0.7" />
+    <rect x="-70" y="20" width="140" height="2" rx="1" ry="1" fill="white" opacity="0.7" />
+    <rect x="-70" y="30" width="140" height="2" rx="1" ry="1" fill="white" opacity="0.7" />
+    <rect x="-70" y="40" width="140" height="2" rx="1" ry="1" fill="white" opacity="0.7" />
+    <rect x="-70" y="50" width="140" height="2" rx="1" ry="1" fill="white" opacity="0.7" />
+    
+    <!-- 书本图标 -->
+    <circle cx="0" cy="70" r="15" fill="white" />
+    <path d="M-7,70 L7,70 M0,63 L0,77" stroke="#4285f4" stroke-width="3" />
+  </g>
+  
+  <!-- 四个步骤卡片 -->
+  <!-- 步骤1：注册账号 -->
+  <g transform="translate(250, 380)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="url(#cardGradient1)" filter="url(#shadow)" />
+    <circle cx="-60" cy="-40" r="12" fill="white" />
+    <text x="-60" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#4285f4">1</text>
+    <text x="0" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">注册账号</text>
+    
+    <!-- 用户图标 -->
+    <circle cx="0" cy="0" r="20" fill="white" opacity="0.2" />
+    <circle cx="0" cy="-10" r="10" fill="white" opacity="0.8" />
+    <path d="M-15,15 C-15,0 15,0 15,15" stroke="white" stroke-width="3" fill="none" />
+    
+    <text x="0" y="40" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">简单几步创建账号</text>
+  </g>
+  
+  <!-- 步骤2：API密钥 -->
+  <g transform="translate(420, 380)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="url(#cardGradient2)" filter="url(#shadow)" />
+    <circle cx="-60" cy="-40" r="12" fill="white" />
+    <text x="-60" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#34a853">2</text>
+    <text x="0" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">获取API密钥</text>
+    
+    <!-- 钥匙图标 -->
+    <g transform="translate(0, 0)">
+      <circle cx="-10" cy="0" r="10" fill="white" opacity="0.8" />
+      <rect x="-5" y="0" width="25" height="5" rx="2" ry="2" fill="white" opacity="0.8" />
+      <rect x="10" y="-5" width="5" height="15" rx="2" ry="2" fill="white" opacity="0.8" />
+    </g>
+    
+    <text x="0" y="40" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">开发者中心申请</text>
+  </g>
+  
+  <!-- 步骤3：API调用 -->
+  <g transform="translate(250, 510)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="url(#cardGradient3)" filter="url(#shadow)" />
+    <circle cx="-60" cy="-40" r="12" fill="white" />
+    <text x="-60" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#fbbc05">3</text>
+    <text x="0" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">API调用</text>
+    
+    <!-- 代码图标 -->
+    <text x="0" y="0" font-family="Courier, monospace" font-size="24" font-weight="bold" text-anchor="middle" fill="white">&lt;/&gt;</text>
+    
+    <text x="0" y="40" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">简单几行代码接入</text>
+  </g>
+  
+  <!-- 步骤4：免费试用技巧 -->
+  <g transform="translate(420, 510)">
+    <rect x="-80" y="-60" width="160" height="120" rx="10" ry="10" fill="url(#cardGradient4)" filter="url(#shadow)" />
+    <circle cx="-60" cy="-40" r="12" fill="white" />
+    <text x="-60" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#ea4335">4</text>
+    <text x="0" y="-35" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">免费试用技巧</text>
+    
+    <!-- 灯泡图标 -->
+    <path d="M0,-15 C-15,-15 -15,10 0,10 C15,10 15,-15 0,-15 Z" fill="white" opacity="0.8" />
+    <rect x="-5" y="10" width="10" height="5" rx="2" ry="2" fill="white" opacity="0.8" />
+    
+    <text x="0" y="40" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">最大化免费额度</text>
+  </g>
+  
+  <!-- 右侧特性列表 -->
+  <g transform="translate(600, 300)">
+    <rect x="-80" y="-150" width="160" height="300" rx="15" ry="15" fill="white" stroke="#ddd" stroke-width="2" />
+    
+    <text x="0" y="-120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">新手必看内容</text>
+    
+    <g transform="translate(0, -90)">
+      <circle cx="-60" cy="0" r="6" fill="#4285f4" />
+      <text x="-45" y="5" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">模型介绍</text>
+    </g>
+    
+    <g transform="translate(0, -60)">
+      <circle cx="-60" cy="0" r="6" fill="#34a853" />
+      <text x="-45" y="5" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">账号注册流程</text>
+    </g>
+    
+    <g transform="translate(0, -30)">
+      <circle cx="-60" cy="0" r="6" fill="#fbbc05" />
+      <text x="-45" y="5" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">API文档解析</text>
+    </g>
+    
+    <g transform="translate(0, 0)">
+      <circle cx="-60" cy="0" r="6" fill="#ea4335" />
+      <text x="-45" y="5" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">Python示例</text>
+    </g>
+    
+    <g transform="translate(0, 30)">
+      <circle cx="-60" cy="0" r="6" fill="#4285f4" />
+      <text x="-45" y="5" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">Node.js示例</text>
+    </g>
+    
+    <g transform="translate(0, 60)">
+      <circle cx="-60" cy="0" r="6" fill="#34a853" />
+      <text x="-45" y="5" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">常见问题解答</text>
+    </g>
+    
+    <g transform="translate(0, 90)">
+      <circle cx="-60" cy="0" r="6" fill="#fbbc05" />
+      <text x="-45" y="5" font-family="Arial, sans-serif" font-size="14" text-anchor="start" fill="#333">免费额度技巧</text>
+    </g>
+  </g>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#4285f4">DeepSeek 新手指南</text>
+  <text x="400" y="120" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#666">从注册到API调用的完整教程</text>
+</svg> 
