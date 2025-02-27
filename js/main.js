@@ -6,7 +6,7 @@
 // 加载顺序很重要，先加载工具函数和性能监控
 document.addEventListener('DOMContentLoaded', function() {
   // 先加载工具函数库
-  loadScript('/js/utils.js').then(() => {
+  loadScript('js/utils.js').then(() => {
     // 初始化网站基础功能
     initBasicFeatures();
     
@@ -52,7 +52,7 @@ function loadModules() {
   // 首页特定功能
   if (isHomePage) {
     // 加载轮播图模块
-    loadScript('/js/carousel.js').then(() => {
+    loadScript('js/carousel.js').then(() => {
       if (window.carouselModule) {
         window.carouselModule.init();
       }
@@ -65,8 +65,8 @@ function loadModules() {
   if (isArticlePage) {
     // 加载文章相关功能
     Promise.all([
-      loadScript('/js/article-toc.js'),
-      loadScript('/js/article-rating.js')
+      loadScript('js/article-toc.js'),
+      loadScript('js/article-rating.js')
     ]).then(() => {
       // 初始化文章目录
       if (window.tocModule) {
@@ -94,7 +94,7 @@ function loadModules() {
   // 所有页面都需要的功能
   
   // 加载懒加载模块
-  loadScript('/js/lazy-loading.js').then(() => {
+  loadScript('js/lazy-loading.js').then(() => {
     if (window.lazyLoadingModule) {
       window.lazyLoadingModule.init();
     }
@@ -436,7 +436,7 @@ function initArticleViews() {
  * 注册Service Worker
  */
 function registerServiceWorker() {
-  navigator.serviceWorker.register('/sw.js')
+  navigator.serviceWorker.register('sw.js')
     .then(function(registration) {
       console.log('Service Worker 注册成功，作用域为: ', registration.scope);
     })
