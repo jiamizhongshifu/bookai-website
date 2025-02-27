@@ -5,6 +5,7 @@ ruby "3.3.0"
 gem "jekyll", "~> 4.3.2"
 gem "webrick", "~> 1.8"
 gem "google-protobuf", "~> 3.23"
+gem "terminal-table", "~> 3.0.0"
 
 # Jekyll插件
 group :jekyll_plugins do
