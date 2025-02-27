@@ -1,0 +1,316 @@
+/* 分类和标签页面共享样式 */
+.category-container,
+.tag-container {
+    padding: 40px 0 60px;
+}
+
+.category-header,
+.tag-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.category-title,
+.tag-title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+}
+
+.category-description,
+.tag-description {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.tag-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* 文章网格样式 */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.article-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.article-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.article-card:hover .article-image img {
+    transform: scale(1.05);
+}
+
+.article-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    font-size: 3rem;
+}
+
+.article-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-content .article-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.article-content .article-title a {
+    color: var(--heading-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.article-content .article-title a:hover {
+    color: var(--primary-color);
+}
+
+.article-content .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: var(--light-text);
+}
+
+.article-content .article-meta span {
+    display: flex;
+    align-items: center;
+}
+
+.article-content .article-meta i {
+    margin-right: 5px;
+}
+
+.article-content .article-meta a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.article-content .article-meta a:hover {
+    text-decoration: underline;
+}
+
+.article-content .article-excerpt {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.article-content .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.article-content .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 15px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.article-content .tag:hover {
+    background-color: var(--tag-bg-hover);
+}
+
+.article-content .read-more {
+    align-self: flex-start;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.article-content .read-more i {
+    margin-left: 5px;
+    transition: transform 0.2s;
+}
+
+.article-content .read-more:hover {
+    color: var(--primary-hover);
+}
+
+.article-content .read-more:hover i {
+    transform: translateX(3px);
+}
+
+/* 无文章提示 */
+.no-articles {
+    text-align: center;
+    padding: 50px 0;
+    color: var(--light-text);
+}
+
+.no-articles i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.no-articles p {
+    font-size: 1.2rem;
+}
+
+/* 分类相关样式 */
+.category-related,
+.tag-related {
+    margin-top: 60px;
+}
+
+.category-related h2,
+.tag-related h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--heading-color);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.category-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.category-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+}
+
+.category-item p {
+    color: var(--light-text);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 标签云样式 */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.tag-cloud .tag {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.tag-cloud .tag:hover {
+    background-color: var(--tag-bg-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tag-cloud .tag-popular {
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.tag-cloud .tag-popular:hover {
+    background-color: var(--primary-hover);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .category-title,
+    .tag-title {
+        font-size: 2rem;
+    }
+    
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .article-image-placeholder {
+        background-color: var(--bg-color);
+    }
+} 

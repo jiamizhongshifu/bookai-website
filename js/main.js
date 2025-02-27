@@ -441,4 +441,141 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化广告功能
     initAds();
     initAdminFeatures();
-}); 
+
+    // 阅读进度指示器
+    initReadingProgress();
+    
+    // 返回顶部按钮
+    initBackToTop();
+    
+    // 文章评分系统
+    initArticleRating();
+});
+
+// 初始化阅读进度指示器
+function initReadingProgress() {
+    const progressBar = document.getElementById('readingProgressBar');
+    if (!progressBar) return;
+    
+    window.addEventListener('scroll', function() {
+        // 计算滚动百分比
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        
+        // 更新进度条宽度
+        progressBar.style.width = scrollPercent + '%';
+    });
+}
+
+// 初始化返回顶部按钮
+function initBackToTop() {
+    const backToTopButton = document.getElementById('backToTop');
+    if (!backToTopButton) return;
+    
+    // 滚动事件监听
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    // 点击事件
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// 初始化文章评分系统
+function initArticleRating() {
+    const ratingStars = document.getElementById('ratingStars');
+    const ratingCount = document.getElementById('ratingCount');
+    if (!ratingStars || !ratingCount) return;
+    
+    // 获取当前页面URL作为评分的唯一标识
+    const pageUrl = window.location.pathname;
+    
+    // 从本地存储获取评分数据
+    let ratingsData = JSON.parse(localStorage.getItem('articleRatings')) || {};
+    
+    // 如果当前页面没有评分数据，初始化
+    if (!ratingsData[pageUrl]) {
+        ratingsData[pageUrl] = {
+            totalRating: 0,
+            ratingCount: 0,
+            userRating: 0
+        };
+    }
+    
+    // 更新评分显示
+    updateRatingDisplay(ratingsData[pageUrl]);
+    
+    // 为每个星星添加点击事件
+    const stars = ratingStars.querySelectorAll('i');
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            
+            // 如果用户已经评分，减去之前的评分
+            if (ratingsData[pageUrl].userRating > 0) {
+                ratingsData[pageUrl].totalRating -= ratingsData[pageUrl].userRating;
+                ratingsData[pageUrl].ratingCount--;
+            }
+            
+            // 添加新评分
+            ratingsData[pageUrl].totalRating += rating;
+            ratingsData[pageUrl].ratingCount++;
+            ratingsData[pageUrl].userRating = rating;
+            
+            // 更新本地存储
+            localStorage.setItem('articleRatings', JSON.stringify(ratingsData));
+            
+            // 更新评分显示
+            updateRatingDisplay(ratingsData[pageUrl]);
+        });
+        
+        // 鼠标悬停效果
+        star.addEventListener('mouseover', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            highlightStars(stars, rating);
+        });
+        
+        star.addEventListener('mouseout', function() {
+            highlightStars(stars, ratingsData[pageUrl].userRating);
+        });
+    });
+}
+
+// 更新评分显示
+function updateRatingDisplay(ratingData) {
+    const ratingStars = document.getElementById('ratingStars');
+    const ratingCount = document.getElementById('ratingCount');
+    if (!ratingStars || !ratingCount) return;
+    
+    const stars = ratingStars.querySelectorAll('i');
+    const averageRating = ratingData.ratingCount > 0 ? ratingData.totalRating / ratingData.ratingCount : 0;
+    
+    // 更新星星显示
+    highlightStars(stars, ratingData.userRating);
+    
+    // 更新评分计数
+    ratingCount.textContent = `(${ratingData.ratingCount} 评分, 平均 ${averageRating.toFixed(1)})`;
+}
+
+// 高亮星星
+function highlightStars(stars, rating) {
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.classList.remove('far');
+            star.classList.add('fas');
+        } else {
+            star.classList.remove('fas');
+            star.classList.add('far');
+        }
+    });
+} 

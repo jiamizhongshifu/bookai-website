@@ -2,6 +2,7 @@
 :root {
     /* 颜色变量 */
     --primary-color: #0066cc;
+    --primary-color-rgb: 0, 102, 204; /* RGB值用于rgba颜色 */
     --primary-hover: #0052a3;
     --secondary-color: #2c3e50;
     --text-color: #333333;
@@ -32,6 +33,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --primary-color: #3a8ee6;
+        --primary-color-rgb: 58, 142, 230; /* RGB值用于rgba颜色 */
         --primary-hover: #5ca3f2;
         --secondary-color: #8ca6c0;
         --text-color: #e0e0e0;
@@ -54,6 +56,7 @@
 /* 手动切换深色/浅色模式的类 */
 body.dark-mode {
     --primary-color: #3a8ee6;
+    --primary-color-rgb: 58, 142, 230; /* RGB值用于rgba颜色 */
     --primary-hover: #5ca3f2;
     --secondary-color: #8ca6c0;
     --text-color: #e0e0e0;

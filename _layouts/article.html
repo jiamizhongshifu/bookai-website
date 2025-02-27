@@ -2,6 +2,11 @@
 layout: default
 ---
 
+<!-- 阅读进度指示器 -->
+<div class="reading-progress-container">
+    <div class="reading-progress-bar" id="readingProgressBar"></div>
+</div>
+
 <article class="article-container">
     <div class="container">
         <header class="article-header">
@@ -22,6 +27,11 @@ layout: default
                     {% endfor %}
                 </span>
                 {% endif %}
+                {% if page.last_modified_at %}
+                <span class="article-updated">
+                    <i class="fas fa-sync-alt"></i> 更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}
+                </span>
+                {% endif %}
             </div>
             <h1 class="article-title">{{ page.title }}</h1>
             <div class="article-excerpt">{{ page.excerpt }}</div>
@@ -33,6 +43,19 @@ layout: default
                 {% endfor %}
             </div>
             {% endif %}
+            
+            <!-- 文章评分系统 -->
+            <div class="article-rating">
+                <div class="rating-label">文章评分:</div>
+                <div class="rating-stars" id="ratingStars">
+                    <i class="far fa-star" data-rating="1"></i>
+                    <i class="far fa-star" data-rating="2"></i>
+                    <i class="far fa-star" data-rating="3"></i>
+                    <i class="far fa-star" data-rating="4"></i>
+                    <i class="far fa-star" data-rating="5"></i>
+                </div>
+                <div class="rating-count" id="ratingCount">(0 评分)</div>
+            </div>
         </header>
 
         {% if page.toc %}
@@ -49,6 +72,24 @@ layout: default
         <div class="article-content">
             {{ content }}
         </div>
+
+        {% if page.series %}
+        <div class="article-series">
+            <h3>系列文章: {{ page.series.title }}</h3>
+            <div class="series-list">
+                {% for article in page.series.articles %}
+                <div class="series-item {% if article.url == page.url %}current{% endif %}">
+                    <span class="series-number">{{ forloop.index }}</span>
+                    {% if article.url == page.url %}
+                    <span class="series-current-title">{{ article.title }}</span>
+                    {% else %}
+                    <a href="{{ article.url }}" class="series-link">{{ article.title }}</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
 
         {% if page.related_articles %}
         <div class="related-articles">
@@ -99,4 +140,9 @@ layout: default
             </form>
         </div>
     </div>
-</article> 
+</article>
+
+<!-- 返回顶部按钮 -->
+<button id="backToTop" class="back-to-top" aria-label="返回顶部">
+    <i class="fas fa-arrow-up"></i>
+</button> 

@@ -1,0 +1,77 @@
+---
+layout: default
+---
+
+<div class="tag-container">
+    <div class="container">
+        <header class="tag-header">
+            <div class="tag-icon">
+                <i class="fas fa-tag"></i>
+            </div>
+            <h1 class="tag-title">{{ page.title }}</h1>
+            <div class="tag-description">{{ page.description }}</div>
+        </header>
+
+        <div class="tag-articles">
+            {% assign articles = site.articles | where_exp: "item", "item.tags contains page.title" %}
+            {% if articles.size > 0 %}
+                <div class="article-grid">
+                    {% for article in articles %}
+                    <div class="article-card">
+                        <div class="article-image">
+                            {% if article.thumbnail %}
+                            <img src="{{ article.thumbnail }}" alt="{{ article.title }}">
+                            {% else %}
+                            <div class="article-image-placeholder">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+                            <div class="article-meta">
+                                <span class="article-date">
+                                    <i class="fas fa-calendar-alt"></i> {{ article.date | date: "%Y-%m-%d" }}
+                                </span>
+                                {% if article.author %}
+                                <span class="article-author">
+                                    <i class="fas fa-user"></i> {{ article.author }}
+                                </span>
+                                {% endif %}
+                                {% if article.categories %}
+                                <span class="article-category">
+                                    <i class="fas fa-folder"></i>
+                                    {% for category in article.categories %}
+                                    <a href="/category/{{ category | slugify }}/">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+                                    {% endfor %}
+                                </span>
+                                {% endif %}
+                            </div>
+                            <div class="article-excerpt">{{ article.excerpt | strip_html | truncate: 120 }}</div>
+                            <a href="{{ article.url }}" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-articles">
+                    <i class="fas fa-inbox"></i>
+                    <p>该标签下暂无文章</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="tag-related">
+            <h2>相关标签</h2>
+            <div class="tag-cloud">
+                {% for tag in site.tags %}
+                    {% if tag.title != page.title %}
+                    <a href="{{ tag.url }}" class="tag {% if forloop.index <= 5 %}tag-popular{% endif %}">
+                        {{ tag.title }}
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div> 

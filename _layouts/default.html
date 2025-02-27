@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ',' }}{% else %}AI工具,AI教程,AI学习,ChatGPT,Deepseek,Cursor{% endif %}">
+    <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
     <link rel="stylesheet" href="/css/style.css">
     <!-- 引入字体图标 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,6 +19,58 @@
     {% if page.layout == "article" %}
     <link rel="stylesheet" href="/css/article.css">
     <link rel="preload" href="/css/article.css" as="style">
+    {% endif %}
+    {% if page.layout == "category" or page.layout == "tag" %}
+    <link rel="stylesheet" href="/css/category-tag.css">
+    <link rel="preload" href="/css/category-tag.css" as="style">
+    {% endif %}
+    
+    <!-- 结构化数据 - 网站信息 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url }}",
+        "description": "{{ site.description }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ site.url }}/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <!-- 结构化数据 - 页面信息 -->
+    {% if page.layout == "article" %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ page.title }}",
+        "description": "{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}",
+        "image": "{{ site.url }}{{ page.thumbnail }}",
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ page.author | default: site.author }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.title }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ site.url }}/images/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ site.url }}{{ page.url }}"
+        },
+        "keywords": "{{ page.tags | join: ',' }}"
+    }
+    </script>
     {% endif %}
 </head>
 <body>
@@ -36,8 +91,8 @@
             </nav>
             <div class="nav-tools">
                 <div class="search-container">
-                    <form class="search-form">
-                        <input type="text" class="search-input" placeholder="搜索教程...">
+                    <form class="search-form" action="/search" method="get">
+                        <input type="text" class="search-input" name="q" placeholder="搜索教程...">
                         <button type="submit" class="search-button">
                             <i class="fas fa-search"></i>
                         </button>
@@ -53,6 +108,36 @@
             </div>
         </div>
     </header>
+
+    <!-- 面包屑导航 -->
+    {% if page.layout != "home" %}
+    <div class="breadcrumb-container">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="面包屑导航">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    {% if page.collection == "articles" %}
+                    <li><a href="/articles/">文章</a></li>
+                    {% if page.categories %}
+                    <li><a href="/category/{{ page.categories[0] | slugify }}/">{{ page.categories[0] }}</a></li>
+                    {% endif %}
+                    {% elsif page.collection == "resources" %}
+                    <li><a href="/resources/">资源</a></li>
+                    {% elsif page.collection == "apps" %}
+                    <li><a href="/apps/">应用</a></li>
+                    {% elsif page.collection == "tools" %}
+                    <li><a href="/tools/">工具</a></li>
+                    {% elsif page.layout == "category" %}
+                    <li><a href="/categories/">分类</a></li>
+                    {% elsif page.layout == "tag" %}
+                    <li><a href="/tags/">标签</a></li>
+                    {% endif %}
+                    <li aria-current="page">{{ page.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    {% endif %}
 
     <main>
         {{ content }}
