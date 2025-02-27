@@ -1,0 +1,58 @@
+---
+layout: null
+---
+[
+  {% for article in site.articles %}
+    {
+      "title": {{ article.title | jsonify }},
+      "url": {{ article.url | relative_url | jsonify }},
+      "date": {{ article.date | date: "%Y-%m-%d" | jsonify }},
+      "categories": {{ article.categories | jsonify }},
+      "tags": {{ article.tags | jsonify }},
+      "content": {{ article.content | strip_html | strip_newlines | jsonify }},
+      "excerpt": {{ article.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  {% if site.resources.size > 0 %}
+    {% if site.articles.size > 0 %},{% endif %}
+    {% for resource in site.resources %}
+      {
+        "title": {{ resource.title | jsonify }},
+        "url": {{ resource.url | relative_url | jsonify }},
+        "date": {{ resource.date | date: "%Y-%m-%d" | jsonify }},
+        "categories": {{ resource.categories | jsonify }},
+        "tags": {{ resource.tags | jsonify }},
+        "content": {{ resource.content | strip_html | strip_newlines | jsonify }},
+        "excerpt": {{ resource.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  {% endif %}
+  {% if site.apps.size > 0 %}
+    {% if site.articles.size > 0 or site.resources.size > 0 %},{% endif %}
+    {% for app in site.apps %}
+      {
+        "title": {{ app.title | jsonify }},
+        "url": {{ app.url | relative_url | jsonify }},
+        "date": {{ app.date | date: "%Y-%m-%d" | jsonify }},
+        "categories": {{ app.categories | jsonify }},
+        "tags": {{ app.tags | jsonify }},
+        "content": {{ app.content | strip_html | strip_newlines | jsonify }},
+        "excerpt": {{ app.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  {% endif %}
+  {% if site.tools.size > 0 %}
+    {% if site.articles.size > 0 or site.resources.size > 0 or site.apps.size > 0 %},{% endif %}
+    {% for tool in site.tools %}
+      {
+        "title": {{ tool.title | jsonify }},
+        "url": {{ tool.url | relative_url | jsonify }},
+        "date": {{ tool.date | date: "%Y-%m-%d" | jsonify }},
+        "categories": {{ tool.categories | jsonify }},
+        "tags": {{ tool.tags | jsonify }},
+        "content": {{ tool.content | strip_html | strip_newlines | jsonify }},
+        "excerpt": {{ tool.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  {% endif %}
+] 

@@ -108,54 +108,94 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchResults = document.querySelector('.search-results');
     
     if (searchForm && searchInput) {
-        searchForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const query = searchInput.value.trim().toLowerCase();
+        // 缓存搜索数据
+        let searchData = null;
+        let searchDataLoaded = false;
+        
+        // 预加载搜索数据
+        fetch('/search-data.json')
+            .then(response => response.json())
+            .then(data => {
+                searchData = data;
+                searchDataLoaded = true;
+            })
+            .catch(error => {
+                console.error('搜索数据加载失败:', error);
+            });
+        
+        // 输入事件监听，实现实时搜索提示
+        searchInput.addEventListener('input', debounce(function() {
+            const query = this.value.trim().toLowerCase();
             
             if (query.length < 2) {
                 if (searchResults) {
-                    searchResults.innerHTML = '<p>请输入至少2个字符进行搜索</p>';
+                    searchResults.style.display = 'none';
+                }
+                return;
+            }
+            
+            if (!searchDataLoaded) {
+                if (searchResults) {
+                    searchResults.innerHTML = '<p>正在加载搜索数据...</p>';
                     searchResults.style.display = 'block';
                 }
                 return;
             }
             
-            // 模拟搜索结果（实际项目中应该从数据库或API获取）
-            const articles = [
-                { title: 'Deepseek简介', url: '#', excerpt: '了解Deepseek AI的基本功能和使用方法' },
-                { title: 'DeepSeek使用技巧', url: 'deepseek-tips.html', excerpt: '全面的DeepSeek使用技巧和最佳实践' },
-                { title: '我用DeepSeek流量赚到的第一笔钱', url: 'deepseek-money.html', excerpt: '如何利用DeepSeek进行联盟营销赚取收入' },
-                { title: 'DeepSeek太卡了？这有5+1种DeepSeek R1最强满血替代方案', url: 'deepseek-alt.html', excerpt: '探索DeepSeek的替代方案和解决方法' },
-                { title: 'ChatGPT使用指南', url: 'chatgpt-guide.html', excerpt: 'ChatGPT的基本使用方法和高级技巧' },
-                { title: 'Cursor编程助手教程', url: 'cursor-tutorial.html', excerpt: '如何使用Cursor提升编程效率' }
-            ];
-            
-            // 过滤搜索结果
-            const filteredResults = articles.filter(article => 
-                article.title.toLowerCase().includes(query) || 
-                article.excerpt.toLowerCase().includes(query)
-            );
+            // 过滤搜索结果，最多显示5个
+            const filteredResults = searchData.filter(item => {
+                const titleMatch = item.title.toLowerCase().includes(query);
+                const contentMatch = item.content.toLowerCase().includes(query);
+                const tagsMatch = item.tags && item.tags.some(tag => 
+                    tag.toLowerCase().includes(query)
+                );
+                const categoryMatch = item.categories && item.categories.some(category => 
+                    category.toLowerCase().includes(query)
+                );
+                
+                return titleMatch || contentMatch || tagsMatch || categoryMatch;
+            }).slice(0, 5);
             
             // 显示搜索结果
             if (searchResults) {
                 if (filteredResults.length > 0) {
                     let resultsHTML = '<ul>';
                     filteredResults.forEach(result => {
+                        // 高亮标题中的匹配
+                        let highlightedTitle = result.title;
+                        const titleRegex = new RegExp(query, 'gi');
+                        highlightedTitle = highlightedTitle.replace(titleRegex, match => `<mark>${match}</mark>`);
+                        
                         resultsHTML += `
                             <li>
                                 <a href="${result.url}">
-                                    <h4>${result.title}</h4>
+                                    <h4>${highlightedTitle}</h4>
                                     <p>${result.excerpt}</p>
                                 </a>
                             </li>
                         `;
                     });
                     resultsHTML += '</ul>';
+                    
+                    if (filteredResults.length >= 5) {
+                        resultsHTML += `<div class="search-more"><a href="/search.html?q=${encodeURIComponent(query)}">查看更多结果</a></div>`;
+                    }
+                    
                     searchResults.innerHTML = resultsHTML;
                 } else {
                     searchResults.innerHTML = '<p>没有找到相关结果</p>';
                 }
                 searchResults.style.display = 'block';
+            }
+        }, 300));
+        
+        // 表单提交事件
+        searchForm.addEventListener('submit', function(e) {
+            const query = searchInput.value.trim();
+            
+            if (query.length < 2) {
+                e.preventDefault();
+                alert('请输入至少2个字符进行搜索');
             }
         });
         
@@ -166,6 +206,45 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // 防抖函数
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                func.apply(context, args);
+            }, wait);
+        };
+    }
+    
+    // 计算阅读时间
+    function calculateReadingTime() {
+        const articleContent = document.getElementById('articleContent');
+        const readingTimeElement = document.querySelector('.article-reading-time');
+        
+        if (!articleContent || !readingTimeElement) return;
+        
+        // 获取文章内容
+        const text = articleContent.textContent || articleContent.innerText;
+        
+        // 计算字数
+        const wordCount = text.trim().replace(/\s+/g, ' ').split(' ').length;
+        
+        // 中文阅读速度：约300字/分钟
+        // 英文阅读速度：约200词/分钟
+        // 这里我们使用中文计算方式
+        const chineseCharCount = text.replace(/\s+/g, '').length;
+        const readingTime = Math.ceil(chineseCharCount / 300);
+        
+        // 更新阅读时间显示
+        readingTimeElement.textContent = `${readingTime} 分钟阅读`;
+    }
+    
+    // 在页面加载完成后计算阅读时间
+    calculateReadingTime();
     
     // 评论系统
     const commentForm = document.querySelector('.comment-form');
@@ -270,13 +349,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
+    
     // 侧边栏浮动广告模块功能
     const floatingAd = document.getElementById('floatingAd');
     const adToggle = document.getElementById('adToggle');
     const adToggleCollapsed = document.getElementById('adToggleCollapsed');
     const adGrid = document.getElementById('adGrid');
-
+    
     // 默认广告数据
     const defaultAds = [
         {
@@ -308,21 +387,23 @@ document.addEventListener('DOMContentLoaded', function() {
             link: '#'
         }
     ];
-
+    
     // 从本地存储加载广告数据
     function loadAds() {
         const savedAds = localStorage.getItem('adData');
         return savedAds ? JSON.parse(savedAds) : defaultAds;
     }
-
+    
     // 保存广告数据到本地存储
     function saveAds(ads) {
         localStorage.setItem('adData', JSON.stringify(ads));
     }
-
+    
     // 渲染广告内容
     function renderAds() {
         const ads = loadAds();
+        if (!adGrid) return;
+        
         adGrid.innerHTML = '';
         
         ads.forEach(ad => {
@@ -339,9 +420,11 @@ document.addEventListener('DOMContentLoaded', function() {
             adGrid.appendChild(adItem);
         });
     }
-
+    
     // 初始化广告模块
     function initAds() {
+        if (!floatingAd || !adToggle || !adToggleCollapsed) return;
+        
         renderAds();
         
         // 检查广告模块状态
@@ -365,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('adCollapsed', 'false');
         });
     }
-
+    
     // 管理员功能：更新广告
     function initAdminFeatures() {
         // 检查是否在管理页面
@@ -437,11 +520,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-
+    
     // 初始化广告功能
     initAds();
     initAdminFeatures();
-
+    
     // 阅读进度指示器
     initReadingProgress();
     
@@ -450,6 +533,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 文章评分系统
     initArticleRating();
+    
+    // 初始化文章目录
+    initArticleToc();
 });
 
 // 初始化阅读进度指示器
@@ -578,4 +664,160 @@ function highlightStars(stars, rating) {
             star.classList.add('far');
         }
     });
+}
+
+// 初始化文章目录
+function initArticleToc() {
+    const articleContent = document.getElementById('articleContent');
+    const tocContent = document.getElementById('tocContent');
+    const tocToggle = document.getElementById('tocToggle');
+    
+    if (!articleContent || !tocContent) return;
+    
+    // 获取所有标题元素
+    const headings = articleContent.querySelectorAll('h2, h3, h4');
+    
+    if (headings.length === 0) {
+        // 如果没有标题，隐藏目录
+        const articleToc = document.getElementById('articleToc');
+        if (articleToc) {
+            articleToc.style.display = 'none';
+        }
+        return;
+    }
+    
+    // 生成目录HTML
+    let tocHtml = '<ul>';
+    let prevLevel = 2;
+    let levelStack = []; // 用于跟踪嵌套级别
+    
+    headings.forEach((heading, index) => {
+        // 为每个标题添加ID，如果没有的话
+        if (!heading.id) {
+            heading.id = `heading-${index}`;
+        }
+        
+        const level = parseInt(heading.tagName.substring(1));
+        const text = heading.textContent;
+        
+        // 处理嵌套
+        if (level > prevLevel) {
+            tocHtml += '<ul>';
+            levelStack.push(prevLevel);
+        } else if (level < prevLevel) {
+            // 关闭之前的嵌套
+            while (levelStack.length > 0 && levelStack[levelStack.length - 1] >= level) {
+                tocHtml += '</ul>';
+                levelStack.pop();
+            }
+        }
+        
+        tocHtml += `<li><a href="#${heading.id}" data-id="${heading.id}">${text}</a></li>`;
+        prevLevel = level;
+    });
+    
+    // 关闭所有剩余的嵌套
+    while (levelStack.length > 0) {
+        tocHtml += '</ul>';
+        levelStack.pop();
+    }
+    
+    tocHtml += '</ul>';
+    
+    // 添加目录到页面
+    tocContent.innerHTML = tocHtml;
+    
+    // 添加目录切换功能
+    if (tocToggle) {
+        tocToggle.addEventListener('click', function() {
+            tocContent.classList.toggle('collapsed');
+            this.classList.toggle('collapsed');
+            
+            // 保存用户偏好
+            const isCollapsed = tocContent.classList.contains('collapsed');
+            localStorage.setItem('tocCollapsed', isCollapsed);
+        });
+        
+        // 检查用户偏好
+        const isCollapsed = localStorage.getItem('tocCollapsed') === 'true';
+        if (isCollapsed) {
+            tocContent.classList.add('collapsed');
+            tocToggle.classList.add('collapsed');
+        }
+    }
+    
+    // 添加滚动监听，高亮当前标题
+    window.addEventListener('scroll', highlightTocOnScroll);
+    
+    // 为目录链接添加点击事件
+    const tocLinks = tocContent.querySelectorAll('a');
+    tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // 平滑滚动到目标位置
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100, // 减去头部高度和一些额外空间
+                    behavior: 'smooth'
+                });
+                
+                // 更新URL哈希，但不触发滚动
+                history.pushState(null, null, targetId);
+            }
+        });
+    });
+    
+    // 初始检查URL哈希
+    if (window.location.hash) {
+        setTimeout(() => {
+            const targetElement = document.querySelector(window.location.hash);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
+    }
+}
+
+// 高亮当前滚动位置的目录项
+function highlightTocOnScroll() {
+    const articleContent = document.getElementById('articleContent');
+    const tocContent = document.getElementById('tocContent');
+    
+    if (!articleContent || !tocContent) return;
+    
+    const headings = articleContent.querySelectorAll('h2, h3, h4');
+    const tocLinks = tocContent.querySelectorAll('a');
+    
+    if (headings.length === 0 || tocLinks.length === 0) return;
+    
+    // 获取当前滚动位置
+    const scrollPosition = window.scrollY;
+    
+    // 找到当前可见的标题
+    let currentHeadingIndex = -1;
+    
+    headings.forEach((heading, index) => {
+        const headingTop = heading.offsetTop - 120; // 减去头部高度和一些额外空间
+        
+        if (scrollPosition >= headingTop) {
+            currentHeadingIndex = index;
+        }
+    });
+    
+    // 移除所有活动类
+    tocLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // 如果找到当前标题，添加活动类
+    if (currentHeadingIndex >= 0 && currentHeadingIndex < tocLinks.length) {
+        tocLinks[currentHeadingIndex].classList.add('active');
+    }
 } 
