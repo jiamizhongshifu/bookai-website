@@ -68,7 +68,7 @@ function initLazyLoading() {
               
               // 图片加载错误时使用占位图
               lazyImage.onerror = () => {
-                lazyImage.src = '/images/placeholder.svg';
+                lazyImage.src = 'images/placeholder.svg';
                 lazyImage.classList.add('img-error');
                 logError(new Error(`图片加载失败: ${lazyImage.dataset.src}`), '懒加载');
               };
@@ -119,7 +119,7 @@ function initLazyLoading() {
                 
                 // 图片加载错误时使用占位图
                 lazyImage.onerror = () => {
-                  lazyImage.src = '/images/placeholder.svg';
+                  lazyImage.src = 'images/placeholder.svg';
                   lazyImage.classList.add('img-error');
                   logError(new Error(`图片加载失败: ${lazyImage.dataset.src}`), '懒加载');
                 };
@@ -155,7 +155,7 @@ function initLazyLoading() {
     try {
       const lazyImages = document.querySelectorAll('img[data-src]');
       lazyImages.forEach(img => {
-        img.src = img.dataset.src || '/images/placeholder.svg';
+        img.src = img.dataset.src || 'images/placeholder.svg';
       });
     } catch (fallbackError) {
       console.error('懒加载降级处理失败:', fallbackError);

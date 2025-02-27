@@ -103,7 +103,7 @@ function loadModules() {
     // 降级处理：直接加载所有图片
     const lazyImages = document.querySelectorAll('img[data-src]');
     lazyImages.forEach(img => {
-      img.src = img.dataset.src || '/images/placeholder.svg';
+      img.src = img.dataset.src || 'images/placeholder.svg';
     });
   });
   
@@ -355,7 +355,7 @@ function initErrorHandling() {
       if (!img.hasAttribute('data-error-handled')) {
         img.setAttribute('data-error-handled', 'true');
         img.addEventListener('error', function() {
-          this.src = '/images/placeholder.svg';
+          this.src = 'images/placeholder.svg';
           this.classList.add('img-error');
         });
       }
