@@ -162,13 +162,13 @@
                                              {% if article.thumbnail contains '.jpg' or article.thumbnail contains '.jpeg' or article.thumbnail contains '.png' %}
                                              data-webp="{{ article.thumbnail | relative_url | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' }}"
                                              {% endif %}
-                                             src="/images/placeholder.svg" 
+                                             src="images/placeholder.svg" 
                                              alt="{{ article.title | escape }}" 
                                              loading="lazy">
                                     </div>
                                     {% else %}
                                     <div class="article-thumbnail">
-                                        <img src="/images/placeholder.svg" alt="{{ article.title | escape }}" loading="lazy">
+                                        <img src="images/placeholder.svg" alt="{{ article.title | escape }}" loading="lazy">
                                     </div>
                                     {% endif %}
                                     <div class="article-info">
