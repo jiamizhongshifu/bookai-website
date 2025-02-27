@@ -398,7 +398,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <span class="logo-text">BOOKAI.TOP</span>
+                    <span class="logo-text">AiXueba.club</span>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -423,13 +423,25 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Copyright © 2025 Bookai, Inc.</p>
+                <p>Copyright © 2025 AiXueba, Inc.</p>
             </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
+    <!-- 开发工具脚本 -->
+    <script src="path-checker.js"></script>
+    <script src="image-optimizer.js"></script>
+    <script src="performance-monitor.js"></script>
     <script>
+        // 初始化性能监控
+        if (window.performanceMonitor) {
+            window.performanceMonitor.init({
+                samplingRate: 0.5, // 提高采样率以便开发测试
+                logToConsole: true
+            });
+        }
+        
         // 检测用户登录状态
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
