@@ -75,6 +75,84 @@
                     </button>
                     <div class="carousel-track">
                         <div class="carousel-slides">
+                            <!-- 静态内容用于本地预览 -->
+                            <div class="carousel-slide">
+                                <div class="article-card">
+                                    <div class="article-thumbnail">
+                                        <img data-src="/images/articles/chatgpt-guide.jpg" 
+                                             data-webp="/images/articles/chatgpt-guide.webp"
+                                             src="/images/placeholder.svg" 
+                                             alt="ChatGPT使用指南" 
+                                             loading="lazy">
+                                    </div>
+                                    <div class="article-info">
+                                        <h3 class="article-title">ChatGPT使用指南：从入门到精通</h3>
+                                        <p class="article-excerpt">掌握ChatGPT的各种使用技巧，让你的AI助手变得更加高效和智能</p>
+                                        <div class="article-meta">
+                                            <span class="article-date">
+                                                <i class="fas fa-calendar-alt"></i> 2024-02-25
+                                            </span>
+                                            <span class="article-category">
+                                                <i class="fas fa-folder"></i> AI教程
+                                            </span>
+                                        </div>
+                                        <a href="chatgpt-guide.html" class="read-more">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="article-card">
+                                    <div class="article-thumbnail">
+                                        <img data-src="/images/articles/deepseek-tips.jpg" 
+                                             data-webp="/images/articles/deepseek-tips.webp"
+                                             src="/images/placeholder.svg" 
+                                             alt="DeepSeek使用技巧" 
+                                             loading="lazy">
+                                    </div>
+                                    <div class="article-info">
+                                        <h3 class="article-title">爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</h3>
+                                        <p class="article-excerpt">全面的DeepSeek使用技巧和最佳实践</p>
+                                        <div class="article-meta">
+                                            <span class="article-date">
+                                                <i class="fas fa-calendar-alt"></i> 2024-02-20
+                                            </span>
+                                            <span class="article-category">
+                                                <i class="fas fa-folder"></i> AI教程
+                                            </span>
+                                        </div>
+                                        <a href="deepseek-tips.html" class="read-more">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="article-card">
+                                    <div class="article-thumbnail">
+                                        <img data-src="/images/articles/cursor-guide.jpg" 
+                                             data-webp="/images/articles/cursor-guide.webp"
+                                             src="/images/placeholder.svg" 
+                                             alt="Cursor编程指南" 
+                                             loading="lazy">
+                                    </div>
+                                    <div class="article-info">
+                                        <h3 class="article-title">Cursor AI编程指南：提升10倍编程效率</h3>
+                                        <p class="article-excerpt">如何使用Cursor AI加速你的编程工作流程</p>
+                                        <div class="article-meta">
+                                            <span class="article-date">
+                                                <i class="fas fa-calendar-alt"></i> 2024-02-15
+                                            </span>
+                                            <span class="article-category">
+                                                <i class="fas fa-folder"></i> 编程
+                                            </span>
+                                        </div>
+                                        <a href="#" class="read-more">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Jekyll模板内容，在构建时使用 -->
+                            {% comment %}
                             {% for article in site.articles limit:6 %}
                             <div class="carousel-slide">
                                 <div class="article-card">
@@ -111,6 +189,7 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            {% endcomment %}
                         </div>
                     </div>
                     <button class="carousel-arrow carousel-next" aria-label="下一篇">
@@ -118,9 +197,17 @@
                     </button>
                 </div>
                 <div class="carousel-indicators">
+                    <!-- 静态内容用于本地预览 -->
+                    <button class="carousel-indicator active" data-index="0" aria-label="跳转到第1篇文章"></button>
+                    <button class="carousel-indicator" data-index="1" aria-label="跳转到第2篇文章"></button>
+                    <button class="carousel-indicator" data-index="2" aria-label="跳转到第3篇文章"></button>
+                    
+                    <!-- Jekyll模板内容，在构建时使用 -->
+                    {% comment %}
                     {% for article in site.articles limit:6 %}
                     <button class="carousel-indicator {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="跳转到第{{ forloop.index }}篇文章"></button>
                     {% endfor %}
+                    {% endcomment %}
                 </div>
             </div>
         </section>
