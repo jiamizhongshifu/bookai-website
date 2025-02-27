@@ -32,6 +32,14 @@ layout: default
                     <i class="fas fa-sync-alt"></i> 更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}
                 </span>
                 {% endif %}
+                <!-- 阅读时间估计 -->
+                <span class="article-reading-time">
+                    <i class="fas fa-clock"></i> 
+                </span>
+                <!-- 阅读量统计 -->
+                <span class="article-views">
+                    <i class="fas fa-eye"></i> <span id="articleViews">0</span> 阅读
+                </span>
             </div>
             <h1 class="article-title">{{ page.title }}</h1>
             <div class="article-excerpt">{{ page.excerpt }}</div>
@@ -58,86 +66,227 @@ layout: default
             </div>
         </header>
 
-        {% if page.toc %}
-        <div class="article-toc">
-            <div class="toc-title">目录</div>
-            <ul>
-                {% for item in page.toc %}
-                <li><a href="#{{ item.id }}">{{ item.title }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-
-        <div class="article-content">
-            {{ content }}
-        </div>
-
-        {% if page.series %}
-        <div class="article-series">
-            <h3>系列文章: {{ page.series.title }}</h3>
-            <div class="series-list">
-                {% for article in page.series.articles %}
-                <div class="series-item {% if article.url == page.url %}current{% endif %}">
-                    <span class="series-number">{{ forloop.index }}</span>
-                    {% if article.url == page.url %}
-                    <span class="series-current-title">{{ article.title }}</span>
-                    {% else %}
-                    <a href="{{ article.url }}" class="series-link">{{ article.title }}</a>
-                    {% endif %}
+        <div class="article-layout">
+            <div class="article-main">
+                <!-- 自动生成的目录 -->
+                <div class="article-toc" id="articleToc">
+                    <div class="toc-title">
+                        <i class="fas fa-list"></i> 目录
+                        <button class="toc-toggle" id="tocToggle">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                    </div>
+                    <div class="toc-content" id="tocContent">
+                        <!-- 目录内容将通过JavaScript自动生成 -->
+                    </div>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
 
-        {% if page.related_articles %}
-        <div class="related-articles">
-            <h3>相关文章</h3>
-            <div class="related-grid">
-                {% for article in page.related_articles %}
-                <div class="related-item">
-                    <a href="{{ article.url }}">
-                        <h4>{{ article.title }}</h4>
+                <div class="article-content" id="articleContent">
+                    {{ content }}
+                </div>
+
+                <!-- 相关文章 -->
+                <div class="related-articles">
+                    <h3>相关文章</h3>
+                    <div class="related-articles-grid">
+                        {% assign maxRelated = 4 %}
+                        {% assign minCommonTags = 1 %}
+                        {% assign maxRelatedCounter = 0 %}
+                        
+                        {% for article in site.articles %}
+                            {% assign sameTagCount = 0 %}
+                            {% assign commonTags = '' %}
+                            
+                            {% for tag in article.tags %}
+                                {% if article.url != page.url %}
+                                    {% if page.tags contains tag %}
+                                        {% assign sameTagCount = sameTagCount | plus: 1 %}
+                                        {% capture tagmarkup %} <span class="related-tag">{{ tag }}</span> {% endcapture %}
+                                        {% assign commonTags = commonTags | append: tagmarkup %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if sameTagCount >= minCommonTags and maxRelatedCounter < maxRelated %}
+                                <div class="related-article-item">
+                                    <a href="{{ article.url | relative_url }}">
+                                        {% if article.thumbnail %}
+                                        <div class="related-article-image">
+                                            <img src="{{ article.thumbnail }}" alt="{{ article.title }}">
+                                        </div>
+                                        {% else %}
+                                        <div class="related-article-image no-image">
+                                            <i class="fas fa-file-alt"></i>
+                                        </div>
+                                        {% endif %}
+                                        <div class="related-article-content">
+                                            <h4>{{ article.title }}</h4>
+                                            <p>{{ article.excerpt | strip_html | truncate: 80 }}</p>
+                                            <div class="related-article-meta">
+                                                <span class="related-article-date">
+                                                    <i class="fas fa-calendar-alt"></i> {{ article.date | date: "%Y-%m-%d" }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        <!-- 如果没有足够的相关文章，添加最新文章 -->
+                        {% if maxRelatedCounter < maxRelated %}
+                            {% for article in site.articles limit:maxRelated %}
+                                {% if article.url != page.url and maxRelatedCounter < maxRelated %}
+                                    {% unless maxRelatedCounter >= maxRelated %}
+                                        <div class="related-article-item">
+                                            <a href="{{ article.url | relative_url }}">
+                                                {% if article.thumbnail %}
+                                                <div class="related-article-image">
+                                                    <img src="{{ article.thumbnail }}" alt="{{ article.title }}">
+                                                </div>
+                                                {% else %}
+                                                <div class="related-article-image no-image">
+                                                    <i class="fas fa-file-alt"></i>
+                                                </div>
+                                                {% endif %}
+                                                <div class="related-article-content">
+                                                    <h4>{{ article.title }}</h4>
+                                                    <p>{{ article.excerpt | strip_html | truncate: 80 }}</p>
+                                                    <div class="related-article-meta">
+                                                        <span class="related-article-date">
+                                                            <i class="fas fa-calendar-alt"></i> {{ article.date | date: "%Y-%m-%d" }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+                                    {% endunless %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- 文章导航 -->
+                <div class="article-navigation">
+                    <div class="article-navigation-prev">
+                        {% if page.previous %}
+                        <a href="{{ page.previous.url | relative_url }}" class="prev-article">
+                            <i class="fas fa-arrow-left"></i>
+                            <div class="nav-title">
+                                <span>上一篇</span>
+                                <h4>{{ page.previous.title }}</h4>
+                            </div>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="article-navigation-next">
+                        {% if page.next %}
+                        <a href="{{ page.next.url | relative_url }}" class="next-article">
+                            <div class="nav-title">
+                                <span>下一篇</span>
+                                <h4>{{ page.next.title }}</h4>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- 文章系列导航（如果属于系列） -->
+                {% if page.series %}
+                <div class="article-series">
+                    <h3>{{ page.series }} 系列文章</h3>
+                    <ul class="series-list">
+                        {% for article in site.articles %}
+                            {% if article.series == page.series %}
+                                <li {% if article.url == page.url %}class="current"{% endif %}>
+                                    <a href="{{ article.url | relative_url }}">
+                                        {{ article.title }}
+                                        {% if article.url == page.url %}<span class="current-indicator">当前阅读</span>{% endif %}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <div class="article-share">
+                    <span>分享到：</span>
+                    <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title }}" target="_blank" rel="noopener noreferrer" class="share-twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank" rel="noopener noreferrer" class="share-facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title }}" target="_blank" rel="noopener noreferrer" class="share-linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://service.weibo.com/share/share.php?url={{ site.url }}{{ page.url }}&title={{ page.title }}" target="_blank" rel="noopener noreferrer" class="share-weibo">
+                        <i class="fab fa-weibo"></i>
                     </a>
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-
-        <div class="article-share">
-            <span>分享到：</span>
-            <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ page.title }}" target="_blank" rel="noopener noreferrer" class="share-twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank" rel="noopener noreferrer" class="share-facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title }}" target="_blank" rel="noopener noreferrer" class="share-linkedin">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://service.weibo.com/share/share.php?url={{ site.url }}{{ page.url }}&title={{ page.title }}" target="_blank" rel="noopener noreferrer" class="share-weibo">
-                <i class="fab fa-weibo"></i>
-            </a>
-        </div>
-
-        <div class="article-comments">
-            <h3>评论</h3>
-            <div class="comments-list">
-                <!-- 评论将通过JavaScript动态加载 -->
-            </div>
-            <form class="comment-form">
-                <div class="form-group">
-                    <label for="comment-name">姓名</label>
-                    <input type="text" id="comment-name" name="name" required>
+                
+                <div class="article-comments">
+                    <h3>评论</h3>
+                    <div class="comments-list">
+                        <!-- 评论将通过JavaScript动态加载 -->
+                    </div>
+                    <form class="comment-form">
+                        <div class="form-group">
+                            <label for="comment-name">姓名</label>
+                            <input type="text" id="comment-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-content">评论内容</label>
+                            <textarea id="comment-content" name="comment" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交评论</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="comment-content">评论内容</label>
-                    <textarea id="comment-content" name="comment" rows="4" required></textarea>
+            </div>
+
+            <!-- 侧边栏 -->
+            <div class="article-sidebar">
+                <div class="sidebar-widget author-widget">
+                    <h3>作者信息</h3>
+                    <div class="author-info">
+                        <div class="author-avatar">
+                            <img src="{{ page.author_avatar | default: '/images/default-avatar.png' }}" alt="{{ page.author }}">
+                        </div>
+                        <div class="author-bio">
+                            <h4>{{ page.author | default: site.author }}</h4>
+                            <p>{{ page.author_bio | default: "AI学霸专栏作者" }}</p>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">提交评论</button>
-            </form>
+
+                <div class="sidebar-widget popular-articles">
+                    <h3>热门文章</h3>
+                    <ul>
+                        {% for article in site.articles limit:5 %}
+                        <li>
+                            <a href="{{ article.url }}">
+                                <span class="popular-article-title">{{ article.title }}</span>
+                                <span class="popular-article-date">{{ article.date | date: "%Y-%m-%d" }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="sidebar-widget tag-cloud-widget">
+                    <h3>热门标签</h3>
+                    <div class="tag-cloud">
+                        {% for tag in site.tags limit:10 %}
+                        <a href="/tag/{{ tag[0] | slugify }}/" class="tag">{{ tag[0] }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </article>

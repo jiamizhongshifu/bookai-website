@@ -64,6 +64,60 @@
             </div>
         </section>
 
+        <!-- 热门文章轮播 -->
+        <section class="popular-carousel">
+            <div class="container">
+                <h2 class="section-title">热门文章</h2>
+                <div class="carousel-container">
+                    <button class="carousel-arrow carousel-prev" aria-label="上一篇">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-track">
+                        <div class="carousel-slides">
+                            {% for article in site.articles limit:6 %}
+                            <div class="carousel-slide">
+                                <div class="article-card">
+                                    {% if article.thumbnail %}
+                                    <div class="article-thumbnail">
+                                        <img src="{{ article.thumbnail }}" alt="{{ article.title }}">
+                                    </div>
+                                    {% else %}
+                                    <div class="article-thumbnail no-image">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    {% endif %}
+                                    <div class="article-info">
+                                        <h3 class="article-title">{{ article.title }}</h3>
+                                        <p class="article-excerpt">{{ article.excerpt | strip_html | truncate: 80 }}</p>
+                                        <div class="article-meta">
+                                            <span class="article-date">
+                                                <i class="fas fa-calendar-alt"></i> {{ article.date | date: "%Y-%m-%d" }}
+                                            </span>
+                                            {% if article.categories %}
+                                            <span class="article-category">
+                                                <i class="fas fa-folder"></i> {{ article.categories | first }}
+                                            </span>
+                                            {% endif %}
+                                        </div>
+                                        <a href="{{ article.url }}" class="read-more">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button class="carousel-arrow carousel-next" aria-label="下一篇">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-indicators">
+                    {% for article in site.articles limit:6 %}
+                    <button class="carousel-indicator {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="跳转到第{{ forloop.index }}篇文章"></button>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
         <!-- 教程区域 -->
         <section id="tutorials" class="tutorials">
             <div class="container">

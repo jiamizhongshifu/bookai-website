@@ -536,6 +536,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化文章目录
     initArticleToc();
+    
+    // 初始化热门文章轮播
+    initCarousel();
+    
+    // 初始化文章阅读量统计
+    initArticleViews();
 });
 
 // 初始化阅读进度指示器
@@ -820,4 +826,181 @@ function highlightTocOnScroll() {
     if (currentHeadingIndex >= 0 && currentHeadingIndex < tocLinks.length) {
         tocLinks[currentHeadingIndex].classList.add('active');
     }
+}
+
+/**
+ * 初始化热门文章轮播功能
+ */
+function initCarousel() {
+    const track = document.querySelector('.carousel-slides');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    
+    if (!track || slides.length === 0) return;
+    
+    let currentIndex = 0;
+    let slideWidth = slides[0].getBoundingClientRect().width;
+    let slidesToShow = getSlidesToShow();
+    let maxIndex = Math.max(0, slides.length - slidesToShow);
+    
+    // 监听窗口大小变化，重新计算轮播参数
+    window.addEventListener('resize', debounce(function() {
+        slideWidth = slides[0].getBoundingClientRect().width;
+        slidesToShow = getSlidesToShow();
+        maxIndex = Math.max(0, slides.length - slidesToShow);
+        
+        // 确保当前索引不超过最大索引
+        if (currentIndex > maxIndex) {
+            currentIndex = maxIndex;
+        }
+        
+        updateCarousel();
+    }, 250));
+    
+    // 根据窗口宽度确定显示的幻灯片数量
+    function getSlidesToShow() {
+        const windowWidth = window.innerWidth;
+        if (windowWidth < 768) return 1;
+        if (windowWidth < 992) return 2;
+        return 3;
+    }
+    
+    // 更新轮播位置
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        
+        // 更新指示器状态
+        indicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+        
+        // 更新按钮状态
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === maxIndex;
+        
+        // 视觉反馈
+        prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
+        nextButton.style.opacity = currentIndex === maxIndex ? '0.5' : '1';
+    }
+    
+    // 移动到指定幻灯片
+    function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        updateCarousel();
+    }
+    
+    // 上一张幻灯片
+    function goToPrev() {
+        goToSlide(currentIndex - 1);
+    }
+    
+    // 下一张幻灯片
+    function goToNext() {
+        goToSlide(currentIndex + 1);
+    }
+    
+    // 添加事件监听器
+    prevButton.addEventListener('click', goToPrev);
+    nextButton.addEventListener('click', goToNext);
+    
+    // 指示器点击事件
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // 触摸滑动支持
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50; // 最小滑动距离
+        if (touchStartX - touchEndX > swipeThreshold) {
+            // 向左滑动，显示下一张
+            goToNext();
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            // 向右滑动，显示上一张
+            goToPrev();
+        }
+    }
+    
+    // 自动轮播
+    let autoplayInterval;
+    
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            if (currentIndex < maxIndex) {
+                goToNext();
+            } else {
+                goToSlide(0); // 回到第一张
+            }
+        }, 5000); // 5秒切换一次
+    }
+    
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+    
+    // 鼠标悬停时暂停自动轮播
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', stopAutoplay);
+    carouselContainer.addEventListener('mouseleave', startAutoplay);
+    
+    // 触摸时暂停自动轮播
+    carouselContainer.addEventListener('touchstart', stopAutoplay, { passive: true });
+    carouselContainer.addEventListener('touchend', startAutoplay, { passive: true });
+    
+    // 初始化
+    updateCarousel();
+    startAutoplay();
+}
+
+/**
+ * 初始化文章阅读量统计
+ */
+function initArticleViews() {
+    const articleViewsElement = document.getElementById('articleViews');
+    if (!articleViewsElement) return;
+    
+    const articleId = window.location.pathname;
+    
+    // 从本地存储获取阅读量数据
+    let viewsData = JSON.parse(localStorage.getItem('articleViews')) || {};
+    
+    // 如果是新文章，初始化阅读量
+    if (!viewsData[articleId]) {
+        viewsData[articleId] = {
+            count: 0,
+            lastViewed: null
+        };
+    }
+    
+    const now = new Date().getTime();
+    const lastViewed = viewsData[articleId].lastViewed;
+    
+    // 如果是首次访问或距离上次访问超过1小时，增加阅读量
+    if (!lastViewed || (now - lastViewed > 3600000)) {
+        viewsData[articleId].count++;
+        viewsData[articleId].lastViewed = now;
+        
+        // 保存到本地存储
+        localStorage.setItem('articleViews', JSON.stringify(viewsData));
+    }
+    
+    // 更新显示
+    articleViewsElement.textContent = viewsData[articleId].count;
 } 

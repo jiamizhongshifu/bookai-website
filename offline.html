@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>离线模式 - BookAI</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .offline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .offline-icon {
+            font-size: 5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .offline-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .offline-message {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--text-color-secondary);
+            line-height: 1.6;
+        }
+        
+        .cached-content {
+            background-color: var(--bg-color-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .cached-content h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
+        
+        .cached-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .cached-item {
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .cached-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cached-item a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            display: block;
+        }
+        
+        .retry-button {
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .retry-button:hover {
+            background-color: var(--primary-color-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .cached-item {
+                background-color: var(--bg-color-dark);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                    <span class="logo-text-bold">BookAI</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="offline-container">
+            <div class="offline-icon">
+                <i class="fas fa-wifi-slash"></i>
+            </div>
+            <h1 class="offline-title">您当前处于离线状态</h1>
+            <p class="offline-message">
+                看起来您的网络连接已断开。不用担心，您仍然可以访问之前浏览过的内容。
+                我们的PWA功能确保您可以在离线状态下继续阅读已缓存的文章和教程。
+            </p>
+            
+            <button class="retry-button" id="retryButton">
+                <i class="fas fa-sync-alt"></i> 重试连接
+            </button>
+            
+            <div class="cached-content">
+                <h3>可离线访问的内容</h3>
+                <ul class="cached-list" id="cachedList">
+                    <!-- 缓存的内容将通过JavaScript动态加载 -->
+                    <li class="cached-item">
+                        <a href="/">首页</a>
+                    </li>
+                    <li class="cached-item">
+                        <a href="/search.html">搜索页面</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">BOOKAI.TOP</span>
+                </div>
+                <p>© 2025 BookAI. 离线模式下可用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 重试连接按钮
+        document.getElementById('retryButton').addEventListener('click', function() {
+            window.location.reload();
+        });
+        
+        // 获取缓存的页面列表
+        async function getCachedPages() {
+            try {
+                const cache = await caches.open('bookai-cache-v1.0.0');
+                const keys = await cache.keys();
+                const cachedList = document.getElementById('cachedList');
+                
+                // 清空列表
+                cachedList.innerHTML = '';
+                
+                // 添加首页和搜索页
+                cachedList.innerHTML += `
+                    <li class="cached-item">
+                        <a href="/">首页</a>
+                    </li>
+                    <li class="cached-item">
+                        <a href="/search.html">搜索页面</a>
+                    </li>
+                `;
+                
+                // 过滤HTML页面并添加到列表
+                const htmlPages = keys.filter(request => 
+                    request.url.endsWith('.html') && 
+                    !request.url.includes('/offline.html') &&
+                    !request.url.includes('/index.html') &&
+                    !request.url.includes('/search.html')
+                );
+                
+                htmlPages.forEach(request => {
+                    const url = new URL(request.url);
+                    const path = url.pathname;
+                    const title = path.split('/').pop().replace('.html', '').replace(/-/g, ' ');
+                    
+                    const listItem = document.createElement('li');
+                    listItem.className = 'cached-item';
+                    listItem.innerHTML = `<a href="${path}">${title}</a>`;
+                    cachedList.appendChild(listItem);
+                });
+                
+                // 如果没有缓存的页面，显示提示
+                if (htmlPages.length === 0) {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'cached-item';
+                    listItem.style.gridColumn = '1 / -1';
+                    listItem.innerHTML = '暂无其他缓存内容，请在有网络连接时浏览更多页面以便离线访问。';
+                    cachedList.appendChild(listItem);
+                }
+            } catch (error) {
+                console.error('获取缓存页面失败:', error);
+            }
+        }
+        
+        // 页面加载时获取缓存的页面
+        window.addEventListener('load', getCachedPages);
+    </script>
+</body>
+</html> 

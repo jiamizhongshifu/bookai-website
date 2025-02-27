@@ -35,11 +35,147 @@
         "description": "{{ site.description }}",
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "{{ site.url }}/search?q={search_term_string}",
+            "target": "{{ site.url }}/search.html?q={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }
     </script>
+    
+    <!-- 结构化数据 - 组织信息 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url }}",
+        "logo": "{{ site.url }}/images/logo.png",
+        "sameAs": [
+            "https://twitter.com/{{ site.twitter_username }}",
+            "https://www.facebook.com/{{ site.facebook_username }}",
+            "https://www.linkedin.com/company/{{ site.linkedin_username }}",
+            "https://www.youtube.com/channel/{{ site.youtube_channel }}"
+        ]
+    }
+    </script>
+    
+    {% if page.layout != "home" %}
+    <!-- 结构化数据 - 面包屑导航 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首页",
+                "item": "{{ site.url }}/"
+            }
+            {% if page.collection == "articles" %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "文章",
+                "item": "{{ site.url }}/articles/"
+            }
+            {% if page.categories %}
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.categories[0] }}",
+                "item": "{{ site.url }}/category/{{ page.categories[0] | slugify }}/"
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 4,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% else %}
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% endif %}
+            {% elsif page.collection == "resources" %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "资源",
+                "item": "{{ site.url }}/resources/"
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% elsif page.collection == "apps" %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "应用",
+                "item": "{{ site.url }}/apps/"
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% elsif page.collection == "tools" %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "工具",
+                "item": "{{ site.url }}/tools/"
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% elsif page.layout == "category" %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "分类",
+                "item": "{{ site.url }}/categories/"
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% elsif page.layout == "tag" %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "标签",
+                "item": "{{ site.url }}/tags/"
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% else %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ page.title }}",
+                "item": "{{ site.url }}{{ page.url }}"
+            }
+            {% endif %}
+        ]
+    }
+    </script>
+    {% endif %}
     
     <!-- 结构化数据 - 页面信息 -->
     {% if page.layout == "article" %}
@@ -68,10 +204,25 @@
             "@type": "WebPage",
             "@id": "{{ site.url }}{{ page.url }}"
         },
-        "keywords": "{{ page.tags | join: ',' }}"
+        "keywords": "{{ page.tags | join: ',' }}",
+        "wordCount": "{{ page.content | number_of_words }}",
+        "articleBody": "{{ page.content | strip_html | strip_newlines | escape }}"
     }
     </script>
     {% endif %}
+
+    <!-- PWA相关 -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <link rel="apple-touch-icon" href="/images/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BookAI">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="/css/style.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="/js/main.js" as="script">
 </head>
 <body>
     <header>
@@ -207,6 +358,64 @@
                 }
             });
         }
+    </script>
+    
+    <!-- 注册Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker 注册成功，作用域为: ', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker 注册失败: ', error);
+                    });
+            });
+        }
+        
+        // 添加安装提示
+        let deferredPrompt;
+        const installButton = document.createElement('button');
+        installButton.style.display = 'none';
+        installButton.classList.add('pwa-install-button');
+        installButton.textContent = '安装应用';
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // 阻止Chrome 67及更早版本自动显示安装提示
+            e.preventDefault();
+            // 保存事件，以便稍后触发
+            deferredPrompt = e;
+            // 显示安装按钮
+            installButton.style.display = 'block';
+            
+            // 添加到页面
+            const header = document.querySelector('header .container');
+            if (header) {
+                header.appendChild(installButton);
+            }
+        });
+        
+        installButton.addEventListener('click', (e) => {
+            // 隐藏安装按钮
+            installButton.style.display = 'none';
+            // 显示安装提示
+            deferredPrompt.prompt();
+            // 等待用户响应
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('用户接受安装');
+                } else {
+                    console.log('用户拒绝安装');
+                }
+                deferredPrompt = null;
+            });
+        });
+        
+        // 检测应用是否已安装
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('应用已安装');
+        });
     </script>
 </body>
 </html> 
