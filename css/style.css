@@ -1,15 +1,28 @@
-/* 全局样式 */
+/* 全局变量 */
 :root {
-    --primary-color: #0066ff;
-    --secondary-color: #4d4dff;
-    --text-color: #333;
-    --light-text: #666;
-    --bg-color: #fff;
-    --light-bg: #f8f9fa;
-    --border-color: #eaeaea;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* 颜色变量 */
+    --primary-color: #0066cc;
+    --primary-hover: #0052a3;
+    --secondary-color: #2c3e50;
+    --text-color: #333333;
+    --light-text: #666666;
+    --heading-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --light-bg: #f5f7fa;
+    --border-color: #e1e4e8;
+    --code-bg: #f1f1f1;
+    --tag-bg: #e9f2ff;
+    --tag-text: #0066cc;
+    --tag-bg-hover: #d0e3ff;
+    --input-bg: #ffffff;
+    
+    /* 尺寸变量 */
+    --container-width: 1200px;
     --border-radius: 8px;
+    
+    /* 动画变量 */
     --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     --card-bg: #fff;
     --header-bg: rgba(255, 255, 255, 0.95);
     --footer-bg: #f8f9fa;
@@ -18,14 +31,20 @@
 /* 深色模式变量 */
 @media (prefers-color-scheme: dark) {
     :root {
-        --primary-color: #3a8eff;
-        --secondary-color: #6e7eff;
+        --primary-color: #3a8ee6;
+        --primary-hover: #5ca3f2;
+        --secondary-color: #8ca6c0;
         --text-color: #e0e0e0;
         --light-text: #a0a0a0;
+        --heading-color: #ffffff;
         --bg-color: #121212;
         --light-bg: #1e1e1e;
-        --border-color: #2a2a2a;
-        --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        --border-color: #2c2c2c;
+        --code-bg: #2a2a2a;
+        --tag-bg: #1a3b66;
+        --tag-text: #a8c7f7;
+        --tag-bg-hover: #254b7d;
+        --input-bg: #2a2a2a;
         --card-bg: #1e1e1e;
         --header-bg: rgba(18, 18, 18, 0.95);
         --footer-bg: #1a1a1a;
@@ -34,14 +53,20 @@
 
 /* 手动切换深色/浅色模式的类 */
 body.dark-mode {
-    --primary-color: #3a8eff;
-    --secondary-color: #6e7eff;
+    --primary-color: #3a8ee6;
+    --primary-hover: #5ca3f2;
+    --secondary-color: #8ca6c0;
     --text-color: #e0e0e0;
     --light-text: #a0a0a0;
+    --heading-color: #ffffff;
     --bg-color: #121212;
     --light-bg: #1e1e1e;
-    --border-color: #2a2a2a;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    --border-color: #2c2c2c;
+    --code-bg: #2a2a2a;
+    --tag-bg: #1a3b66;
+    --tag-text: #a8c7f7;
+    --tag-bg-hover: #254b7d;
+    --input-bg: #2a2a2a;
     --card-bg: #1e1e1e;
     --header-bg: rgba(18, 18, 18, 0.95);
     --footer-bg: #1a1a1a;
@@ -713,4 +738,47 @@ footer {
     .ad-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* 面包屑导航样式 */
+.breadcrumb-container {
+    background-color: var(--light-bg);
+    padding: 10px 0;
+    margin-top: 70px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin: 0 8px;
+    color: var(--light-text);
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb li[aria-current="page"] {
+    color: var(--text-color);
+    font-weight: 500;
 } 
