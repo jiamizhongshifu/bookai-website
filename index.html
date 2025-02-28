@@ -4,454 +4,392 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AiXueba - AI工具教程与资源</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- 引入本地图标字体 -->
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/bootstrap-style.css">
+    
+    <!-- 图标字体 -->
     <link rel="stylesheet" href="css/icons.css">
-    <!-- 添加预加载关键资源 -->
-    <link rel="preload" href="css/style.css" as="style">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="css/bootstrap-style.css" as="style">
     <link rel="preload" href="css/icons.css" as="style">
     <link rel="preload" href="fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="js/main.js" as="script">
+    
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <header>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <div class="logo">
-                <a href="/">
-                    <span class="logo-text">AiXueba.club</span>
-                    <span class="logo-text-bold">AiXueba</span>
-                </a>
-            </div>
-            <nav>
-                <ul class="main-nav">
-                    <li><a href="#chatgpt">ChatGPT教程</a></li>
-                    <li><a href="#cursor">Cursor教程</a></li>
-                    <li><a href="#deepseek">Deepseek教程</a></li>
-                    <li><a href="#deepseek-flow">Deepseek流畅对话</a></li>
+            <a class="navbar-brand fw-bold" href="/">AiXueba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#featured">精选教程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#chatgpt">ChatGPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cursor">Cursor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#deepseek">Deepseek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tools">AI工具</a>
+                    </li>
                 </ul>
-            </nav>
-            <div class="nav-tools">
-                <div class="search-container">
-                    <form class="search-form">
-                        <input type="text" class="search-input" placeholder="搜索教程...">
-                        <button type="submit" class="search-button">
+                <div class="d-flex">
+                    <form class="d-flex me-2">
+                        <input class="form-control me-2" type="search" placeholder="搜索教程..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
-                    <div class="search-results"></div>
+                    <button class="btn btn-link dark-mode-toggle" aria-label="切换深色模式">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
-                <button class="dark-mode-toggle" aria-label="切换深色模式">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-            <div class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </header>
+    </nav>
 
+    <!-- 主要内容 -->
     <main>
-        <!-- 主要内容区域 -->
-        <section class="hero">
+        <!-- 英雄区域 -->
+        <section class="hero-section py-5 mb-5">
             <div class="container">
-                <h1>探索AI的无限可能</h1>
-                <p>提供最新、最实用的AI工具教程和资源</p>
-                <div class="cta-buttons">
-                    <a href="#tutorials" class="btn btn-primary">浏览教程</a>
-                    <a href="#resources" class="btn btn-secondary">获取资源</a>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold mb-3">AI学霸俱乐部</h1>
+                        <p class="lead mb-4">提供最新、最实用的AI工具教程和资源，帮助你快速掌握人工智能技术</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="#featured" class="btn btn-primary btn-lg">浏览教程</a>
+                            <a href="#about" class="btn btn-outline-secondary btn-lg">了解更多</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                        <img src="images/hero-image.svg" alt="AI学习插图" class="img-fluid">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 热门文章轮播 -->
-        <section class="popular-carousel">
+        <!-- 特色教程卡片 -->
+        <section id="featured" class="py-5">
             <div class="container">
-                <h2 class="section-title">热门文章</h2>
-                <div class="carousel-container">
-                    <button class="carousel-arrow carousel-prev" aria-label="上一篇">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="carousel-track">
-                        <div class="carousel-slides">
-                            <!-- 静态内容用于本地预览 -->
-                            <div class="carousel-slide">
-                                <div class="article-card">
-                                    <div class="article-thumbnail">
-                                        <img data-src="images/articles/chatgpt-guide.jpg" 
-                                             data-webp="images/articles/chatgpt-guide.webp"
-                                             src="images/placeholder.svg" 
-                                             alt="ChatGPT使用指南" 
-                                             loading="lazy">
-                                    </div>
-                                    <div class="article-info">
-                                        <h3 class="article-title">ChatGPT使用指南：从入门到精通</h3>
-                                        <p class="article-excerpt">掌握ChatGPT的各种使用技巧，让你的AI助手变得更加高效和智能</p>
-                                        <div class="article-meta">
-                                            <span class="article-date">
-                                                <i class="fas fa-calendar-alt"></i> 2024-02-25
-                                            </span>
-                                            <span class="article-category">
-                                                <i class="fas fa-folder"></i> AI教程
-                                            </span>
-                                        </div>
-                                        <a href="chatgpt-guide.html" class="read-more">阅读更多</a>
-                                    </div>
+                <h2 class="text-center mb-5">特色教程</h2>
+                <div class="row g-4">
+                    <!-- ChatGPT教程卡片 -->
+                    <div class="col-md-4">
+                        <a href="articles/chatgpt-guide.html" class="card-link">
+                            <div class="tutorial-card chatgpt-card">
+                                <div class="card-overlay"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">ChatGPT教程</h3>
+                                    <p class="card-text">掌握AI对话核心技术</p>
                                 </div>
                             </div>
-                            
-                            <div class="carousel-slide">
-                                <div class="article-card">
-                                    <div class="article-thumbnail">
-                                        <img data-src="images/articles/deepseek-tips.jpg" 
-                                             data-webp="images/articles/deepseek-tips.webp"
-                                             src="images/placeholder.svg" 
-                                             alt="DeepSeek使用技巧" 
-                                             loading="lazy">
-                                    </div>
-                                    <div class="article-info">
-                                        <h3 class="article-title">爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</h3>
-                                        <p class="article-excerpt">全面的DeepSeek使用技巧和最佳实践</p>
-                                        <div class="article-meta">
-                                            <span class="article-date">
-                                                <i class="fas fa-calendar-alt"></i> 2024-02-20
-                                            </span>
-                                            <span class="article-category">
-                                                <i class="fas fa-folder"></i> AI教程
-                                            </span>
-                                        </div>
-                                        <a href="deepseek-tips.html" class="read-more">阅读更多</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="carousel-slide">
-                                <div class="article-card">
-                                    <div class="article-thumbnail">
-                                        <img data-src="images/articles/cursor-guide.jpg" 
-                                             data-webp="images/articles/cursor-guide.webp"
-                                             src="images/placeholder.svg" 
-                                             alt="Cursor编程指南" 
-                                             loading="lazy">
-                                    </div>
-                                    <div class="article-info">
-                                        <h3 class="article-title">Cursor AI编程指南：提升10倍编程效率</h3>
-                                        <p class="article-excerpt">如何使用Cursor AI加速你的编程工作流程</p>
-                                        <div class="article-meta">
-                                            <span class="article-date">
-                                                <i class="fas fa-calendar-alt"></i> 2024-02-15
-                                            </span>
-                                            <span class="article-category">
-                                                <i class="fas fa-folder"></i> 编程
-                                            </span>
-                                        </div>
-                                        <a href="#" class="read-more">阅读更多</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Jekyll模板内容，在构建时使用 -->
-                            {% comment %}
-                            {% for article in site.articles limit:6 %}
-                            <div class="carousel-slide">
-                                <div class="article-card">
-                                    {% if article.thumbnail %}
-                                    <div class="article-thumbnail">
-                                        <img data-src="{{ article.thumbnail | relative_url }}" 
-                                             {% if article.thumbnail contains '.jpg' or article.thumbnail contains '.jpeg' or article.thumbnail contains '.png' %}
-                                             data-webp="{{ article.thumbnail | relative_url | replace: '.jpg', '.webp' | replace: '.jpeg', '.webp' | replace: '.png', '.webp' }}"
-                                             {% endif %}
-                                             src="images/placeholder.svg" 
-                                             alt="{{ article.title | escape }}" 
-                                             loading="lazy">
-                                    </div>
-                                    {% else %}
-                                    <div class="article-thumbnail">
-                                        <img src="images/placeholder.svg" alt="{{ article.title | escape }}" loading="lazy">
-                                    </div>
-                                    {% endif %}
-                                    <div class="article-info">
-                                        <h3 class="article-title">{{ article.title }}</h3>
-                                        <p class="article-excerpt">{{ article.excerpt | strip_html | truncate: 80 }}</p>
-                                        <div class="article-meta">
-                                            <span class="article-date">
-                                                <i class="fas fa-calendar-alt"></i> {{ article.date | date: "%Y-%m-%d" }}
-                                            </span>
-                                            {% if article.categories %}
-                                            <span class="article-category">
-                                                <i class="fas fa-folder"></i> {{ article.categories | first }}
-                                            </span>
-                                            {% endif %}
-                                        </div>
-                                        <a href="{{ article.url }}" class="read-more">阅读更多</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% endcomment %}
-                        </div>
+                        </a>
                     </div>
-                    <button class="carousel-arrow carousel-next" aria-label="下一篇">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="carousel-indicators">
-                    <!-- 静态内容用于本地预览 -->
-                    <button class="carousel-indicator active" data-index="0" aria-label="跳转到第1篇文章"></button>
-                    <button class="carousel-indicator" data-index="1" aria-label="跳转到第2篇文章"></button>
-                    <button class="carousel-indicator" data-index="2" aria-label="跳转到第3篇文章"></button>
                     
-                    <!-- Jekyll模板内容，在构建时使用 -->
-                    {% comment %}
-                    {% for article in site.articles limit:6 %}
-                    <button class="carousel-indicator {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="跳转到第{{ forloop.index }}篇文章"></button>
-                    {% endfor %}
-                    {% endcomment %}
-                </div>
-            </div>
-        </section>
-
-        <!-- 教程区域 -->
-        <section id="tutorials" class="tutorials">
-            <div class="container">
-                <h2 class="section-title">热门教程</h2>
-                <div class="tutorial-grid">
-                    <!-- ChatGPT教程 -->
-                    <div class="tutorial-card">
-                        <div class="tutorial-image">
-                            <img data-src="images/chatgpt.svg" 
-                                 src="images/placeholder.svg" 
-                                 alt="ChatGPT教程" 
-                                 loading="lazy">
-                        </div>
-                        <div class="tutorial-content">
-                            <h3>ChatGPT使用指南：从入门到精通</h3>
-                            <p>掌握ChatGPT的各种使用技巧，让你的AI助手变得更加高效和智能</p>
-                            <a href="chatgpt-guide.html" class="read-more">阅读更多</a>
-                        </div>
+                    <!-- Cursor教程卡片 -->
+                    <div class="col-md-4">
+                        <a href="articles/cursor-ultimate-guide.html" class="card-link">
+                            <div class="tutorial-card cursor-card">
+                                <div class="card-overlay"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Cursor开发教程</h3>
+                                    <p class="card-text">智能编程助手实战指南</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                
-                    <!-- Deepseek教程 -->
-                    <div class="tutorial-card">
-                        <div class="tutorial-image">
-                            <img data-src="images/deepseek.svg" 
-                                 src="images/placeholder.svg" 
-                                 alt="Deepseek教程" 
-                                 loading="lazy">
-                        </div>
-                        <div class="tutorial-content">
-                            <h3>Deepseek简介</h3>
-                            <p>了解Deepseek AI的基本功能和使用方法</p>
-                            <a href="#" class="read-more">阅读更多</a>
-                        </div>
-                    </div>
-
-                    <div class="tutorial-card">
-                        <div class="tutorial-image">
-                            <img data-src="images/deepseek-tips.svg" 
-                                 src="images/placeholder.svg" 
-                                 alt="Deepseek使用技巧" 
-                                 loading="lazy">
-                        </div>
-                        <div class="tutorial-content">
-                            <h3>爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</h3>
-                            <p>全面的DeepSeek使用技巧和最佳实践</p>
-                            <a href="deepseek-tips.html" class="read-more">阅读更多</a>
-                        </div>
-                    </div>
-
-                    <div class="tutorial-card">
-                        <div class="tutorial-image">
-                            <img data-src="images/deepseek-money.svg" 
-                                 src="images/placeholder.svg" 
-                                 alt="DeepSeek赚钱" 
-                                 loading="lazy">
-                        </div>
-                        <div class="tutorial-content">
-                            <h3>我用DeepSeek流量赚到的第一笔钱：联盟营销</h3>
-                            <p>如何利用DeepSeek进行联盟营销赚取收入</p>
-                            <a href="#" class="read-more">阅读更多</a>
-                        </div>
-                    </div>
-
-                    <div class="tutorial-card">
-                        <div class="tutorial-image">
-                            <img data-src="images/deepseek-alt.svg" 
-                                 src="images/placeholder.svg" 
-                                 alt="DeepSeek替代方案" 
-                                 loading="lazy">
-                        </div>
-                        <div class="tutorial-content">
-                            <h3>DeepSeek太卡了？这有5+1种DeepSeek R1最强满血替代方案等你查收！</h3>
-                            <p>探索DeepSeek的替代方案和解决方法</p>
-                            <a href="#" class="read-more">阅读更多</a>
-                        </div>
+                    
+                    <!-- DeepSeek教程卡片 -->
+                    <div class="col-md-4">
+                        <a href="articles/deepseek-guide.html" class="card-link">
+                            <div class="tutorial-card deepseek-card">
+                                <div class="card-overlay"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">DeepSeek教程</h3>
+                                    <p class="card-text">深度搜索技术解析</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 资源区域 -->
-        <section id="resources" class="resources">
+        <!-- ChatGPT教程部分 -->
+        <section id="chatgpt" class="py-5 bg-light">
             <div class="container">
-                <h2 class="section-title">精选资源</h2>
-                <div class="resource-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-code"></i>
+                <h2 class="text-center mb-5">ChatGPT教程</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/chatgpt-prompt-engineering.svg" class="card-img-top" alt="提示词工程">
+                            <div class="card-body">
+                                <h5 class="card-title">ChatGPT从零精通：万字长文教你玩转提示词工程</h5>
+                                <p class="card-text">学习如何编写高效的提示词，让ChatGPT输出更精准的内容</p>
+                                <a href="articles/chatgpt-prompt-engineering.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>CursorAI编程知识星球</h3>
-                        <p>我的cursor教学视频已经超100万人观看，可能是中文互联网最佳了</p>
-                        <div class="resource-footer">
-                            <span class="price">365/年</span>
-                            <span class="members">800+人已加入</span>
-                        </div>
-                        <a href="#" class="btn btn-outline">立即查看</a>
                     </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">
-                            <i class="fas fa-robot"></i>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/chatgpt-access-solutions.svg" class="card-img-top" alt="访问解决方案">
+                            <div class="card-body">
+                                <h5 class="card-title">ChatGPT被封号怎么办？2024最新国内访问稳定方案</h5>
+                                <p class="card-text">解决ChatGPT访问限制问题的完整指南</p>
+                                <a href="articles/chatgpt-access-solutions.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>通过Monica免费使用满血可联网DeepSeek R1</h3>
-                        <p>Monica接入DeepSeek R1、OpenAI o1、GPT-4o、Claude 3.5 和 Gemini 1.5，来提升您的聊天、搜索、写作和编程体验。</p>
-                        <div class="resource-footer">
-                            <span class="price">免费</span>
-                            <span class="tag">一站式 AI 助手</span>
-                        </div>
-                        <a href="#" class="btn btn-outline">立即查看</a>
                     </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/gpts-store-guide.svg" class="card-img-top" alt="GPTs商店指南">
+                            <div class="card-body">
+                                <h5 class="card-title">GPTs商店完全指南：创建、使用与变现自定义GPT</h5>
+                                <p class="card-text">学习如何创建和使用自定义GPT，并探索变现机会</p>
+                                <a href="articles/gpts-store-guide.html" class="btn btn-primary">阅读教程</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="articles/README.html#chatgpt-tutorials" class="btn btn-outline-primary">查看全部ChatGPT教程</a>
                 </div>
             </div>
         </section>
 
-        <!-- 开发的应用 -->
-        <section class="apps">
+        <!-- Cursor教程部分 -->
+        <section id="cursor" class="py-5">
             <div class="container">
-                <h2 class="section-title">我开发的iOS App</h2>
-                <div class="app-grid">
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-camera"></i>
+                <h2 class="text-center mb-5">Cursor教程</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/cursor-ultimate-guide.svg" class="card-img-top" alt="Cursor终极指南">
+                            <div class="card-body">
+                                <h5 class="card-title">Cursor终极指南：AI写代码比Copilot更强？</h5>
+                                <p class="card-text">全面了解Cursor的功能和使用技巧，提升编程效率</p>
+                                <a href="articles/cursor-ultimate-guide.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>📱 拍照学单词</h3>
                     </div>
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-lightbulb"></i>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/cursor-chinese-config.svg" class="card-img-top" alt="Cursor中文配置">
+                            <div class="card-body">
+                                <h5 class="card-title">Cursor中文配置教程：如何用本地模型替代GPT-4？</h5>
+                                <p class="card-text">学习如何配置Cursor使用中文本地模型，提高响应速度</p>
+                                <a href="articles/cursor-chinese-config.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>🔦 Light屏幕手电筒</h3>
                     </div>
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-cat"></i>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/cursor-vs-copilot.svg" class="card-img-top" alt="Cursor对比Copilot">
+                            <div class="card-body">
+                                <h5 class="card-title">Cursor与GitHub Copilot对比：开发者真实体验报告</h5>
+                                <p class="card-text">详细对比两款AI编程助手的优缺点，帮助你做出选择</p>
+                                <a href="articles/cursor-vs-copilot.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>💡 小猫补光灯</h3>
                     </div>
                 </div>
+                <div class="text-center mt-4">
+                    <a href="articles/README.html#cursor-tutorials" class="btn btn-outline-primary">查看全部Cursor教程</a>
+                </div>
+            </div>
+        </section>
 
-                <h2 class="section-title">我开发的AI网站</h2>
-                <div class="app-grid">
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-image"></i>
+        <!-- DeepSeek教程部分 -->
+        <section id="deepseek" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">DeepSeek教程</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/deepseek-guide.svg" class="card-img-top" alt="DeepSeek指南">
+                            <div class="card-body">
+                                <h5 class="card-title">DeepSeek新手必看：从注册到API调用的完整指南</h5>
+                                <p class="card-text">学习如何注册和使用DeepSeek，包括API调用方法</p>
+                                <a href="articles/deepseek-guide.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>🎨 Image 2046图像魔方</h3>
                     </div>
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-code"></i>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/deepseek-tips.svg" class="card-img-top" alt="DeepSeek技巧">
+                            <div class="card-body">
+                                <h5 class="card-title">爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</h5>
+                                <p class="card-text">全面的DeepSeek使用技巧和最佳实践</p>
+                                <a href="articles/deepseek-tips.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>💻 CodeWithAI编程教程</h3>
                     </div>
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-pen"></i>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="images/deepseek-advanced.svg" class="card-img-top" alt="DeepSeek高级用法">
+                            <div class="card-body">
+                                <h5 class="card-title">DeepSeek高阶用法：如何用MoE架构优化企业级AI应用？</h5>
+                                <p class="card-text">探索DeepSeek的高级功能和企业级应用场景</p>
+                                <a href="articles/deepseek-advanced.html" class="btn btn-primary">阅读教程</a>
+                            </div>
                         </div>
-                        <h3>✍️ HumanizeAI文本优化</h3>
                     </div>
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="articles/README.html#deepseek-tutorials" class="btn btn-outline-primary">查看全部DeepSeek教程</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI工具部分 -->
+        <section id="tools" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">AI工具推荐</h2>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-robot fa-3x mb-3 text-primary"></i>
+                                <h5 class="card-title">Claude 3</h5>
+                                <p class="card-text">Anthropic公司的先进AI助手，擅长长文本理解和创作</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">了解更多</a>
+                            </div>
                         </div>
-                        <h3>📊 用户反馈分析工具</h3>
                     </div>
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-tshirt"></i>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-paint-brush fa-3x mb-3 text-primary"></i>
+                                <h5 class="card-title">Midjourney</h5>
+                                <p class="card-text">顶级AI图像生成工具，创作精美艺术作品</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">了解更多</a>
+                            </div>
                         </div>
-                        <h3>👔 穿搭锐评大师</h3>
                     </div>
-                    <div class="app-card">
-                        <div class="app-icon">
-                            <i class="fas fa-cat"></i>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-music fa-3x mb-3 text-primary"></i>
+                                <h5 class="card-title">Suno</h5>
+                                <p class="card-text">AI音乐创作工具，只需文字描述即可生成完整歌曲</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">了解更多</a>
+                            </div>
                         </div>
-                        <h3>😺 猫咪颜值测评</h3>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fas fa-video fa-3x mb-3 text-primary"></i>
+                                <h5 class="card-title">Runway</h5>
+                                <p class="card-text">AI视频生成和编辑工具，创作高质量视频内容</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">了解更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="#" class="btn btn-outline-primary">查看全部AI工具</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 订阅区域 -->
+        <section class="py-5 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="mb-4">订阅最新AI教程和资源</h2>
+                        <p class="lead mb-4">第一时间获取最新AI工具教程、使用技巧和独家资源</p>
+                        <form class="row g-3 justify-content-center">
+                            <div class="col-md-8">
+                                <input type="email" class="form-control form-control-lg" placeholder="您的邮箱地址" required>
+                            </div>
+                            <div class="col-md-auto">
+                                <button type="submit" class="btn btn-light btn-lg">立即订阅</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">AiXueba.club</span>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>GPTs</h4>
-                        <ul>
-                            <li><a href="#">更勤奋更聪明的GPT4</a></li>
-                            <li><a href="#">AI使用助手 by 花生</a></li>
-                            <li><a href="#">AI阅读助手</a></li>
-                            <li><a href="#">GPT翻译-专业中英双语翻译</a></li>
-                            <li><a href="#">Claude 3 Opus</a></li>
-                        </ul>
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AiXueba.club</h5>
+                    <p>提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-weixin"></i></a>
                     </div>
-                    <div class="footer-column">
-                        <h4>更多</h4>
-                        <ul>
-                            <li><a href="#">跟我学Cursor</a></li>
-                            <li><a href="#">即刻</a></li>
-                            <li><a href="#">Youtube</a></li>
-                            <li><a href="#">Bilibili</a></li>
-                        </ul>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <h5>教程分类</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#chatgpt" class="text-light">ChatGPT教程</a></li>
+                                <li><a href="#cursor" class="text-light">Cursor教程</a></li>
+                                <li><a href="#deepseek" class="text-light">Deepseek教程</a></li>
+                                <li><a href="#tools" class="text-light">AI工具</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <h5>关于我们</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="about.html" class="text-light">关于AiXueba</a></li>
+                                <li><a href="contact.html" class="text-light">联系我们</a></li>
+                                <li><a href="privacy.html" class="text-light">隐私政策</a></li>
+                                <li><a href="terms.html" class="text-light">使用条款</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>订阅更新</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="您的邮箱地址" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">订阅</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>Copyright © 2025 AiXueba, Inc.</p>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">Copyright © 2025 AiXueba, Inc. 保留所有权利</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <!-- 开发工具脚本 -->
-    <script src="path-checker.js"></script>
-    <script src="image-optimizer.js"></script>
-    <script src="performance-monitor.js"></script>
-    <script>
-        // 初始化性能监控
-        if (window.performanceMonitor) {
-            window.performanceMonitor.init({
-                samplingRate: 0.5, // 提高采样率以便开发测试
-                logToConsole: true
-            });
-        }
-        
-        // 检测用户登录状态
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 自定义JS -->
+    <script src="js/bootstrap-main.js"></script>
 </body>
 </html> 

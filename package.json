@@ -1,24 +1,42 @@
 {
-  "name": "aixueba-website",
+  "name": "aixueba",
   "version": "1.0.0",
-  "description": "AiXueba - AI工具教程与资源网站",
+  "description": "AI学霸网站 - 提供AI工具教程与资源",
   "main": "index.js",
   "scripts": {
-    "convert-webp": "node convert-to-webp.js",
-    "build": "jekyll build",
-    "serve": "jekyll serve",
-    "dev": "jekyll serve --livereload"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js --watch",
+    "test-markdown": "node scripts/test-markdown-it.js",
+    "test-build": "node scripts/test-build.js"
   },
   "keywords": [
-    "ai",
-    "tutorial",
-    "deepseek",
-    "chatgpt",
-    "cursor"
+    "AI",
+    "教程",
+    "ChatGPT",
+    "Cursor",
+    "Deepseek"
   ],
   "author": "AI进化论-花生",
   "license": "MIT",
   "dependencies": {
-    "sharp": "^0.33.2"
+    "chalk": "^4.1.2",
+    "chokidar": "^3.5.3",
+    "fs-extra": "^11.1.1",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^13.0.2",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-toc-done-right": "^4.2.0",
+    "nunjucks": "^3.2.4",
+    "pretty": "^2.0.0",
+    "sitemap": "^7.1.1",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-junit": "^16.0.0"
   }
 } 

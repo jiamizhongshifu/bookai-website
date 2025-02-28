@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章标题 - AiXueba</title>
+    <meta name="description" content="文章描述内容，简要概括文章的主要内容和价值">
+    <meta name="keywords" content="AI教程, ChatGPT, Cursor, Deepseek, 人工智能">
+    <!-- Open Graph 标签 -->
+    <meta property="og:title" content="文章标题 - AiXueba">
+    <meta property="og:description" content="文章描述内容，简要概括文章的主要内容和价值">
+    <meta property="og:image" content="https://aixueba.club/images/og-image.jpg">
+    <meta property="og:url" content="https://aixueba.club/articles/文章链接.html">
+    <meta property="og:type" content="article">
+    <!-- Twitter 卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="文章标题 - AiXueba">
+    <meta name="twitter:description" content="文章描述内容，简要概括文章的主要内容和价值">
+    <meta name="twitter:image" content="https://aixueba.club/images/og-image.jpg">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/article.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    
+    <!-- 添加预加载关键资源 -->
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="../css/article.css" as="style">
+    <link rel="preload" href="../css/icons.css" as="style">
+    <link rel="preload" href="../fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../js/main.js" as="script">
+    <link rel="preload" href="../js/article.js" as="script">
+</head>
+<body>
+    <!-- 阅读进度指示器 -->
+    <div class="reading-progress-container">
+        <div class="reading-progress-bar"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <span class="logo-text-bold">AiXueba</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="../index.html#featured">精选教程</a></li>
+                    <li><a href="../index.html#chatgpt">ChatGPT</a></li>
+                    <li><a href="../index.html#cursor">Cursor</a></li>
+                    <li><a href="../index.html#deepseek">Deepseek</a></li>
+                    <li><a href="../index.html#tools">AI工具</a></li>
+                </ul>
+            </nav>
+            <div class="nav-tools">
+                <div class="search-container">
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="搜索教程...">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="search-results"></div>
+                </div>
+                <button class="dark-mode-toggle" aria-label="切换深色模式">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article-container">
+            <div class="container">
+                <!-- 文章头部信息 -->
+                <div class="article-header">
+                    <div class="article-category">
+                        <a href="../categories/category-name.html" class="category-tag">分类名称</a>
+                    </div>
+                    <h1 class="article-title">文章标题</h1>
+                    <div class="article-meta">
+                        <span class="article-date"><i class="fas fa-calendar"></i> 发布于：2025年2月15日</span>
+                        <span class="article-author"><i class="fas fa-user"></i> 作者：AI进化论-花生</span>
+                        <span class="article-read-time"><i class="fas fa-clock"></i> 阅读时间：15分钟</span>
+                    </div>
+                    <div class="article-tags">
+                        <i class="fas fa-tags"></i>
+                        <a href="../tags/tag1.html" class="tag">标签1</a>
+                        <a href="../tags/tag2.html" class="tag">标签2</a>
+                        <a href="../tags/tag3.html" class="tag">标签3</a>
+                    </div>
+                </div>
+
+                <!-- 文章布局 -->
+                <div class="article-layout">
+                    <!-- 文章主体内容 -->
+                    <div class="article-main">
+                        <!-- 文章目录 -->
+                        <div class="article-toc" id="article-toc">
+                            <div class="toc-header">
+                                <h3 class="toc-title">目录</h3>
+                                <button class="toc-toggle" aria-label="折叠目录">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="toc-content">
+                                <ul>
+                                    <li><a href="#section1">第一部分：标题</a>
+                                        <ul>
+                                            <li><a href="#section1-1">子标题 1.1</a></li>
+                                            <li><a href="#section1-2">子标题 1.2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#section2">第二部分：标题</a>
+                                        <ul>
+                                            <li><a href="#section2-1">子标题 2.1</a></li>
+                                            <li><a href="#section2-2">子标题 2.2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#section3">第三部分：标题</a></li>
+                                    <li><a href="#section4">第四部分：标题</a></li>
+                                    <li><a href="#conclusion">总结</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 文章简介 -->
+                        <div class="article-intro">
+                            <p>这里是文章的简介部分，简要概括文章的主要内容和价值。这部分内容通常会以较大的字体显示，吸引读者继续阅读下去。</p>
+                            <p>可以在这里添加一些关于文章背景、目的或者主要收获的描述，让读者对文章有一个整体的了解。</p>
+                        </div>
+
+                        <!-- 文章内容 -->
+                        <div class="article-content">
+                            <!-- 第一部分 -->
+                            <section id="section1" class="article-section">
+                                <h2>第一部分：标题</h2>
+                                <p>这里是第一部分的内容。可以包含文字、图片、代码等各种元素。</p>
+                                
+                                <div class="info-box">
+                                    <div class="info-icon"><i class="fas fa-info-circle"></i></div>
+                                    <div class="info-content">
+                                        <p>这是一个信息提示框，可以用来强调重要信息或提供额外的说明。</p>
+                                    </div>
+                                </div>
+                                
+                                <h3 id="section1-1">子标题 1.1</h3>
+                                <p>子标题下的内容描述。这里可以详细展开相关的知识点。</p>
+                                <p>可以添加图片来辅助说明：</p>
+                                <figure class="article-image">
+                                    <img src="../images/placeholder-image.svg" alt="描述图片内容" width="600" height="400">
+                                    <figcaption>图片说明文字</figcaption>
+                                </figure>
+                                
+                                <h3 id="section1-2">子标题 1.2</h3>
+                                <p>继续展开相关内容。可以使用列表来组织信息：</p>
+                                <ul>
+                                    <li>列表项目一</li>
+                                    <li>列表项目二</li>
+                                    <li>列表项目三</li>
+                                </ul>
+                            </section>
+                            
+                            <!-- 第二部分 -->
+                            <section id="section2" class="article-section">
+                                <h2>第二部分：标题</h2>
+                                <p>这里是第二部分的内容。</p>
+                                
+                                <div class="tip-box">
+                                    <div class="tip-icon"><i class="fas fa-lightbulb"></i></div>
+                                    <div class="tip-content">
+                                        <p>这是一个提示框，可以用来分享实用技巧或建议。</p>
+                                    </div>
+                                </div>
+                                
+                                <h3 id="section2-1">子标题 2.1</h3>
+                                <p>这里可以添加代码示例：</p>
+                                <pre><code class="language-javascript">// 这是一段JavaScript代码示例
+function example() {
+    console.log("Hello, AI world!");
+    return true;
+}
+
+// 调用函数
+example();</code></pre>
+                                
+                                <h3 id="section2-2">子标题 2.2</h3>
+                                <p>可以使用表格来展示结构化数据：</p>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>功能</th>
+                                            <th>描述</th>
+                                            <th>适用场景</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>功能一</td>
+                                            <td>功能一的详细描述</td>
+                                            <td>适用于场景A、B</td>
+                                        </tr>
+                                        <tr>
+                                            <td>功能二</td>
+                                            <td>功能二的详细描述</td>
+                                            <td>适用于场景C、D</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                            
+                            <!-- 第三部分 -->
+                            <section id="section3" class="article-section">
+                                <h2>第三部分：标题</h2>
+                                <p>这里是第三部分的内容。</p>
+                                
+                                <div class="warning-box">
+                                    <div class="warning-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                    <div class="warning-content">
+                                        <p>这是一个警告框，可以用来提醒读者注意事项或潜在问题。</p>
+                                    </div>
+                                </div>
+                                
+                                <p>可以使用引用来突出重要观点：</p>
+                                <blockquote>
+                                    <p>这是一段引用文字，可以是名人名言或者重要观点。</p>
+                                    <cite>— 引用来源</cite>
+                                </blockquote>
+                            </section>
+                            
+                            <!-- 第四部分 -->
+                            <section id="section4" class="article-section">
+                                <h2>第四部分：标题</h2>
+                                <p>这里是第四部分的内容。</p>
+                                
+                                <div class="example-box">
+                                    <div class="example-header">实例演示</div>
+                                    <div class="example-content">
+                                        <p>这里可以展示一个完整的实例，帮助读者理解如何应用所学知识。</p>
+                                        <p>可以包含步骤说明、截图或代码示例。</p>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                            <!-- 总结 -->
+                            <section id="conclusion" class="article-section">
+                                <h2>总结</h2>
+                                <p>在这里总结文章的主要观点和收获，帮助读者回顾和巩固所学内容。</p>
+                                <p>可以提供一些进一步学习的资源或建议，鼓励读者继续探索相关主题。</p>
+                            </section>
+                        </div>
+                        
+                        <!-- 文章系列导航（如果是系列文章） -->
+                        <div class="article-series">
+                            <h3>系列文章</h3>
+                            <div class="series-list">
+                                <a href="#" class="series-item">
+                                    <span class="series-number">1</span>
+                                    <span class="series-title">系列文章标题一</span>
+                                </a>
+                                <a href="#" class="series-item current">
+                                    <span class="series-number">2</span>
+                                    <span class="series-title">当前文章标题</span>
+                                </a>
+                                <a href="#" class="series-item">
+                                    <span class="series-number">3</span>
+                                    <span class="series-title">系列文章标题三</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 文章分享 -->
+                        <div class="article-share">
+                            <span>分享文章：</span>
+                            <a href="#" class="share-twitter" aria-label="分享到Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-facebook" aria-label="分享到Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-linkedin" aria-label="分享到LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-weibo" aria-label="分享到微博"><i class="fab fa-weibo"></i></a>
+                            <a href="#" class="share-wechat" aria-label="分享到微信"><i class="fab fa-weixin"></i></a>
+                        </div>
+                        
+                        <!-- 文章评论 -->
+                        <div class="article-comments">
+                            <h3>评论 <span class="comment-count">(0)</span></h3>
+                            <div class="comments-list">
+                                <!-- 评论将通过JavaScript动态加载 -->
+                                <p class="no-comments">暂无评论，成为第一个评论的人吧！</p>
+                            </div>
+                            <div class="comment-form-container">
+                                <h4>发表评论</h4>
+                                <form class="comment-form">
+                                    <div class="form-group">
+                                        <label for="comment-name">昵称</label>
+                                        <input type="text" id="comment-name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment-email">邮箱（不会公开）</label>
+                                        <input type="email" id="comment-email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment-content">评论内容</label>
+                                        <textarea id="comment-content" name="comment" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">提交评论</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 文章侧边栏 -->
+                    <div class="article-sidebar">
+                        <!-- 作者信息 -->
+                        <div class="author-card">
+                            <div class="author-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <h3>AI进化论-花生</h3>
+                            <p>AI教程博主，B站/YouTube播放量超400万</p>
+                            <div class="author-social">
+                                <a href="#" aria-label="B站"><i class="fab fa-bilibili"></i></a>
+                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="#" aria-label="微博"><i class="fab fa-weibo"></i></a>
+                            </div>
+                        </div>
+                        
+                        <!-- 目录导航（移动端隐藏，桌面端固定） -->
+                        <div class="sidebar-toc">
+                            <h3>文章目录</h3>
+                            <div class="toc-content">
+                                <!-- 目录内容将通过JavaScript动态复制 -->
+                            </div>
+                        </div>
+                        
+                        <!-- 相关文章 -->
+                        <div class="related-articles">
+                            <h3>相关文章</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <span class="related-title">相关文章标题一</span>
+                                        <span class="related-date">2025-02-10</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="related-title">相关文章标题二</span>
+                                        <span class="related-date">2025-02-05</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="related-title">相关文章标题三</span>
+                                        <span class="related-date">2025-01-28</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="related-title">相关文章标题四</span>
+                                        <span class="related-date">2025-01-20</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 热门标签 -->
+                        <div class="tag-cloud-widget">
+                            <h3>热门标签</h3>
+                            <div class="tag-cloud">
+                                <a href="#" class="tag">ChatGPT</a>
+                                <a href="#" class="tag">Cursor</a>
+                                <a href="#" class="tag">Deepseek</a>
+                                <a href="#" class="tag">AI编程</a>
+                                <a href="#" class="tag">提示词工程</a>
+                                <a href="#" class="tag">AI写作</a>
+                                <a href="#" class="tag">图像生成</a>
+                                <a href="#" class="tag">AI工具</a>
+                            </div>
+                        </div>
+                        
+                        <!-- 订阅卡片 -->
+                        <div class="subscribe-card">
+                            <h3>订阅更新</h3>
+                            <p>获取最新AI教程和资源</p>
+                            <form class="subscribe-form">
+                                <input type="email" placeholder="您的邮箱地址" required>
+                                <button type="submit" class="btn btn-primary">订阅</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        
+        <!-- 返回顶部按钮 -->
+        <button class="back-to-top" aria-label="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <span class="logo-text">AiXueba.club</span>
+                    </div>
+                    <p class="footer-description">提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="GitHub"><img src="../images/social/github.svg" alt="GitHub"></a>
+                        <a href="#" aria-label="Twitter"><img src="../images/social/twitter.svg" alt="Twitter"></a>
+                        <a href="#" aria-label="YouTube"><img src="../images/social/youtube.svg" alt="YouTube"></a>
+                        <a href="#" aria-label="微信"><img src="../images/social/wechat.svg" alt="微信"></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>GPTs</h4>
+                        <ul>
+                            <li><a href="#">更勤奋更聪明的GPT4</a></li>
+                            <li><a href="#">AI使用助手 by 花生</a></li>
+                            <li><a href="#">AI阅读助手</a></li>
+                            <li><a href="#">GPT翻译-专业中英双语翻译</a></li>
+                            <li><a href="#">Claude 3 Opus</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>教程分类</h4>
+                        <ul>
+                            <li><a href="../index.html#chatgpt">ChatGPT教程</a></li>
+                            <li><a href="../index.html#cursor">Cursor教程</a></li>
+                            <li><a href="../index.html#deepseek">Deepseek教程</a></li>
+                            <li><a href="../index.html#tools">AI工具</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>关于我们</h4>
+                        <ul>
+                            <li><a href="../about.html">关于AiXueba</a></li>
+                            <li><a href="../contact.html">联系我们</a></li>
+                            <li><a href="../privacy.html">隐私政策</a></li>
+                            <li><a href="../terms.html">使用条款</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 AiXueba, Inc. 保留所有权利</p>
+                <p class="back-to-top"><a href="#top">返回顶部 <i class="fas fa-arrow-up"></i></a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/article.js"></script>
+</body>
+</html> 

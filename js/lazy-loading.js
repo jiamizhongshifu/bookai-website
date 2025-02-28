@@ -60,7 +60,13 @@ function initLazyLoading() {
             
             // 检查WebP支持并设置合适的图片源
             checkWebPSupport().then(supportsWebP => {
-              if (supportsWebP && lazyImage.dataset.webp) {
+              // 检查文件类型
+              const isSvg = lazyImage.dataset.src && lazyImage.dataset.src.toLowerCase().endsWith('.svg');
+              
+              // SVG文件不需要WebP转换
+              if (isSvg) {
+                lazyImage.src = lazyImage.dataset.src;
+              } else if (supportsWebP && lazyImage.dataset.webp) {
                 lazyImage.src = lazyImage.dataset.webp;
               } else {
                 lazyImage.src = lazyImage.dataset.src;
@@ -68,6 +74,7 @@ function initLazyLoading() {
               
               // 图片加载错误时使用占位图
               lazyImage.onerror = () => {
+                console.log(`图片加载失败: ${lazyImage.src}`);
                 lazyImage.src = 'images/placeholder.svg';
                 lazyImage.classList.add('img-error');
                 logError(new Error(`图片加载失败: ${lazyImage.dataset.src}`), '懒加载');
@@ -76,7 +83,9 @@ function initLazyLoading() {
               // 图片加载完成后移除data-src属性
               lazyImage.onload = () => {
                 lazyImage.removeAttribute('data-src');
-                lazyImage.removeAttribute('data-webp');
+                if (!isSvg) {
+                  lazyImage.removeAttribute('data-webp');
+                }
               };
             });
             
@@ -111,7 +120,13 @@ function initLazyLoading() {
             if (isInViewport) {
               // 检查WebP支持并设置合适的图片源
               checkWebPSupport().then(supportsWebP => {
-                if (supportsWebP && lazyImage.dataset.webp) {
+                // 检查文件类型
+                const isSvg = lazyImage.dataset.src && lazyImage.dataset.src.toLowerCase().endsWith('.svg');
+                
+                // SVG文件不需要WebP转换
+                if (isSvg) {
+                  lazyImage.src = lazyImage.dataset.src;
+                } else if (supportsWebP && lazyImage.dataset.webp) {
                   lazyImage.src = lazyImage.dataset.webp;
                 } else {
                   lazyImage.src = lazyImage.dataset.src;
@@ -119,6 +134,7 @@ function initLazyLoading() {
                 
                 // 图片加载错误时使用占位图
                 lazyImage.onerror = () => {
+                  console.log(`图片加载失败: ${lazyImage.src}`);
                   lazyImage.src = 'images/placeholder.svg';
                   lazyImage.classList.add('img-error');
                   logError(new Error(`图片加载失败: ${lazyImage.dataset.src}`), '懒加载');
@@ -127,7 +143,9 @@ function initLazyLoading() {
                 // 图片加载完成后移除data-src属性
                 lazyImage.onload = () => {
                   lazyImage.removeAttribute('data-src');
-                  lazyImage.removeAttribute('data-webp');
+                  if (!isSvg) {
+                    lazyImage.removeAttribute('data-webp');
+                  }
                 };
               });
             }

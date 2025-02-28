@@ -1,0 +1,87 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main, master]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    name: 部署到Netlify
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 下载构建产物
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: ${{ github.event.workflow_run.id }}
+            });
+            const matchArtifact = artifacts.data.artifacts.find(artifact => artifact.name === "build-output");
+            const download = await github.rest.actions.downloadArtifact({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              artifact_id: matchArtifact.id,
+              archive_format: 'zip'
+            });
+            const fs = require('fs');
+            fs.writeFileSync('build-output.zip', Buffer.from(download.data));
+      
+      - name: 解压构建产物
+        run: unzip build-output.zip -d dist
+      
+      - name: 部署到Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: './dist'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "从GitHub Actions部署"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+
+  notify:
+    name: 部署通知
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 发送钉钉通知
+        uses: JulienKode/slack-notification-action@master
+        with:
+          webhook-url: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+          text: "✅ AiXueba网站已成功部署到Netlify！"
+          username: "部署机器人"
+          icon-emoji: ":rocket:"
+        if: ${{ secrets.DINGTALK_WEBHOOK_URL != '' }}
+        
+      - name: 发送邮件通知
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER }}
+          server_port: ${{ secrets.MAIL_PORT }}
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "✅ AiXueba网站已成功部署"
+          body: |
+            AiXueba网站已成功部署到Netlify！
+            
+            部署时间: ${{ github.event.workflow_run.updated_at }}
+            提交信息: ${{ github.event.workflow_run.head_commit.message }}
+            提交者: ${{ github.event.workflow_run.head_commit.author.name }}
+            
+            查看网站: https://aixueba.club
+          to: ${{ secrets.MAIL_RECIPIENT }}
+          from: AiXueba部署机器人
+        if: ${{ secrets.MAIL_SERVER != '' }} 

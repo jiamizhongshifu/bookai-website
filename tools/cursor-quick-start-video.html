@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5分钟上手Cursor - AiXueba</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .video-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .video-description {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+
+        .key-points {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .key-points h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .key-points ul {
+            padding-left: 20px;
+        }
+
+        .key-points li {
+            margin-bottom: 10px;
+        }
+
+        .cta-button {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            margin: 30px auto 0;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video-card">
+            <h1>5分钟上手Cursor</h1>
+            <p class="video-description">这个简短视频将帮助你快速掌握Cursor的基本操作和核心功能，让你立即提升编程效率！</p>
+            
+            <div class="video-container">
+                <!-- 这里使用B站视频嵌入代码，实际使用时替换为真实视频ID -->
+                <iframe src="//player.bilibili.com/player.html?aid=123456789&bvid=BV1xx411c7mD&cid=123456789&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+            </div>
+            
+            <div class="key-points">
+                <h2>视频要点</h2>
+                <ul>
+                    <li><strong>安装与设置</strong> - 如何下载、安装Cursor并完成初始配置</li>
+                    <li><strong>界面导航</strong> - 熟悉Cursor的用户界面和主要功能区</li>
+                    <li><strong>AI聊天功能</strong> - 如何使用内置AI助手解决编程问题</li>
+                    <li><strong>代码生成</strong> - 通过简单提示词生成高质量代码</li>
+                    <li><strong>代码解释</strong> - 让AI解释复杂代码的功能演示</li>
+                </ul>
+            </div>
+            
+            <a href="../articles/cursor-ultimate-guide.html" class="cta-button">阅读完整Cursor教程</a>
+        </div>
+        
+        <div class="footer">
+            <p>更多AI编程工具教程，请访问 <a href="../index.html">AiXueba首页</a></p>
+        </div>
+    </div>
+</body>
+</html> 

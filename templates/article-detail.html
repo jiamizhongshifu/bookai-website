@@ -1,0 +1,183 @@
+{# 继承基础模板 #}
+{% extends "base.html" %}
+
+{# 设置页面标题 #}
+{% block title %}{{ article.title }} - AiXueba{% endblock %}
+
+{# 设置Meta标签 #}
+{% block meta %}
+<meta name="description" content="{{ article.summary }}">
+<meta name="keywords" content="{{ article.tags|join(', ') }}, AI教程, {{ article.category }}">
+{% endblock %}
+
+{# 设置Open Graph标签 #}
+{% block og_title %}{{ article.title }} - AiXueba{% endblock %}
+{% block og_description %}{{ article.summary }}{% endblock %}
+{% block og_url %}https://aixueba.club/{{ article.category }}/{{ article.slug }}.html{% endblock %}
+{% block og_type %}article{% endblock %}
+
+{# 设置Twitter卡片 #}
+{% block twitter_title %}{{ article.title }} - AiXueba{% endblock %}
+{% block twitter_description %}{{ article.summary }}{% endblock %}
+
+{# 设置面包屑导航 #}
+{% block breadcrumb %}
+<a href="/{{ article.category }}/index.html">{{ article.category|title }}教程</a>
+<i class="fas fa-angle-right"></i>
+<span>{{ article.title }}</span>
+{% endblock %}
+
+{# 设置作者名称 #}
+{% block author_name %}{{ article.author }}{% endblock %}
+
+{# 设置当前年份 #}
+{% block current_year %}{{ current_year }}{% endblock %}
+
+{# 设置文章内容 #}
+{% block content %}
+    {# 文章头部信息 #}
+    <div class="article-header">
+        <div class="article-category">
+            <a href="/{{ article.category }}/index.html" class="category-tag">{{ article.category|title }}</a>
+        </div>
+        <h1 class="article-title">{{ article.title }}</h1>
+        <div class="article-meta">
+            <span class="article-author"><i class="fas fa-user"></i> 作者：{{ article.author }}</span>
+            <span class="article-date"><i class="fas fa-calendar"></i> 发布于：{{ article.date }}</span>
+            <span class="article-read-time"><i class="fas fa-clock"></i> 阅读时间：{{ article.read_time|default('10分钟') }}</span>
+            <span class="article-views"><i class="fas fa-eye"></i> 阅读量：{{ article.views|default('0') }}</span>
+        </div>
+        <div class="article-tags">
+            <i class="fas fa-tags"></i>
+            {% for tag in article.tags %}
+            <a href="/tags/{{ tag|lower|replace(' ', '-') }}.html" class="tag">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# 文章简介 #}
+    <div class="article-intro">
+        <p>{{ article.summary }}</p>
+    </div>
+
+    {# 文章内容 #}
+    <div class="article-content">
+        {{ article.content|safe }}
+    </div>
+    
+    {# 文章分享 #}
+    <div class="article-share">
+        <span>分享文章：</span>
+        <a href="https://twitter.com/intent/tweet?url={{ article.url|urlencode }}&text={{ article.title|urlencode }}" class="share-twitter" aria-label="分享到Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ article.url|urlencode }}" class="share-facebook" aria-label="分享到Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ article.url|urlencode }}&title={{ article.title|urlencode }}" class="share-linkedin" aria-label="分享到LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://service.weibo.com/share/share.php?url={{ article.url|urlencode }}&title={{ article.title|urlencode }}" class="share-weibo" aria-label="分享到微博" target="_blank"><i class="fab fa-weibo"></i></a>
+        <a href="javascript:void(0);" class="share-wechat" aria-label="分享到微信" onclick="showWechatQR()"><i class="fab fa-weixin"></i></a>
+    </div>
+    
+    {# 上一篇/下一篇导航 #}
+    {% if prev_article or next_article %}
+    <div class="article-navigation">
+        {% if prev_article %}
+        <a href="/{{ prev_article.category }}/{{ prev_article.slug }}.html" class="prev-article">
+            <i class="fas fa-arrow-left"></i>
+            <div class="nav-content">
+                <span class="nav-label">上一篇</span>
+                <span class="nav-title">{{ prev_article.title }}</span>
+            </div>
+        </a>
+        {% else %}
+        <div class="prev-article-placeholder"></div>
+        {% endif %}
+        
+        {% if next_article %}
+        <a href="/{{ next_article.category }}/{{ next_article.slug }}.html" class="next-article">
+            <div class="nav-content">
+                <span class="nav-label">下一篇</span>
+                <span class="nav-title">{{ next_article.title }}</span>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+        {% else %}
+        <div class="next-article-placeholder"></div>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    {# 相关推荐 #}
+    {% if related_articles and related_articles|length > 0 %}
+    <div class="related-articles">
+        <h3>相关推荐</h3>
+        <div class="related-grid">
+            {% for related in related_articles %}
+            <div class="related-item">
+                <a href="/{{ related.category }}/{{ related.slug }}.html">
+                    <h4>{{ related.title }}</h4>
+                    <div class="related-meta">
+                        <span class="related-date">{{ related.date }}</span>
+                        <span class="related-views">{{ related.views|default('0') }}次阅读</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{# 设置目录 #}
+{% block toc %}
+<ul>
+    {% for heading in article.toc %}
+    <li>
+        <a href="#{{ heading.id }}" class="toc-link">{{ heading.text }}</a>
+        {% if heading.children and heading.children|length > 0 %}
+        <ul>
+            {% for subheading in heading.children %}
+            <li>
+                <a href="#{{ subheading.id }}" class="toc-link">{{ subheading.text }}</a>
+                {% if subheading.children and subheading.children|length > 0 %}
+                <ul>
+                    {% for subsubheading in subheading.children %}
+                    <li><a href="#{{ subsubheading.id }}" class="toc-link">{{ subsubheading.text }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{# 设置热门文章 #}
+{% block popular_articles %}
+{% for popular in popular_articles %}
+<li>
+    <a href="/{{ popular.category }}/{{ popular.slug }}.html">
+        <span class="popular-article-title">{{ popular.title }}</span>
+        <span class="popular-article-date">{{ popular.date }}</span>
+    </a>
+</li>
+{% endfor %}
+{% endblock %}
+
+{# 设置标签云 #}
+{% block tag_cloud %}
+{% for tag in all_tags %}
+<a href="/tags/{{ tag.slug }}.html" class="tag">{{ tag.name }}</a>
+{% endfor %}
+{% endblock %}
+
+{# 添加额外的JavaScript #}
+{% block extra_js %}
+<script>
+    // 微信分享二维码显示
+    function showWechatQR() {
+        alert('请截图分享到微信');
+        // 这里可以实现更复杂的二维码生成逻辑
+    }
+</script>
+{% endblock %} 

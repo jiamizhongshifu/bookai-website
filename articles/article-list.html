@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章列表 - AiXueba</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../css/bootstrap-style.css">
+    <link rel="stylesheet" href="../css/article-list.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" href="../css/icons.css">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="../css/bootstrap-style.css" as="style">
+    <link rel="preload" href="../css/article-list.css" as="style">
+    <link rel="preload" href="../css/icons.css" as="style">
+    <link rel="preload" href="../fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">AiXueba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#featured">精选教程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#chatgpt">ChatGPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#cursor">Cursor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#deepseek">Deepseek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#tools">AI工具</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <form class="d-flex me-2">
+                        <input class="form-control me-2" type="search" placeholder="搜索教程..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-link dark-mode-toggle" aria-label="切换深色模式">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container py-5 mt-5">
+        <!-- 面包屑导航 -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">首页</a></li>
+                <li class="breadcrumb-item active" aria-current="page">文章列表</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 class="mb-4">所有文章</h1>
+                
+                <!-- 文章筛选和排序 -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            全部分类
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                            <li><a class="dropdown-item" href="#">全部分类</a></li>
+                            <li><a class="dropdown-item" href="#">ChatGPT</a></li>
+                            <li><a class="dropdown-item" href="#">Cursor</a></li>
+                            <li><a class="dropdown-item" href="#">DeepSeek</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            按日期排序
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                            <li><a class="dropdown-item active" href="#">最新发布</a></li>
+                            <li><a class="dropdown-item" href="#">最早发布</a></li>
+                            <li><a class="dropdown-item" href="#">阅读量最高</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 文章列表容器 -->
+                <div id="article-list" class="mb-4">
+                    <!-- 文章列表将通过AJAX加载 -->
+                    <!-- 加载动画 -->
+                    <div id="loading-spinner" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">加载中...</span>
+                        </div>
+                        <p class="mt-2">正在加载文章...</p>
+                    </div>
+                </div>
+                
+                <!-- 分页控件 -->
+                <nav aria-label="文章分页" class="mt-5">
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">上一页</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#" data-page="1">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#" data-page="3">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">下一页</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <!-- 侧边栏 -->
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <!-- 热门文章 -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">热门文章</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <a href="chatgpt-prompt-engineering.html" class="text-decoration-none">ChatGPT从零精通：万字长文教你玩转提示词工程</a>
+                                <span class="badge bg-primary rounded-pill ms-1">12.5k</span>
+                            </li>
+                            <li class="mb-2">
+                                <a href="cursor-ultimate-guide.html" class="text-decoration-none">Cursor终极指南：AI写代码比Copilot更强？</a>
+                                <span class="badge bg-primary rounded-pill ms-1">8.3k</span>
+                            </li>
+                            <li class="mb-2">
+                                <a href="deepseek-tips.html" class="text-decoration-none">爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！</a>
+                                <span class="badge bg-primary rounded-pill ms-1">6.7k</span>
+                            </li>
+                            <li class="mb-2">
+                                <a href="chatgpt-access-solutions.html" class="text-decoration-none">ChatGPT被封号怎么办？2024最新国内访问稳定方案</a>
+                                <span class="badge bg-primary rounded-pill ms-1">5.9k</span>
+                            </li>
+                            <li>
+                                <a href="gpts-store-guide.html" class="text-decoration-none">GPTs商店完全指南：创建、使用与变现自定义GPT</a>
+                                <span class="badge bg-primary rounded-pill ms-1">4.2k</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 文章分类 -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">文章分类</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                ChatGPT教程
+                                <span class="badge bg-primary rounded-pill">12</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                Cursor教程
+                                <span class="badge bg-primary rounded-pill">8</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                DeepSeek教程
+                                <span class="badge bg-primary rounded-pill">6</span>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                AI工具推荐
+                                <span class="badge bg-primary rounded-pill">4</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 订阅卡片 -->
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">订阅最新文章</h5>
+                        <p class="card-text">第一时间获取最新AI工具教程和使用技巧</p>
+                        <form>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="您的邮箱地址" required>
+                            </div>
+                            <button type="submit" class="btn btn-light">立即订阅</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AiXueba.club</h5>
+                    <p>提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <h5>教程分类</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="../index.html#chatgpt" class="text-light">ChatGPT教程</a></li>
+                                <li><a href="../index.html#cursor" class="text-light">Cursor教程</a></li>
+                                <li><a href="../index.html#deepseek" class="text-light">Deepseek教程</a></li>
+                                <li><a href="../index.html#tools" class="text-light">AI工具</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <h5>关于我们</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="../about.html" class="text-light">关于AiXueba</a></li>
+                                <li><a href="../contact.html" class="text-light">联系我们</a></li>
+                                <li><a href="../privacy.html" class="text-light">隐私政策</a></li>
+                                <li><a href="../terms.html" class="text-light">使用条款</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>订阅更新</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="您的邮箱地址" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">订阅</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">Copyright © 2025 AiXueba, Inc. 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 自定义JS -->
+    <script src="../js/bootstrap-main.js"></script>
+    <script src="../js/article-list.js"></script>
+</body>
+</html> 

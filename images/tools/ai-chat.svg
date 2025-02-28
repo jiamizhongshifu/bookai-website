@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <!-- 背景 -->
+  <rect width="80" height="80" rx="20" fill="#F5F7FF" />
+  
+  <!-- 聊天气泡 - 左侧 -->
+  <g transform="translate(20, 25)">
+    <rect x="0" y="0" width="25" height="15" rx="7" fill="#4A6CF7" />
+    <path d="M0 7 L-5 12 L-5 7" fill="#4A6CF7" />
+  </g>
+  
+  <!-- 聊天气泡 - 右侧 -->
+  <g transform="translate(60, 40)">
+    <rect x="-25" y="0" width="25" height="15" rx="7" fill="#FF6B6B" />
+    <path d="M0 7 L5 12 L5 7" fill="#FF6B6B" />
+  </g>
+  
+  <!-- 聊天气泡 - 左侧第二个 -->
+  <g transform="translate(25, 55)">
+    <rect x="0" y="0" width="30" height="15" rx="7" fill="#4A6CF7" />
+    <path d="M0 7 L-5 12 L-5 7" fill="#4A6CF7" />
+  </g>
+  
+  <!-- AI图标 -->
+  <g transform="translate(40, 15)">
+    <circle cx="0" cy="0" r="10" fill="#FFC107" />
+    <text x="0" y="4" font-family="Arial" font-size="10" font-weight="bold" fill="#1A1A2E" text-anchor="middle">AI</text>
+  </g>
+  
+  <!-- 底部文字 -->
+  <text x="40" y="75" font-family="Arial" font-size="8" font-weight="bold" fill="#1A1A2E" text-anchor="middle">AI聊天</text>
+</svg> 

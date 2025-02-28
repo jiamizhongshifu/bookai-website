@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <!-- 背景 -->
+  <rect width="80" height="80" rx="20" fill="#F5F7FF" />
+  
+  <!-- 画框 -->
+  <rect x="15" y="20" width="50" height="40" rx="5" fill="white" stroke="#4A6CF7" stroke-width="2" />
+  
+  <!-- 图像内容 -->
+  <circle cx="30" cy="30" r="5" fill="#FFC107" /> <!-- 太阳 -->
+  <path d="M20 45 L30 35 L40 45 L50 35 L60 45" stroke="#4A6CF7" stroke-width="2" stroke-linejoin="round" /> <!-- 山脉 -->
+  <rect x="20" y="45" width="40" height="10" fill="#4A6CF7" opacity="0.3" /> <!-- 水面 -->
+  
+  <!-- 画笔工具 -->
+  <g transform="translate(60, 25)">
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#FF6B6B" />
+    <line x1="0" y1="-5" x2="0" y2="-10" stroke="#FF6B6B" stroke-width="2" />
+    <line x1="-3" y1="-3" x2="3" y2="3" stroke="white" stroke-width="1.5" />
+    <line x1="-3" y1="3" x2="3" y2="-3" stroke="white" stroke-width="1.5" />
+  </g>
+  
+  <!-- AI图标 -->
+  <g transform="translate(20, 15)">
+    <circle cx="0" cy="0" r="8" fill="#FFC107" />
+    <text x="0" y="3" font-family="Arial" font-size="8" font-weight="bold" fill="#1A1A2E" text-anchor="middle">AI</text>
+  </g>
+  
+  <!-- 底部文字 -->
+  <text x="40" y="70" font-family="Arial" font-size="8" font-weight="bold" fill="#1A1A2E" text-anchor="middle">图像生成</text>
+</svg> 

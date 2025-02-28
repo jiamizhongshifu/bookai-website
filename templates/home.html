@@ -1,0 +1,187 @@
+{# 继承基础模板 #}
+{% extends "base.html" %}
+
+{# 设置页面标题 #}
+{% block title %}AiXueba - AI工具教程与资源{% endblock %}
+
+{# 设置Meta标签 #}
+{% block meta %}
+<meta name="description" content="AI学霸网站提供最新、最实用的AI工具教程和资源，包括ChatGPT、Cursor、Deepseek等AI工具的使用教程">
+<meta name="keywords" content="AI教程, ChatGPT, Cursor, Deepseek, AI工具, 人工智能">
+{% endblock %}
+
+{# 设置当前年份 #}
+{% block current_year %}{{ current_year }}{% endblock %}
+
+{# 设置文章内容 #}
+{% block content %}
+    {# 首页横幅 #}
+    <div class="home-banner">
+        <div class="banner-content">
+            <h1>AI学霸</h1>
+            <p>提供最新、最实用的AI工具教程和资源</p>
+            <div class="banner-buttons">
+                <a href="/articles/index.html" class="btn btn-primary">浏览全部教程</a>
+                <a href="#featured" class="btn btn-outline">精选内容</a>
+            </div>
+        </div>
+    </div>
+    
+    {# 精选内容 #}
+    <section id="featured" class="home-section">
+        <div class="section-header">
+            <h2>精选教程</h2>
+            <a href="/articles/index.html" class="view-all">查看全部 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="featured-grid">
+            {% for article in latestArticles %}
+            <div class="card-article">
+                {% if article.is_new %}
+                <span class="new-badge">NEW</span>
+                {% endif %}
+                <a href="/{{ article.category }}/{{ article.slug }}.html" class="card-link">
+                    <div class="card-category">{{ article.category|title }}</div>
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <div class="card-summary">{{ article.summary }}</div>
+                    <div class="card-meta">
+                        <span class="card-date"><i class="fas fa-calendar"></i> {{ article.date }}</span>
+                        <span class="card-views"><i class="fas fa-eye"></i> {{ article.views|default('0') }}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {# ChatGPT教程 #}
+    <section id="chatgpt" class="home-section">
+        <div class="section-header">
+            <h2>ChatGPT教程</h2>
+            <a href="/chatgpt/index.html" class="view-all">查看全部 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="category-grid">
+            {% for article in articlesByCategory.chatgpt %}
+            <div class="card-article">
+                {% if article.is_new %}
+                <span class="new-badge">NEW</span>
+                {% endif %}
+                <a href="/{{ article.category }}/{{ article.slug }}.html" class="card-link">
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <div class="card-summary">{{ article.summary }}</div>
+                    <div class="card-meta">
+                        <span class="card-date"><i class="fas fa-calendar"></i> {{ article.date }}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {# Cursor教程 #}
+    <section id="cursor" class="home-section">
+        <div class="section-header">
+            <h2>Cursor教程</h2>
+            <a href="/cursor/index.html" class="view-all">查看全部 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="category-grid">
+            {% for article in articlesByCategory.cursor %}
+            <div class="card-article">
+                {% if article.is_new %}
+                <span class="new-badge">NEW</span>
+                {% endif %}
+                <a href="/{{ article.category }}/{{ article.slug }}.html" class="card-link">
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <div class="card-summary">{{ article.summary }}</div>
+                    <div class="card-meta">
+                        <span class="card-date"><i class="fas fa-calendar"></i> {{ article.date }}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {# Deepseek教程 #}
+    <section id="deepseek" class="home-section">
+        <div class="section-header">
+            <h2>Deepseek教程</h2>
+            <a href="/deepseek/index.html" class="view-all">查看全部 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="category-grid">
+            {% for article in articlesByCategory.deepseek %}
+            <div class="card-article">
+                {% if article.is_new %}
+                <span class="new-badge">NEW</span>
+                {% endif %}
+                <a href="/{{ article.category }}/{{ article.slug }}.html" class="card-link">
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <div class="card-summary">{{ article.summary }}</div>
+                    <div class="card-meta">
+                        <span class="card-date"><i class="fas fa-calendar"></i> {{ article.date }}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {# AI工具 #}
+    <section id="tools" class="home-section">
+        <div class="section-header">
+            <h2>AI工具</h2>
+            <a href="/tools/index.html" class="view-all">查看全部 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="category-grid">
+            {% for article in articlesByCategory.tools %}
+            <div class="card-article">
+                {% if article.is_new %}
+                <span class="new-badge">NEW</span>
+                {% endif %}
+                <a href="/{{ article.category }}/{{ article.slug }}.html" class="card-link">
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <div class="card-summary">{{ article.summary }}</div>
+                    <div class="card-meta">
+                        <span class="card-date"><i class="fas fa-calendar"></i> {{ article.date }}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {# 订阅区域 #}
+    <section class="subscribe-section">
+        <div class="subscribe-content">
+            <h2>订阅最新AI教程</h2>
+            <p>第一时间获取最新AI工具教程和资源</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="输入您的邮箱" required>
+                <button type="submit" class="btn btn-primary">订阅</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{# 设置热门文章 #}
+{% block popular_articles %}
+{% for popular in popularArticles %}
+<li>
+    <a href="/{{ popular.category }}/{{ popular.slug }}.html">
+        <span class="popular-article-title">{{ popular.title }}</span>
+        <span class="popular-article-date">{{ popular.date }}</span>
+    </a>
+</li>
+{% endfor %}
+{% endblock %}
+
+{# 设置标签云 #}
+{% block tag_cloud %}
+{% for tag in allTags %}
+<a href="/tags/{{ tag.slug }}.html" class="tag">{{ tag.name }}</a>
+{% endfor %}
+{% endblock %} 

@@ -46,19 +46,12 @@ function initBasicFeatures() {
  */
 function loadModules() {
   // 检测当前页面类型
-  const isHomePage = document.querySelector('.popular-carousel') !== null;
+  const isHomePage = document.querySelector('.hero') !== null;
   const isArticlePage = document.querySelector('.article-content') !== null;
   
   // 首页特定功能
   if (isHomePage) {
-    // 加载轮播图模块
-    loadScript('js/carousel.js').then(() => {
-      if (window.carouselModule) {
-        window.carouselModule.init();
-      }
-    }).catch(error => {
-      console.error('加载轮播图模块失败:', error);
-    });
+    // 首页特定功能可以在这里添加
   }
   
   // 文章页特定功能

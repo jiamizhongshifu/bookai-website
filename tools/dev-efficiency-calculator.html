@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发效率计算器 - AiXueba</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .calculator-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .results {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .results h2 {
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+        }
+
+        .result-value {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--dark-color);
+        }
+
+        .efficiency-gain {
+            font-size: 24px;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            height: 300px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background-color: #95a5a6;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #34495e;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-weight: normal;
+            font-size: 14px;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>开发效率计算器</h1>
+        <div class="calculator-card">
+            <form id="efficiency-form">
+                <div class="form-group">
+                    <label for="project-type">项目类型</label>
+                    <select id="project-type" required>
+                        <option value="">-- 选择项目类型 --</option>
+                        <option value="web">Web开发</option>
+                        <option value="mobile">移动应用开发</option>
+                        <option value="backend">后端服务开发</option>
+                        <option value="data">数据分析/机器学习</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="team-size">团队规模（人数）</label>
+                    <input type="number" id="team-size" min="1" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-duration">
+                        项目周期（天）
+                        <div class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">输入不使用AI工具时的预计项目完成天数</span>
+                        </div>
+                    </label>
+                    <input type="number" id="project-duration" min="1" max="1000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="code-lines">
+                        代码行数（估计）
+                        <div class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">项目预计的代码总行数，可以是粗略估计</span>
+                        </div>
+                    </label>
+                    <input type="number" id="code-lines" min="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ai-tools">使用的AI工具</label>
+                    <select id="ai-tools" multiple required>
+                        <option value="cursor">Cursor</option>
+                        <option value="copilot">GitHub Copilot</option>
+                        <option value="chatgpt">ChatGPT</option>
+                        <option value="codeium">Codeium</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dev-experience">
+                        开发团队经验水平
+                        <div class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltip-text">团队的平均经验水平，影响AI工具的效率提升</span>
+                        </div>
+                    </label>
+                    <select id="dev-experience" required>
+                        <option value="">-- 选择经验水平 --</option>
+                        <option value="junior">初级（1-2年经验）</option>
+                        <option value="mid">中级（3-5年经验）</option>
+                        <option value="senior">高级（5年以上经验）</option>
+                        <option value="mixed">混合团队</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">计算效率提升</button>
+            </form>
+
+            <div id="results" class="results">
+                <h2>效率分析结果</h2>
+                <div class="result-item">
+                    <p>传统开发方式预计完成时间：<span id="traditional-time" class="result-value">0</span> 天</p>
+                </div>
+                <div class="result-item">
+                    <p>使用AI工具预计完成时间：<span id="ai-time" class="result-value">0</span> 天</p>
+                </div>
+                <div class="result-item">
+                    <p>节省时间：<span id="time-saved" class="result-value">0</span> 天</p>
+                </div>
+                <div class="result-item">
+                    <p>效率提升：<span id="efficiency-gain" class="efficiency-gain">0%</span></p>
+                </div>
+                <div class="result-item">
+                    <p>预计成本节省：<span id="cost-saving" class="result-value">¥0</span></p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="efficiency-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>本计算器基于行业数据和实际项目经验开发，仅供参考。</p>
+            <p>了解更多AI开发工具，请访问 <a href="../index.html">AiXueba首页</a></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('efficiency-form');
+            const results = document.getElementById('results');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                calculateEfficiency();
+            });
+            
+            function calculateEfficiency() {
+                // 获取表单数据
+                const projectType = document.getElementById('project-type').value;
+                const teamSize = parseInt(document.getElementById('team-size').value);
+                const projectDuration = parseInt(document.getElementById('project-duration').value);
+                const codeLines = parseInt(document.getElementById('code-lines').value);
+                const devExperience = document.getElementById('dev-experience').value;
+                
+                // 基于项目类型的基础效率提升
+                let baseEfficiencyGain = 0;
+                switch(projectType) {
+                    case 'web':
+                        baseEfficiencyGain = 0.45; // Web开发效率提升45%
+                        break;
+                    case 'mobile':
+                        baseEfficiencyGain = 0.40; // 移动应用开发效率提升40%
+                        break;
+                    case 'backend':
+                        baseEfficiencyGain = 0.50; // 后端服务开发效率提升50%
+                        break;
+                    case 'data':
+                        baseEfficiencyGain = 0.35; // 数据分析效率提升35%
+                        break;
+                    case 'other':
+                        baseEfficiencyGain = 0.30; // 其他类型效率提升30%
+                        break;
+                }
+                
+                // 基于团队经验的调整因子
+                let experienceFactor = 1.0;
+                switch(devExperience) {
+                    case 'junior':
+                        experienceFactor = 1.2; // 初级开发者获益更多
+                        break;
+                    case 'mid':
+                        experienceFactor = 1.0; // 中级开发者标准获益
+                        break;
+                    case 'senior':
+                        experienceFactor = 0.8; // 高级开发者获益相对较少
+                        break;
+                    case 'mixed':
+                        experienceFactor = 1.0; // 混合团队标准获益
+                        break;
+                }
+                
+                // 基于项目规模的调整因子
+                let scaleFactor = 1.0;
+                if (codeLines < 5000) {
+                    scaleFactor = 0.8; // 小项目获益相对较少
+                } else if (codeLines > 50000) {
+                    scaleFactor = 1.2; // 大项目获益更多
+                }
+                
+                // 计算最终效率提升
+                const efficiencyGain = baseEfficiencyGain * experienceFactor * scaleFactor;
+                
+                // 计算时间节省
+                const traditionalTime = projectDuration;
+                const aiTime = Math.round(traditionalTime / (1 + efficiencyGain));
+                const timeSaved = traditionalTime - aiTime;
+                
+                // 计算成本节省（假设每人每天成本1500元）
+                const dailyCostPerPerson = 1500;
+                const costSaving = timeSaved * teamSize * dailyCostPerPerson;
+                
+                // 显示结果
+                document.getElementById('traditional-time').textContent = traditionalTime;
+                document.getElementById('ai-time').textContent = aiTime;
+                document.getElementById('time-saved').textContent = timeSaved;
+                document.getElementById('efficiency-gain').textContent = Math.round(efficiencyGain * 100) + '%';
+                document.getElementById('cost-saving').textContent = '¥' + costSaving.toLocaleString();
+                
+                results.style.display = 'block';
+                
+                // 创建图表
+                createChart(traditionalTime, aiTime);
+            }
+            
+            function createChart(traditionalTime, aiTime) {
+                const ctx = document.getElementById('efficiency-chart').getContext('2d');
+                
+                // 销毁现有图表（如果存在）
+                if (window.efficiencyChart) {
+                    window.efficiencyChart.destroy();
+                }
+                
+                window.efficiencyChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['传统开发', '使用AI工具'],
+                        datasets: [{
+                            label: '项目完成时间（天）',
+                            data: [traditionalTime, aiTime],
+                            backgroundColor: [
+                                '#e74c3c',
+                                '#2ecc71'
+                            ],
+                            borderColor: [
+                                '#c0392b',
+                                '#27ae60'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '天数'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

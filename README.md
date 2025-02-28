@@ -1,110 +1,132 @@
 # AI学霸网站
 
-AI学霸是一个专注于AI工具教程与资源的网站，帮助用户快速掌握各种AI工具的使用方法，提高学习和工作效率。
+AI学霸网站是一个提供AI工具教程与资源的平台，专注于ChatGPT、Cursor、Deepseek等AI工具的使用教程。
 
-## 项目特点
+## 功能特点
 
-- 🚀 快速加载 - 优化的前端性能
-- 📱 响应式设计 - 适配各种设备
-- 🔍 SEO友好 - 结构化数据和优化的元标签
-- 📖 丰富的教程 - 涵盖各种AI工具的使用指南
-- 🛠️ 离线支持 - 通过Service Worker实现
-- 🌙 暗色模式 - 保护用户眼睛
+- 基于Markdown的内容管理
+- 自动提取文章元数据
+- 自动生成目录结构
+- 阅读进度条
+- 上一篇/下一篇导航
+- 相关文章推荐
+- 自动生成sitemap.xml
+- 文件监听模式（实时预览）
+- 动态生成分类文章列表（按日期倒序）
+- 分页导航（每页10条）
+- 自动提取文章首段作为摘要
+- 最新文章提示角标（NEW标签）
 
-## 技术栈
+## 目录结构
 
-- 纯HTML/CSS/JavaScript构建
-- 无框架依赖，轻量级实现
-- 使用Service Worker实现离线功能
-- 懒加载图片和资源
+```
+.
+├── articles/            # Markdown文章目录
+├── css/                 # CSS样式文件
+├── js/                  # JavaScript文件
+├── scripts/             # 构建脚本
+│   ├── build.js         # 主构建脚本
+│   ├── test-build.js    # 测试构建脚本
+│   └── test-markdown-it.js # Markdown渲染测试脚本
+├── templates/           # HTML模板
+│   ├── article-detail.html # 文章详情模板
+│   ├── article-list.html   # 文章列表模板
+│   ├── home.html          # 首页模板
+│   └── base.html        # 基础模板
+└── package.json         # 项目配置
+```
 
-## 开发环境设置
-
-### 前提条件
-
-- Node.js (推荐v14或更高版本)
-- npm (通常随Node.js一起安装)
-
-### 安装步骤
+## 安装
 
 1. 克隆仓库
+
 ```bash
-git clone https://github.com/jiamizhongshifu/bookai-website.git
-cd bookai-website
+git clone https://github.com/yourusername/aixueba.git
+cd aixueba
 ```
 
 2. 安装依赖
+
 ```bash
 npm install
 ```
 
-3. 启动本地服务器
+## 使用方法
+
+### 构建网站
+
 ```bash
-python -m http.server 8000
+npm run build
 ```
-或者使用批处理文件：
+
+### 开发模式（文件监听）
+
 ```bash
-start-server.bat
+npm run dev
 ```
 
-4. 在浏览器中访问 http://localhost:8000
+### 测试Markdown渲染
 
-## 构建生产版本
-
-1. 运行构建脚本
 ```bash
-node build.js
+npm run test-markdown
 ```
 
-2. 构建后的文件将位于 `dist` 目录中
+### 测试构建过程
 
-## 项目结构
-
-```
-bookai-website/
-├── css/                # 样式文件
-├── js/                 # JavaScript文件
-├── images/             # 图片资源
-├── articles/           # 文章内容
-├── fonts/              # 字体文件
-├── index.html          # 主页
-├── sw.js               # Service Worker
-├── manifest.json       # Web App清单
-├── offline.html        # 离线页面
-├── build.js            # 构建脚本
-├── path-checker.js     # 路径检查工具
-├── image-optimizer.js  # 图片优化工具
-├── performance-monitor.js # 性能监控工具
-└── README.md           # 项目说明
+```bash
+npm run test-build
 ```
 
-## 开发指南
+## 文章格式
 
-### 添加新文章
+文章使用Markdown格式，支持Front Matter元数据：
 
-1. 在 `articles` 目录下创建新的HTML文件
-2. 使用现有文章作为模板
-3. 更新 `index.html` 中的文章列表
+```markdown
+---
+title: 文章标题
+summary: 文章摘要
+category: chatgpt
+tags: [ChatGPT, AI, 教程]
+date: 2025-02-28
+author: AI进化论-花生
+---
 
-### 修改样式
+# 文章标题
 
-- 主要样式在 `css/style.css` 文件中
-- 文章页面样式在 `css/article.css` 文件中
+> 文章摘要
 
-### 添加新功能
+## 目录
 
-1. 在 `js` 目录下创建新的JavaScript文件
-2. 在 `index.html` 中引入新文件
-3. 确保遵循现有的代码风格和最佳实践
+[[toc]]
 
-## 贡献指南
+## 正文内容
 
-1. Fork 仓库
-2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
-3. 提交更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 创建Pull Request
+这里是正文内容...
+```
+
+如果不提供摘要，系统会自动提取文章的第一段作为摘要。
+
+## 自定义配置
+
+主要配置在`scripts/build.js`文件中的`CONFIG`对象：
+
+```javascript
+const CONFIG = {
+  articlesDir: path.join(__dirname, '..', 'articles'),
+  outputDir: process.env.OUTPUT_DIR || path.join(__dirname, '..'),
+  templatesDir: path.join(__dirname, '..', 'templates'),
+  sitemapPath: process.env.OUTPUT_DIR 
+    ? path.join(process.env.OUTPUT_DIR, 'sitemap.xml')
+    : path.join(__dirname, '..', 'sitemap.xml'),
+  baseUrl: 'https://aixueba.club',
+  watchMode: process.argv.includes('--watch'),
+  categories: ['chatgpt', 'cursor', 'deepseek', 'tools'],
+  defaultAuthor: 'AI进化论-花生',
+  articlesPerPage: 10,
+  newArticleDays: 7 // 发布7天内的文章标记为"新"
+};
+```
 
 ## 许可证
 
-本项目采用 MIT 许可证 - 详情请参阅 LICENSE 文件 
+MIT

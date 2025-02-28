@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="200" height="200" rx="20" fill="#F5F7FF"/>
+  
+  <!-- AI-A 图标 -->
+  <circle cx="60" cy="70" r="25" fill="#4A6CF7"/>
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">AI-A</text>
+  
+  <!-- VS 标志 -->
+  <rect x="85" y="60" width="30" height="20" rx="5" fill="#FFEB3B"/>
+  <text x="100" y="75" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1A1A2E" text-anchor="middle">VS</text>
+  
+  <!-- AI-B 图标 -->
+  <circle cx="140" cy="70" r="25" fill="#FF6B6B"/>
+  <text x="140" y="75" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">AI-B</text>
+  
+  <!-- 比较指标 - 速度 -->
+  <g transform="translate(40, 110)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="10" fill="#1A1A2E">速度</text>
+    <rect x="40" y="-8" width="80" height="10" rx="5" fill="#E0E0E0"/>
+    <rect x="40" y="-8" width="60" height="10" rx="5" fill="#4A6CF7"/>
+    <rect x="40" y="-8" width="30" height="10" rx="5" fill="#FF6B6B"/>
+  </g>
+  
+  <!-- 比较指标 - 质量 -->
+  <g transform="translate(40, 130)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="10" fill="#1A1A2E">质量</text>
+    <rect x="40" y="-8" width="80" height="10" rx="5" fill="#E0E0E0"/>
+    <rect x="40" y="-8" width="40" height="10" rx="5" fill="#4A6CF7"/>
+    <rect x="40" y="-8" width="50" height="10" rx="5" fill="#FF6B6B"/>
+  </g>
+  
+  <!-- 比较指标 - 成本 -->
+  <g transform="translate(40, 150)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="10" fill="#1A1A2E">成本</text>
+    <rect x="40" y="-8" width="80" height="10" rx="5" fill="#E0E0E0"/>
+    <rect x="40" y="-8" width="30" height="10" rx="5" fill="#4A6CF7"/>
+    <rect x="40" y="-8" width="60" height="10" rx="5" fill="#FF6B6B"/>
+  </g>
+  
+  <!-- 标题 -->
+  <text x="100" y="180" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1A1A2E" text-anchor="middle">AI 比较工具</text>
+</svg> 
