@@ -2,7 +2,7 @@
 layout: article
 title: DeepSeek新手必看：从注册到API调用的完整指南（附免费试用技巧）
 date: 2025-02-28
-author: AI进化论-花生
+author: 加密钟师傅
 thumbnail: /images/deepseek-guide.svg
 excerpt: 全面解析DeepSeek的注册流程、API调用方法及免费试用技巧，帮助国内开发者快速上手这款强大的国产AI大模型。
 tags: [DeepSeek, DeepSeek教程, DeepSeek API, 国产AI模型, DeepSeek免费试用]

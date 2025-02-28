@@ -2,7 +2,7 @@
 layout: article
 title: DeepSeek-R1模型微调实战：定制你的行业专属AI助手
 date: 2025-03-05
-author: AI进化论-花生
+author: 加密钟师傅
 thumbnail: /images/deepseek-finetune.svg
 excerpt: 详细介绍如何使用Hugging Face对DeepSeek-R1模型进行微调，打造适合特定行业和场景的专属AI助手，提升模型在垂直领域的表现。
 tags: [DeepSeek-R1, 模型微调, Hugging Face, 企业AI, 垂直领域]

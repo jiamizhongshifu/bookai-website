@@ -36,7 +36,7 @@ const CONFIG = {
     : path.join(__dirname, '..', 'sitemap.xml'),
   baseUrl: 'https://aixueba.club',
   watchMode: process.argv.includes('--watch'),
-  categories: ['chatgpt', 'cursor', 'deepseek', 'tools'],
+  categories: ['ChatGPT', 'Cursor', 'Deepseek', 'AI工具', 'tools'],
   defaultAuthor: '加密钟师傅',
   articlesPerPage: 10,
   newArticleDays: 7 // 发布7天内的文章标记为"新"
@@ -72,10 +72,12 @@ const md = markdownIt({
   }
 })
 .use(markdownItAnchor, {
-  permalink: true,
-  permalinkClass: 'header-anchor',
-  permalinkSymbol: '#',
-  permalinkBefore: true,
+  permalink: {
+    symbol: '#',
+    placement: 'before',
+    class: 'header-anchor',
+    renderAttrs: () => ({ 'aria-hidden': true })
+  },
   level: [1, 2, 3, 4],
   slugify: s => slugify(s, { lower: true, strict: true })
 })
@@ -138,7 +140,7 @@ function extractMetadata(content, filePath) {
     title: '',
     summary: '',
     category: '',
-    tags: [],
+    tags: [], // 确保tags是一个空数组
     date: new Date().toISOString().split('T')[0],
     author: CONFIG.defaultAuthor,
     slug: generateSlug(filePath),
@@ -148,68 +150,52 @@ function extractMetadata(content, filePath) {
   
   // 从front matter中提取数据
   if (Object.keys(data).length > 0) {
-    // 如果有front matter，优先使用
+    // 合并front matter数据，确保tags总是数组
+    metadata.tags = Array.isArray(data.tags) ? data.tags : (data.tags ? [data.tags] : []);
+    delete data.tags;
     Object.assign(metadata, data);
-  } else {
-    // 如果没有front matter，尝试从内容中提取
-    
-    // 尝试从内容中提取标题
-    const titleMatch = markdownContent.match(/^#\s+(.+)$/m);
+  }
+  
+  // 如果没有标题，尝试从内容中提取
+  if (!metadata.title) {
+    const titleMatch = content.match(/^#\s+(.+)$/m);
     if (titleMatch) {
       metadata.title = titleMatch[1].trim();
     }
+  }
   
-    // 尝试从内容中提取摘要
-    const summaryMatch = markdownContent.match(/^>+\s*(.+)$/m);
+  // 如果没有摘要，尝试从内容中提取
+  if (!metadata.summary) {
+    const summaryMatch = content.match(/^>\s*(.+)$/m);
     if (summaryMatch) {
       metadata.summary = summaryMatch[1].trim();
     } else {
-      // 如果没有找到摘要，使用内容的前100个字符
-      const plainText = markdownContent.replace(/#+\s+.+/g, '').replace(/\[.+\]\(.+\)/g, '').replace(/\n/g, ' ').trim();
-      metadata.summary = plainText.substring(0, 100) + '...';
+      // 使用内容的前100个字符作为摘要
+      const plainText = markdownContent.replace(/\s+/g, ' ').trim();
+      metadata.summary = plainText.slice(0, 100) + (plainText.length > 100 ? '...' : '');
     }
+  }
   
-    // 尝试从内容中提取分类
-    const categoryMatch = markdownContent.match(/分类[:：]\s*(.+)$/m);
-    if (categoryMatch) {
-      metadata.category = categoryMatch[1].trim();
+  // 如果没有分类，根据内容关键词推断
+  if (!metadata.category) {
+    if (content.toLowerCase().includes('chatgpt')) {
+      metadata.category = 'ChatGPT';
+    } else if (content.toLowerCase().includes('cursor')) {
+      metadata.category = 'Cursor';
+    } else if (content.toLowerCase().includes('deepseek')) {
+      metadata.category = 'Deepseek';
     } else {
-      // 根据内容关键词推断分类
-      if (markdownContent.includes('ChatGPT') || markdownContent.includes('GPT-4')) {
-        metadata.category = 'chatgpt';
-      } else if (markdownContent.includes('Cursor')) {
-        metadata.category = 'cursor';
-      } else if (markdownContent.includes('Deepseek')) {
-        metadata.category = 'deepseek';
-      } else {
-        metadata.category = 'tools';
-      }
+      metadata.category = 'AI工具';
     }
+  }
   
-    // 尝试从内容中提取标签
-    const tagsMatch = markdownContent.match(/标签[:：]\s*(.+)$/m);
-    if (tagsMatch) {
-      metadata.tags = tagsMatch[1].split(',').map(tag => tag.trim());
-    } else {
-      // 根据内容关键词推断标签
-      const keywords = ['ChatGPT', 'GPT-4', 'Cursor', 'Deepseek', 'AI编程', '提示词工程', 'AI写作'];
-      metadata.tags = keywords.filter(keyword => markdownContent.includes(keyword));
-      if (metadata.tags.length === 0) {
-        metadata.tags = ['AI工具'];
-      }
-    }
-  
-    // 尝试从内容中提取日期
-    const dateMatch = markdownContent.match(/日期[:：]\s*(\d{4}-\d{2}-\d{2})/m);
-    if (dateMatch) {
-      metadata.date = dateMatch[1];
-    }
-  
-    // 尝试从内容中提取作者
-    const authorMatch = markdownContent.match(/作者[:：]\s*(.+)$/m);
-    if (authorMatch) {
-      metadata.author = authorMatch[1].trim();
-    }
+  // 如果没有标签，根据内容关键词生成
+  if (metadata.tags.length === 0) {
+    const keywords = ['AI工具', metadata.category];
+    if (content.toLowerCase().includes('教程')) keywords.push('教程');
+    if (content.toLowerCase().includes('指南')) keywords.push('使用指南');
+    if (content.toLowerCase().includes('入门')) keywords.push('新手入门');
+    metadata.tags = [...new Set(keywords)]; // 去重
   }
   
   // 确保分类是有效的
@@ -243,7 +229,7 @@ function extractMetadata(content, filePath) {
   const daysDiff = Math.floor((now - publishDate) / (1000 * 60 * 60 * 24));
   metadata.is_new = daysDiff <= CONFIG.newArticleDays;
   
-  return { metadata, content: markdownContent };
+  return metadata;
 }
 
 /**
@@ -348,10 +334,10 @@ async function processMarkdownFile(filePath, allArticles) {
     const content = await fs.readFile(filePath, 'utf8');
     
     // 提取元数据
-    const { metadata, content: markdownContent } = extractMetadata(content, filePath);
+    const metadata = extractMetadata(content, filePath);
     
     // 转换Markdown为HTML
-    const htmlContent = md.render(markdownContent);
+    const htmlContent = md.render(content);
     
     // 获取相关文章
     const relatedArticles = getRelatedArticles(metadata, allArticles);
@@ -373,9 +359,8 @@ async function processMarkdownFile(filePath, allArticles) {
     
     // 渲染模板
     const renderedHtml = nunjucks.render('article-detail.html', {
-      title: metadata.title,
+      article: metadata,
       content: htmlContent,
-      metadata: metadata,
       relatedArticles: relatedArticles,
       popularArticles: popularArticles,
       allTags: allTags,
@@ -823,7 +808,7 @@ async function main() {
     const allArticlesPromises = markdownFiles.map(async (filePath) => {
       try {
         const content = await fs.readFile(filePath, 'utf8');
-        const { metadata } = extractMetadata(content, filePath);
+        const metadata = extractMetadata(content, filePath);
         
         return {
           ...metadata,
