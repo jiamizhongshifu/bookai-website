@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆形 -->
+    <circle cx="120" cy="120" r="120" fill="#FEF2F2"/>
+    
+    <!-- 盾牌 -->
+    <path d="M120 60l40 20v40c0 22.1-17.9 40-40 40s-40-17.9-40-40V80l40-20z" fill="#FFFFFF" stroke="#EF4444" stroke-width="4"/>
+    
+    <!-- 锁 -->
+    <rect x="100" y="100" width="40" height="40" rx="8" fill="#FFFFFF" stroke="#EF4444" stroke-width="4"/>
+    <circle cx="120" cy="120" r="8" fill="#EF4444"/>
+    <path d="M120 120v10" stroke="#EF4444" stroke-width="4" stroke-linecap="round"/>
+</svg> 
