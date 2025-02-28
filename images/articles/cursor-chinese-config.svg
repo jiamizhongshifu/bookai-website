@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066ff" />
+      <stop offset="100%" stop-color="#4d4dff" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="#f0f0f0" />
+  <g transform="translate(40, 40)">
+    <path d="M60 0 C26.9 0 0 26.9 0 60 C0 93.1 26.9 120 60 120 C93.1 120 120 93.1 120 60 C120 26.9 93.1 0 60 0 Z" fill="url(#gradient)" opacity="0.2" />
+    <!-- 中文符号 -->
+    <text x="60" y="50" font-family="Arial, sans-serif" font-size="40" text-anchor="middle" fill="url(#gradient)">中</text>
+    <!-- 设置符号 -->
+    <circle cx="60" cy="80" r="20" fill="url(#gradient)" opacity="0.6" />
+    <circle cx="60" cy="80" r="10" fill="#f0f0f0" />
+    <path d="M60 60 L60 65 M60 95 L60 100 M40 80 L45 80 M75 80 L80 80 M45 65 L50 70 M70 90 L75 95 M45 95 L50 90 M70 70 L75 65" stroke="url(#gradient)" stroke-width="3" />
+  </g>
+</svg> 

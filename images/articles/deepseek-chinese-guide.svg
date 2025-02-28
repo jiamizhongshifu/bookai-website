@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6600cc" />
+      <stop offset="100%" stop-color="#9933ff" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="#f0f0f0" />
+  <g transform="translate(40, 40)">
+    <path d="M60 0 C26.9 0 0 26.9 0 60 C0 93.1 26.9 120 60 120 C93.1 120 120 93.1 120 60 C120 26.9 93.1 0 60 0 Z" fill="url(#gradient)" opacity="0.2" />
+    <!-- DeepSeek标志 -->
+    <path d="M40 40 L80 40 L80 50 L50 50 L50 80 L40 80 Z" fill="url(#gradient)" />
+    <!-- 中文符号 -->
+    <text x="70" y="75" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="url(#gradient)">中文</text>
+    <!-- 指南符号 -->
+    <path d="M30 90 L90 90 L90 100 L30 100 Z" fill="url(#gradient)" opacity="0.7" />
+    <path d="M40 80 L40 110 M80 80 L80 110" stroke="url(#gradient)" stroke-width="2" />
+  </g>
+</svg> 
