@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10a37f" />
+      <stop offset="100%" stop-color="#0a8a6c" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a90e2" />
+      <stop offset="100%" stop-color="#3a70b2" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="#f8f9fa" />
+  
+  <!-- 背景 -->
+  <rect x="40" y="60" width="120" height="80" rx="10" fill="#f0f0f0" />
+  
+  <!-- 地球图标 -->
+  <circle cx="70" cy="100" r="20" fill="url(#gradient2)" />
+  <path d="M70 80 C 90 85, 90 115, 70 120" stroke="#ffffff" stroke-width="2" fill="none" />
+  <path d="M70 80 C 50 85, 50 115, 70 120" stroke="#ffffff" stroke-width="2" fill="none" />
+  <path d="M50 100 L90 100" stroke="#ffffff" stroke-width="2" />
+  <path d="M70 80 L70 120" stroke="#ffffff" stroke-width="2" />
+  
+  <!-- 锁图标 -->
+  <rect x="110" y="90" width="30" height="25" rx="5" fill="url(#gradient1)" />
+  <rect x="115" y="80" width="20" height="15" rx="5" fill="url(#gradient1)" />
+  <circle cx="125" cy="102" r="5" fill="#ffffff" />
+  <line x1="125" y1="102" x2="125" y2="107" stroke="#ffffff" stroke-width="2" />
+  
+  <!-- 连接线 -->
+  <path d="M90 100 L110 100" stroke="#10a37f" stroke-width="2" stroke-dasharray="4 2" />
+  
+  <!-- 箭头 -->
+  <path d="M40 40 L60 40 L50 55 Z" fill="#4a90e2" />
+  <path d="M140 40 L160 40 L150 55 Z" fill="#10a37f" />
+  <path d="M60 40 L140 40" stroke="#666" stroke-width="2" stroke-dasharray="4 2" />
+  
+  <!-- 文字提示 -->
+  <rect x="50" y="150" width="100" height="10" rx="5" fill="#dddddd" />
+  <rect x="70" y="165" width="60" height="10" rx="5" fill="#dddddd" />
+</svg> 

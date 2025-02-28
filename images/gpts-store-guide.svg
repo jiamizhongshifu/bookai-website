@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10a37f" />
+      <stop offset="100%" stop-color="#0a8a6c" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f5f5" />
+      <stop offset="100%" stop-color="#e0e0e0" />
+    </linearGradient>
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9966" />
+      <stop offset="100%" stop-color="#ff6633" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="#f8f9fa" />
+  
+  <!-- 商店背景 -->
+  <rect x="40" y="50" width="120" height="100" rx="10" fill="url(#gradient2)" />
+  
+  <!-- 商店标题 -->
+  <rect x="50" y="60" width="100" height="15" rx="3" fill="#dddddd" />
+  
+  <!-- GPT图标1 -->
+  <rect x="50" y="85" width="35" height="35" rx="8" fill="url(#gradient1)" />
+  <circle cx="67.5" cy="102.5" r="10" fill="#ffffff" />
+  <text x="67.5" y="106.5" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#10a37f">G</text>
+  
+  <!-- GPT图标2 -->
+  <rect x="95" y="85" width="35" height="35" rx="8" fill="url(#gradient3)" />
+  <circle cx="112.5" cy="102.5" r="10" fill="#ffffff" />
+  <text x="112.5" y="106.5" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#ff6633">G</text>
+  
+  <!-- GPT图标3 -->
+  <rect x="50" y="130" width="35" height="35" rx="8" fill="#4a90e2" />
+  <circle cx="67.5" cy="147.5" r="10" fill="#ffffff" />
+  <text x="67.5" y="151.5" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#4a90e2">G</text>
+  
+  <!-- GPT图标4 -->
+  <rect x="95" y="130" width="35" height="35" rx="8" fill="#9966cc" />
+  <circle cx="112.5" cy="147.5" r="10" fill="#ffffff" />
+  <text x="112.5" y="151.5" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#9966cc">G</text>
+  
+  <!-- 指南标志 -->
+  <circle cx="150" cy="50" r="15" fill="url(#gradient3)" />
+  <text x="150" y="54" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff">?</text>
+  
+  <!-- 连接线 -->
+  <path d="M150 65 L150 85 L140 85" stroke="#ff6633" stroke-width="2" stroke-dasharray="4 2" />
+</svg> 
