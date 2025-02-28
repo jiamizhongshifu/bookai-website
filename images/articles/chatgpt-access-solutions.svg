@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10a37f" />
+      <stop offset="100%" stop-color="#0a8a6e" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="#f0f0f0" />
+  <g transform="translate(40, 40)">
+    <path d="M60 0 C26.9 0 0 26.9 0 60 C0 93.1 26.9 120 60 120 C93.1 120 120 93.1 120 60 C120 26.9 93.1 0 60 0 Z" fill="url(#gradient)" opacity="0.2" />
+    <!-- 地球符号 -->
+    <circle cx="60" cy="60" r="30" fill="url(#gradient)" opacity="0.6" />
+    <!-- 锁符号 -->
+    <rect x="50" y="50" width="20" height="25" rx="5" fill="url(#gradient)" />
+    <circle cx="60" cy="50" r="10" fill="url(#gradient)" />
+    <!-- 解锁符号 -->
+    <path d="M75 60 L85 60 L85 45 C85 35 75 25 60 25 C45 25 35 35 35 45" stroke="white" stroke-width="3" fill="none" />
+  </g>
+</svg> 
