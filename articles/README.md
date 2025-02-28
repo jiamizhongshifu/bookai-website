@@ -1,369 +1,312 @@
-# ChatGPT教程系列文章
+﻿# ChatGPT鏁欑▼绯诲垪鏂囩珷
 
-本目录包含一系列关于ChatGPT使用的教程文章，分为通用技能篇和行业应用篇。
+鏈洰褰曞寘鍚竴绯诲垪鍏充簬ChatGPT浣跨敤鐨勬暀绋嬫枃绔狅紝鍒嗕负閫氱敤鎶€鑳界瘒鍜岃涓氬簲鐢ㄧ瘒銆?
+## 閫氱敤鎶€鑳界瘒
 
-## 通用技能篇
+1. [鉁?ChatGPT浠庨浂绮鹃€氾細涓囧瓧闀挎枃鏁欎綘鐜╄浆鎻愮ず璇嶅伐绋嬶紙闄勬ā鏉垮簱锛塢(./chatgpt-prompt-engineering.md)
+2. [鉁?ChatGPT琚皝鍙锋€庝箞鍔烇紵2024鏈€鏂板浗鍐呰闂ǔ瀹氭柟妗堟眹鎬籡(./chatgpt-access-solutions.md)
+3. [ChatGPT娉ㄥ唽鎸囧崡锛氳В鍐?86鎵嬫満鍙烽檺鍒剁殑瀹屾暣鏁欑▼](./chatgpt-registration-guide.md)
+4. [鉁?GPTs鍟嗗簵瀹屽叏鎸囧崡锛氬垱寤恒€佷娇鐢ㄤ笌鍙樼幇鑷畾涔塆PT鐨勭粓鏋佹暀绋媇(./gpts-store-guide.md)
+5. [ChatGPT Plus鍊间笉鍊煎緱涔帮紵鍏ㄩ潰瀵规瘮鍏嶈垂鐗堜笌浠樿垂鐗堝姛鑳藉樊寮俔(./chatgpt-plus-review.md)
 
-1. [✅ ChatGPT从零精通：万字长文教你玩转提示词工程（附模板库）](./chatgpt-prompt-engineering.md)
-2. [✅ ChatGPT被封号怎么办？2024最新国内访问稳定方案汇总](./chatgpt-access-solutions.md)
-3. [ChatGPT注册指南：解决+86手机号限制的完整教程](./chatgpt-registration-guide.md)
-4. [✅ GPTs商店完全指南：创建、使用与变现自定义GPT的终极教程](./gpts-store-guide.md)
-5. [ChatGPT Plus值不值得买？全面对比免费版与付费版功能差异](./chatgpt-plus-review.md)
+## 琛屼笟搴旂敤绡?
+1. [鉁?鐢–hatGPT鏈堝叆杩囦竾锛氳嚜濯掍綋/鐢靛晢/鏁欒偛琛屼笟鐨勮惤鍦版渚媇(./chatgpt-monetization-cases.md)
+2. [ChatGPT缂栫▼瀹炴垬锛氳嚜鍔ㄧ敓鎴怭ython鐖櫕+鏁版嵁鍒嗘瀽鑴氭湰](./chatgpt-coding-tutorial.md)
+3. [ChatGPT鍐欎綔鎸囧崡锛氬浣曠敓鎴愰珮璐ㄩ噺鐨凷EO鏂囩珷鍜岃惀閿€鏂囨](./chatgpt-writing-guide.md)
+4. [ChatGPT鍔╁姏璺ㄥ鐢靛晢锛氶€夊搧銆佹枃妗堜笌瀹㈡湇鑷姩鍖栧叏鏀荤暐](./chatgpt-ecommerce-guide.md)
+5. [鏁欒偛宸ヤ綔鑰呯殑ChatGPT鎸囧崡锛氬璇俱€佹暀妗堜笌涓€у寲瀛︿範鏂规璁捐](./chatgpt-education-guide.md)
 
-## 行业应用篇
+## Cursor鏁欑▼绯诲垪
 
-1. [✅ 用ChatGPT月入过万：自媒体/电商/教育行业的落地案例](./chatgpt-monetization-cases.md)
-2. [ChatGPT编程实战：自动生成Python爬虫+数据分析脚本](./chatgpt-coding-tutorial.md)
-3. [ChatGPT写作指南：如何生成高质量的SEO文章和营销文案](./chatgpt-writing-guide.md)
-4. [ChatGPT助力跨境电商：选品、文案与客服自动化全攻略](./chatgpt-ecommerce-guide.md)
-5. [教育工作者的ChatGPT指南：备课、教案与个性化学习方案设计](./chatgpt-education-guide.md)
+### 寮€鍙戝伐鍏风瘒
 
-## Cursor教程系列
+1. [鉁?Cursor缁堟瀬鎸囧崡锛欰I鍐欎唬鐮佹瘮Copilot鏇村己锛熷叏鍔熻兘瀹炴祴鎶ュ憡](./cursor-ultimate-guide.md)
+2. [鉁?Cursor涓枃閰嶇疆鏁欑▼锛氬浣曠敤鏈湴妯″瀷鏇夸唬GPT-4锛焆(./cursor-chinese-config.md)
+3. [Cursor鎻掍欢寮€鍙戞寚鍗楋細鎵撻€犱綘鐨勪笓灞濧I缂栫▼鍔╂墜](./cursor-plugin-development.md)
 
-### 开发工具篇
+### 鍥㈤槦鍗忎綔绡?
+1. [鉁?Cursor鍥㈤槦鐗堝疄娴嬶細濡備綍鐢ˋI宸ュ叿鎻愬崌寮€鍙戞晥鐜?0%锛焆(./cursor-team-efficiency.md)
+2. [鉁?Cursor涓嶨itHub Copilot瀵规瘮锛氬紑鍙戣€呯湡瀹炰綋楠屾姤鍛奭(./cursor-vs-copilot.md)
+3. [Cursor浼佷笟绾у簲鐢細鏁版嵁瀹夊叏涓庡悎瑙勬€у叏瑙ｆ瀽](./cursor-enterprise-security.md)
 
-1. [✅ Cursor终极指南：AI写代码比Copilot更强？全功能实测报告](./cursor-ultimate-guide.md)
-2. [✅ Cursor中文配置教程：如何用本地模型替代GPT-4？](./cursor-chinese-config.md)
-3. [Cursor插件开发指南：打造你的专属AI编程助手](./cursor-plugin-development.md)
+## DeepSeek鏁欑▼绯诲垪
 
-### 团队协作篇
+### 鍩虹鍏ラ棬绡?
+1. [鉁?DeepSeek鏂版墜蹇呯湅锛氫粠娉ㄥ唽鍒癆PI璋冪敤鐨勫畬鏁存寚鍗楋紙闄勫厤璐硅瘯鐢ㄦ妧宸э級](./deepseek-guide.md)
+2. [鉁?鐖嗚倽50灏忔椂锛孌eepSeek浣跨敤鎶€宸э紝浣犳敹钘忚繖涓€绡囧氨澶熶簡锛乚(./deepseek-tips.md)
+3. [鉁?濡備綍閫氳繃Monica浣跨敤DeepSeek R1锛氬畬鏁撮厤缃寚鍗梋(./monica-deepseek.md)
 
-1. [✅ Cursor团队版实测：如何用AI工具提升开发效率50%？](./cursor-team-efficiency.md)
-2. [✅ Cursor与GitHub Copilot对比：开发者真实体验报告](./cursor-vs-copilot.md)
-3. [Cursor企业级应用：数据安全与合规性全解析](./cursor-enterprise-security.md)
+### 楂樼骇搴旂敤绡?
+1. [鉁?DeepSeek-R1妯″瀷寰皟瀹炴垬锛氬畾鍒朵綘鐨勮涓氫笓灞濧I鍔╂墜](./deepseek-finetune.md)
+2. [鉁?DeepSeek楂橀樁鐢ㄦ硶锛氬浣曠敤MoE鏋舵瀯浼樺寲浼佷笟绾I搴旂敤锛焆(./deepseek-advanced.md)
+3. [DeepSeek API寮€鍙戞寚鍗楋細鏋勫缓鏅鸿兘搴旂敤鐨勬渶浣冲疄璺礭(./deepseek-api-development.md)
 
-## DeepSeek教程系列
+## 浜掑姩宸ュ叿
 
-### 基础入门篇
+1. [鎻愮ず璇嶆晥鐜囪瘎鍒嗗伐鍏穄(../tools/prompt-efficiency-scorer.html)
+2. [妗堜緥宸ュ叿鍖呬笅杞絔(../tools/case-toolkit-download.html)
+3. [寮€鍙戞晥鐜囪绠楀櫒](../tools/dev-efficiency-calculator.html)
+4. [Cursor蹇€熷叆闂ㄨ棰慮(../tools/cursor-quick-start-video.html)
 
-1. [✅ DeepSeek新手必看：从注册到API调用的完整指南（附免费试用技巧）](./deepseek-guide.md)
-2. [✅ 爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！](./deepseek-tips.md)
-3. [✅ 如何通过Monica使用DeepSeek R1：完整配置指南](./monica-deepseek.md)
+## 璐＄尞鎸囧崡
 
-### 高级应用篇
+濡傛灉浣犳湁浠讳綍寤鸿鎴栨兂瑕佽础鐚唴瀹癸紝璇峰弬鑰僛璐＄尞鎸囧崡](./CONTRIBUTING.md)銆?
+## 鏈€杩戞洿鏂?
+- 2024-06-25: 娣诲姞浜嗐€奃eepSeek鏂版墜蹇呯湅锛氫粠娉ㄥ唽鍒癆PI璋冪敤鐨勫畬鏁存寚鍗椼€?- 2024-06-25: 娣诲姞浜嗐€婄垎鑲?0灏忔椂锛孌eepSeek浣跨敤鎶€宸э紝浣犳敹钘忚繖涓€绡囧氨澶熶簡锛併€?- 2024-06-25: 娣诲姞浜嗐€奃eepSeek-R1妯″瀷寰皟瀹炴垬锛氬畾鍒朵綘鐨勮涓氫笓灞濧I鍔╂墜銆?- 2024-06-25: 娣诲姞浜嗐€奃eepSeek楂橀樁鐢ㄦ硶锛氬浣曠敤MoE鏋舵瀯浼樺寲浼佷笟绾I搴旂敤锛熴€?- 2024-06-25: 娣诲姞浜嗐€婂浣曢€氳繃Monica浣跨敤DeepSeek R1锛氬畬鏁撮厤缃寚鍗椼€?- 2024-06-22: 娣诲姞浜嗐€奀ursor鍥㈤槦鐗堝疄娴嬶細濡備綍鐢ˋI宸ュ叿鎻愬崌寮€鍙戞晥鐜?0%锛熴€?- 2024-06-20: 娣诲姞浜嗐€奀ursor涓嶨itHub Copilot瀵规瘮锛氬紑鍙戣€呯湡瀹炰綋楠屾姤鍛娿€?- 2024-06-18: 娣诲姞浜嗐€奀ursor涓枃閰嶇疆鏁欑▼锛氬浣曠敤鏈湴妯″瀷鏇夸唬GPT-4锛熴€?- 2024-06-16: 娣诲姞浜嗐€奀ursor缁堟瀬鎸囧崡锛欰I鍐欎唬鐮佹瘮Copilot鏇村己锛熷叏鍔熻兘瀹炴祴鎶ュ憡銆?- 2024-06-15: 娣诲姞浜嗐€奀hatGPT浠庨浂绮鹃€氾細涓囧瓧闀挎枃鏁欎綘鐜╄浆鎻愮ず璇嶅伐绋嬨€?- 2024-06-15: 娣诲姞浜嗐€奀hatGPT琚皝鍙锋€庝箞鍔烇紵2024鏈€鏂板浗鍐呰闂ǔ瀹氭柟妗堟眹鎬汇€?- 2024-06-15: 娣诲姞浜嗐€奊PTs鍟嗗簵瀹屽叏鎸囧崡锛氬垱寤恒€佷娇鐢ㄤ笌鍙樼幇鑷畾涔塆PT鐨勭粓鏋佹暀绋嬨€?- 2024-06-15: 娣诲姞浜嗐€婄敤ChatGPT鏈堝叆杩囦竾锛氳嚜濯掍綋/鐢靛晢/鏁欒偛琛屼笟鐨勮惤鍦版渚嬨€?
+# 鏂囩珷妯℃澘浣跨敤璇存槑
 
-1. [✅ DeepSeek-R1模型微调实战：定制你的行业专属AI助手](./deepseek-finetune.md)
-2. [✅ DeepSeek高阶用法：如何用MoE架构优化企业级AI应用？](./deepseek-advanced.md)
-3. [DeepSeek API开发指南：构建智能应用的最佳实践](./deepseek-api-development.md)
+鏈枃妗ｆ彁渚涗簡鍏充簬濡備綍浣跨敤 AiXueba 缃戠珯鏂囩珷妯℃澘鐨勮缁嗚鏄庛€傝繖涓粺涓€鐨勬ā鏉胯璁＄敤浜庡垱寤虹粨鏋勪竴鑷淬€佸姛鑳藉畬鍠勭殑鏁欑▼璇︽儏椤甸潰锛屽寘鍚洰褰曞鑸€佺浉鍏虫枃绔犳帹鑽愮瓑鍔熻兘銆?
+## 鐩綍
 
-## 互动工具
+- [蹇€熷紑濮媇(#蹇€熷紑濮?
+- [妯℃澘缁撴瀯](#妯℃澘缁撴瀯)
+- [鍐呭缂栬緫鎸囧崡](#鍐呭缂栬緫鎸囧崡)
+- [鐗规畩鍏冪礌浣跨敤](#鐗规畩鍏冪礌浣跨敤)
+- [甯歌闂](#甯歌闂)
 
-1. [提示词效率评分工具](../tools/prompt-efficiency-scorer.html)
-2. [案例工具包下载](../tools/case-toolkit-download.html)
-3. [开发效率计算器](../tools/dev-efficiency-calculator.html)
-4. [Cursor快速入门视频](../tools/cursor-quick-start-video.html)
+## 蹇€熷紑濮?
+瑕佸垱寤轰竴绡囨柊鐨勬枃绔狅紝璇锋寜鐓т互涓嬫楠ゆ搷浣滐細
 
-## 贡献指南
+1. 澶嶅埗 `articles/article-template.html` 鏂囦欢
+2. 灏嗗鍒剁殑鏂囦欢閲嶅懡鍚嶄负浣犵殑鏂囩珷鏍囬锛堜娇鐢ㄨ嫳鏂囷紝鐢ㄨ繛瀛楃鏇夸唬绌烘牸锛夛紝渚嬪锛歚chatgpt-advanced-tips.html`
+3. 浣跨敤浠ｇ爜缂栬緫鍣ㄦ墦寮€鏂版枃浠?4. 淇敼鏂囦欢涓殑鍏冩暟鎹紙鏍囬銆佹弿杩般€佸叧閿瘝绛夛級
+5. 缂栬緫鏂囩珷鍐呭锛屾浛鎹㈡ā鏉夸腑鐨勫崰浣嶆枃鏈?6. 淇濆瓨鏂囦欢骞跺湪娴忚鍣ㄤ腑棰勮鏁堟灉
 
-如果你有任何建议或想要贡献内容，请参考[贡献指南](./CONTRIBUTING.md)。
+## 妯℃澘缁撴瀯
 
-## 最近更新
+鏂囩珷妯℃澘鐢变互涓嬪嚑涓富瑕侀儴鍒嗙粍鎴愶細
 
-- 2024-06-25: 添加了《DeepSeek新手必看：从注册到API调用的完整指南》
-- 2024-06-25: 添加了《爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！》
-- 2024-06-25: 添加了《DeepSeek-R1模型微调实战：定制你的行业专属AI助手》
-- 2024-06-25: 添加了《DeepSeek高阶用法：如何用MoE架构优化企业级AI应用？》
-- 2024-06-25: 添加了《如何通过Monica使用DeepSeek R1：完整配置指南》
-- 2024-06-22: 添加了《Cursor团队版实测：如何用AI工具提升开发效率50%？》
-- 2024-06-20: 添加了《Cursor与GitHub Copilot对比：开发者真实体验报告》
-- 2024-06-18: 添加了《Cursor中文配置教程：如何用本地模型替代GPT-4？》
-- 2024-06-16: 添加了《Cursor终极指南：AI写代码比Copilot更强？全功能实测报告》
-- 2024-06-15: 添加了《ChatGPT从零精通：万字长文教你玩转提示词工程》
-- 2024-06-15: 添加了《ChatGPT被封号怎么办？2024最新国内访问稳定方案汇总》
-- 2024-06-15: 添加了《GPTs商店完全指南：创建、使用与变现自定义GPT的终极教程》
-- 2024-06-15: 添加了《用ChatGPT月入过万：自媒体/电商/教育行业的落地案例》
-
-# 文章模板使用说明
-
-本文档提供了关于如何使用 AiXueba 网站文章模板的详细说明。这个统一的模板设计用于创建结构一致、功能完善的教程详情页面，包含目录导航、相关文章推荐等功能。
-
-## 目录
-
-- [快速开始](#快速开始)
-- [模板结构](#模板结构)
-- [内容编辑指南](#内容编辑指南)
-- [特殊元素使用](#特殊元素使用)
-- [常见问题](#常见问题)
-
-## 快速开始
-
-要创建一篇新的文章，请按照以下步骤操作：
-
-1. 复制 `articles/article-template.html` 文件
-2. 将复制的文件重命名为你的文章标题（使用英文，用连字符替代空格），例如：`chatgpt-advanced-tips.html`
-3. 使用代码编辑器打开新文件
-4. 修改文件中的元数据（标题、描述、关键词等）
-5. 编辑文章内容，替换模板中的占位文本
-6. 保存文件并在浏览器中预览效果
-
-## 模板结构
-
-文章模板由以下几个主要部分组成：
-
-### 1. 头部元数据
-
+### 1. 澶撮儴鍏冩暟鎹?
 ```html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章标题 - AiXueba</title>
-    <meta name="description" content="文章描述内容，简要概括文章的主要内容和价值">
-    <!-- 其他元数据 -->
+    <title>鏂囩珷鏍囬 - AiXueba</title>
+    <meta name="description" content="鏂囩珷鎻忚堪鍐呭锛岀畝瑕佹鎷枃绔犵殑涓昏鍐呭鍜屼环鍊?>
+    <!-- 鍏朵粬鍏冩暟鎹?-->
 </head>
 ```
 
-请确保修改以下元素：
-- `<title>` - 文章标题
-- `<meta name="description">` - 文章描述
-- `<meta name="keywords">` - 关键词
-- Open Graph 和 Twitter 卡片标签
+璇风‘淇濅慨鏀逛互涓嬪厓绱狅細
+- `<title>` - 鏂囩珷鏍囬
+- `<meta name="description">` - 鏂囩珷鎻忚堪
+- `<meta name="keywords">` - 鍏抽敭璇?- Open Graph 鍜?Twitter 鍗＄墖鏍囩
 
-### 2. 文章头部信息
+### 2. 鏂囩珷澶撮儴淇℃伅
 
 ```html
 <div class="article-header">
     <div class="article-category">
-        <a href="../categories/category-name.html" class="category-tag">分类名称</a>
+        <a href="../categories/category-name.html" class="category-tag">鍒嗙被鍚嶇О</a>
     </div>
-    <h1 class="article-title">文章标题</h1>
+    <h1 class="article-title">鏂囩珷鏍囬</h1>
     <div class="article-meta">
-        <!-- 文章元数据 -->
+        <!-- 鏂囩珷鍏冩暟鎹?-->
     </div>
     <div class="article-tags">
-        <!-- 文章标签 -->
+        <!-- 鏂囩珷鏍囩 -->
     </div>
 </div>
 ```
 
-请修改：
-- 分类链接和名称
-- 文章标题
-- 发布日期、作者信息
-- 阅读时间
-- 文章标签
+璇蜂慨鏀癸細
+- 鍒嗙被閾炬帴鍜屽悕绉?- 鏂囩珷鏍囬
+- 鍙戝竷鏃ユ湡銆佷綔鑰呬俊鎭?- 闃呰鏃堕棿
+- 鏂囩珷鏍囩
 
-### 3. 文章目录
+### 3. 鏂囩珷鐩綍
 
 ```html
 <div class="article-toc" id="article-toc">
     <div class="toc-header">
-        <h3 class="toc-title">目录</h3>
-        <button class="toc-toggle" aria-label="折叠目录">
+        <h3 class="toc-title">鐩綍</h3>
+        <button class="toc-toggle" aria-label="鎶樺彔鐩綍">
             <i class="fas fa-chevron-up"></i>
         </button>
     </div>
     <div class="toc-content">
         <ul>
-            <!-- 目录项 -->
+            <!-- 鐩綍椤?-->
         </ul>
     </div>
 </div>
 ```
 
-根据你的文章结构修改目录项，确保每个链接都指向正确的章节 ID。
-
-### 4. 文章内容
+鏍规嵁浣犵殑鏂囩珷缁撴瀯淇敼鐩綍椤癸紝纭繚姣忎釜閾炬帴閮芥寚鍚戞纭殑绔犺妭 ID銆?
+### 4. 鏂囩珷鍐呭
 
 ```html
 <div class="article-content">
-    <!-- 文章章节 -->
+    <!-- 鏂囩珷绔犺妭 -->
     <section id="section1" class="article-section">
-        <h2>第一部分：标题</h2>
-        <!-- 章节内容 -->
+        <h2>绗竴閮ㄥ垎锛氭爣棰?/h2>
+        <!-- 绔犺妭鍐呭 -->
     </section>
     
-    <!-- 更多章节 -->
+    <!-- 鏇村绔犺妭 -->
 </div>
 ```
 
-替换模板中的示例内容，添加你自己的文章内容。确保每个章节都有唯一的 ID，与目录中的链接对应。
-
-### 5. 侧边栏
-
+鏇挎崲妯℃澘涓殑绀轰緥鍐呭锛屾坊鍔犱綘鑷繁鐨勬枃绔犲唴瀹广€傜‘淇濇瘡涓珷鑺傞兘鏈夊敮涓€鐨?ID锛屼笌鐩綍涓殑閾炬帴瀵瑰簲銆?
+### 5. 渚ц竟鏍?
 ```html
 <div class="article-sidebar">
-    <!-- 作者信息 -->
+    <!-- 浣滆€呬俊鎭?-->
     <div class="author-card">
-        <!-- 作者信息内容 -->
+        <!-- 浣滆€呬俊鎭唴瀹?-->
     </div>
     
-    <!-- 目录导航 -->
+    <!-- 鐩綍瀵艰埅 -->
     <div class="sidebar-toc">
-        <!-- 目录内容 -->
+        <!-- 鐩綍鍐呭 -->
     </div>
     
-    <!-- 相关文章 -->
+    <!-- 鐩稿叧鏂囩珷 -->
     <div class="related-articles">
-        <!-- 相关文章列表 -->
+        <!-- 鐩稿叧鏂囩珷鍒楄〃 -->
     </div>
     
-    <!-- 其他侧边栏元素 -->
+    <!-- 鍏朵粬渚ц竟鏍忓厓绱?-->
 </div>
 ```
 
-修改作者信息、相关文章和标签云等侧边栏内容。
+淇敼浣滆€呬俊鎭€佺浉鍏虫枃绔犲拰鏍囩浜戠瓑渚ц竟鏍忓唴瀹广€?
+## 鍐呭缂栬緫鎸囧崡
 
-## 内容编辑指南
+### 鏂囩珷缁撴瀯
 
-### 文章结构
+涓€绡囧ソ鐨勬暀绋嬫枃绔犻€氬父鍖呭惈浠ヤ笅缁撴瀯锛?
+1. **寮曡█/绠€浠?* - 绠€瑕佷粙缁嶆枃绔犲唴瀹瑰拰璇昏€呭皢鑾峰緱鐨勬敹鐩?2. **涓讳綋鍐呭** - 鍒嗕负澶氫釜绔犺妭锛岄€愭璁茶В涓婚
+3. **鎬荤粨/缁撹** - 鎬荤粨鏂囩珷瑕佺偣锛屾彁渚涜繘涓€姝ュ涔犵殑寤鸿
 
-一篇好的教程文章通常包含以下结构：
+### 绔犺妭鍛藉悕
 
-1. **引言/简介** - 简要介绍文章内容和读者将获得的收益
-2. **主体内容** - 分为多个章节，逐步讲解主题
-3. **总结/结论** - 总结文章要点，提供进一步学习的建议
+涓轰簡淇濇寔涓€鑷存€э紝寤鸿浣跨敤浠ヤ笅鏍煎紡鍛藉悕绔犺妭 ID锛?
+- 涓荤珷鑺傦細`section1`, `section2`, `section3` 绛?- 瀛愮珷鑺傦細`section1-1`, `section1-2`, `section2-1` 绛?
+### 鍥剧墖浣跨敤
 
-### 章节命名
-
-为了保持一致性，建议使用以下格式命名章节 ID：
-
-- 主章节：`section1`, `section2`, `section3` 等
-- 子章节：`section1-1`, `section1-2`, `section2-1` 等
-
-### 图片使用
-
-添加图片时，请遵循以下最佳实践：
+娣诲姞鍥剧墖鏃讹紝璇烽伒寰互涓嬫渶浣冲疄璺碉細
 
 ```html
 <figure class="article-image">
-    <img src="../images/your-image.jpg" alt="描述图片内容" width="600" height="400">
-    <figcaption>图片说明文字</figcaption>
+    <img src="../images/your-image.jpg" alt="鎻忚堪鍥剧墖鍐呭" width="600" height="400">
+    <figcaption>鍥剧墖璇存槑鏂囧瓧</figcaption>
 </figure>
 ```
 
-- 使用相对路径引用图片
-- 始终添加 `alt` 属性描述图片内容
-- 指定图片尺寸（width 和 height）
-- 添加 `figcaption` 提供额外说明
+- 浣跨敤鐩稿璺緞寮曠敤鍥剧墖
+- 濮嬬粓娣诲姞 `alt` 灞炴€ф弿杩板浘鐗囧唴瀹?- 鎸囧畾鍥剧墖灏哄锛坵idth 鍜?height锛?- 娣诲姞 `figcaption` 鎻愪緵棰濆璇存槑
 
-### 代码示例
+### 浠ｇ爜绀轰緥
 
-添加代码示例时，使用以下格式：
-
+娣诲姞浠ｇ爜绀轰緥鏃讹紝浣跨敤浠ヤ笅鏍煎紡锛?
 ```html
-<pre><code class="language-javascript">// 这是一段JavaScript代码示例
+<pre><code class="language-javascript">// 杩欐槸涓€娈礘avaScript浠ｇ爜绀轰緥
 function example() {
     console.log("Hello, AI world!");
     return true;
 }
 
-// 调用函数
+// 璋冪敤鍑芥暟
 example();</code></pre>
 ```
 
-- 使用 `language-xxx` 类指定代码语言（如 `language-javascript`, `language-python` 等）
-- 确保代码缩进一致，便于阅读
+- 浣跨敤 `language-xxx` 绫绘寚瀹氫唬鐮佽瑷€锛堝 `language-javascript`, `language-python` 绛夛級
+- 纭繚浠ｇ爜缂╄繘涓€鑷达紝渚夸簬闃呰
 
-## 特殊元素使用
+## 鐗规畩鍏冪礌浣跨敤
 
-模板提供了多种特殊元素，可以增强文章的可读性和交互性：
+妯℃澘鎻愪緵浜嗗绉嶇壒娈婂厓绱狅紝鍙互澧炲己鏂囩珷鐨勫彲璇绘€у拰浜や簰鎬э細
 
-### 信息提示框
-
+### 淇℃伅鎻愮ず妗?
 ```html
 <div class="info-box">
     <div class="info-icon"><i class="fas fa-info-circle"></i></div>
     <div class="info-content">
-        <p>这是一个信息提示框，可以用来强调重要信息或提供额外的说明。</p>
+        <p>杩欐槸涓€涓俊鎭彁绀烘锛屽彲浠ョ敤鏉ュ己璋冮噸瑕佷俊鎭垨鎻愪緵棰濆鐨勮鏄庛€?/p>
     </div>
 </div>
 ```
 
-### 技巧提示框
+### 鎶€宸ф彁绀烘
 
 ```html
 <div class="tip-box">
     <div class="tip-icon"><i class="fas fa-lightbulb"></i></div>
     <div class="tip-content">
-        <p>这是一个提示框，可以用来分享实用技巧或建议。</p>
+        <p>杩欐槸涓€涓彁绀烘锛屽彲浠ョ敤鏉ュ垎浜疄鐢ㄦ妧宸ф垨寤鸿銆?/p>
     </div>
 </div>
 ```
 
-### 警告提示框
-
+### 璀﹀憡鎻愮ず妗?
 ```html
 <div class="warning-box">
     <div class="warning-icon"><i class="fas fa-exclamation-triangle"></i></div>
     <div class="warning-content">
-        <p>这是一个警告框，可以用来提醒读者注意事项或潜在问题。</p>
+        <p>杩欐槸涓€涓鍛婃锛屽彲浠ョ敤鏉ユ彁閱掕鑰呮敞鎰忎簨椤规垨娼滃湪闂銆?/p>
     </div>
 </div>
 ```
 
-### 示例框
-
+### 绀轰緥妗?
 ```html
 <div class="example-box">
-    <div class="example-header">实例演示</div>
+    <div class="example-header">瀹炰緥婕旂ず</div>
     <div class="example-content">
-        <p>这里可以展示一个完整的实例，帮助读者理解如何应用所学知识。</p>
+        <p>杩欓噷鍙互灞曠ず涓€涓畬鏁寸殑瀹炰緥锛屽府鍔╄鑰呯悊瑙ｅ浣曞簲鐢ㄦ墍瀛︾煡璇嗐€?/p>
     </div>
 </div>
 ```
 
-### 引用
+### 寮曠敤
 
 ```html
 <blockquote>
-    <p>这是一段引用文字，可以是名人名言或者重要观点。</p>
-    <cite>— 引用来源</cite>
+    <p>杩欐槸涓€娈靛紩鐢ㄦ枃瀛楋紝鍙互鏄悕浜哄悕瑷€鎴栬€呴噸瑕佽鐐广€?/p>
+    <cite>鈥?寮曠敤鏉ユ簮</cite>
 </blockquote>
 ```
 
-### 系列文章导航
+### 绯诲垪鏂囩珷瀵艰埅
 
-如果你的文章是系列教程的一部分，可以使用系列文章导航：
+濡傛灉浣犵殑鏂囩珷鏄郴鍒楁暀绋嬬殑涓€閮ㄥ垎锛屽彲浠ヤ娇鐢ㄧ郴鍒楁枃绔犲鑸細
 
 ```html
 <div class="article-series">
-    <h3>系列文章</h3>
+    <h3>绯诲垪鏂囩珷</h3>
     <div class="series-list">
         <a href="#" class="series-item">
             <span class="series-number">1</span>
-            <span class="series-title">系列文章标题一</span>
+            <span class="series-title">绯诲垪鏂囩珷鏍囬涓€</span>
         </a>
         <a href="#" class="series-item current">
             <span class="series-number">2</span>
-            <span class="series-title">当前文章标题</span>
+            <span class="series-title">褰撳墠鏂囩珷鏍囬</span>
         </a>
-        <!-- 更多系列文章 -->
+        <!-- 鏇村绯诲垪鏂囩珷 -->
     </div>
 </div>
 ```
 
-为当前文章添加 `current` 类。
+涓哄綋鍓嶆枃绔犳坊鍔?`current` 绫汇€?
+## 甯歌闂
 
-## 常见问题
+### 鐩綍涓嶆樉绀烘垨涓嶆纭?
+纭繚锛?- 姣忎釜绔犺妭閮芥湁鍞竴鐨?ID
+- 鐩綍閾炬帴姝ｇ‘鎸囧悜杩欎簺 ID
+- JavaScript 鏂囦欢 `article.js` 宸叉纭姞杞?
+### 鍥剧墖鏄剧ず闂
 
-### 目录不显示或不正确
+濡傛灉鍥剧墖鏃犳硶鏄剧ず锛?- 妫€鏌ュ浘鐗囪矾寰勬槸鍚︽纭紙浣跨敤鐩稿浜庢枃绔犵殑璺緞锛?- 纭鍥剧墖鏂囦欢瀛樺湪涓旀牸寮忔纭?- 楠岃瘉鍥剧墖鏂囦欢鍚嶄腑娌℃湁鐗规畩瀛楃鎴栫┖鏍?
+### 浠ｇ爜楂樹寒涓嶅伐浣?
+浠ｇ爜楂樹寒渚濊禆浜?Prism.js 搴擄紝瀹冧細鍦ㄩ〉闈㈠姞杞芥椂鑷姩寮曞叆銆傚鏋滀唬鐮侀珮浜笉宸ヤ綔锛?- 妫€鏌ョ綉缁滆繛鎺ユ槸鍚︽甯?- 纭娌℃湁 JavaScript 閿欒
+- 楠岃瘉浠ｇ爜鍧椾娇鐢ㄤ簡姝ｇ‘鐨勮瑷€绫伙紙濡?`language-javascript`锛?
+### 鍝嶅簲寮忓竷灞€闂
 
-确保：
-- 每个章节都有唯一的 ID
-- 目录链接正确指向这些 ID
-- JavaScript 文件 `article.js` 已正确加载
-
-### 图片显示问题
-
-如果图片无法显示：
-- 检查图片路径是否正确（使用相对于文章的路径）
-- 确认图片文件存在且格式正确
-- 验证图片文件名中没有特殊字符或空格
-
-### 代码高亮不工作
-
-代码高亮依赖于 Prism.js 库，它会在页面加载时自动引入。如果代码高亮不工作：
-- 检查网络连接是否正常
-- 确认没有 JavaScript 错误
-- 验证代码块使用了正确的语言类（如 `language-javascript`）
-
-### 响应式布局问题
-
-如果在移动设备上显示不正确：
-- 使用浏览器开发者工具测试不同屏幕尺寸
-- 确保没有固定宽度的元素破坏响应式布局
-- 检查媒体查询是否正确应用
-
+濡傛灉鍦ㄧЩ鍔ㄨ澶囦笂鏄剧ず涓嶆纭細
+- 浣跨敤娴忚鍣ㄥ紑鍙戣€呭伐鍏锋祴璇曚笉鍚屽睆骞曞昂瀵?- 纭繚娌℃湁鍥哄畾瀹藉害鐨勫厓绱犵牬鍧忓搷搴斿紡甯冨眬
+- 妫€鏌ュ獟浣撴煡璇㈡槸鍚︽纭簲鐢?
 ---
 
-如有任何问题或建议，请联系网站管理员。 
+濡傛湁浠讳綍闂鎴栧缓璁紝璇疯仈绯荤綉绔欑鐞嗗憳銆?

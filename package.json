@@ -8,7 +8,8 @@
     "build": "node scripts/build.js",
     "dev": "node scripts/build.js --watch",
     "test-markdown": "node scripts/test-markdown-it.js",
-    "test-build": "node scripts/test-build.js"
+    "test-build": "node scripts/test-build.js",
+    "update-authors": "node scripts/update-authors.js"
   },
   "keywords": [
     "AI",
@@ -17,7 +18,7 @@
     "Cursor",
     "Deepseek"
   ],
-  "author": "AI进化论-花生",
+  "author": "加密钟师傅",
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",

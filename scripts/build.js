@@ -37,7 +37,7 @@ const CONFIG = {
   baseUrl: 'https://aixueba.club',
   watchMode: process.argv.includes('--watch'),
   categories: ['chatgpt', 'cursor', 'deepseek', 'tools'],
-  defaultAuthor: 'AI进化论-花生',
+  defaultAuthor: '加密钟师傅',
   articlesPerPage: 10,
   newArticleDays: 7 // 发布7天内的文章标记为"新"
 };

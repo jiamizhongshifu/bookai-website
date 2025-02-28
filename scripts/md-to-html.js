@@ -85,11 +85,11 @@ function ensureDirectoryExists(dirPath) {
 function extractMetadata(content) {
   const metadata = {
     title: '',
-    summary: '',
-    category: '',
-    tags: [],
     date: new Date().toISOString().split('T')[0],
-    author: 'AI进化论-花生'
+    author: '加密钟师傅',
+    category: 'tools',
+    tags: ['AI工具'],
+    summary: ''
   };
 
   // 尝试从内容中提取标题
