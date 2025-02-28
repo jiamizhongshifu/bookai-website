@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066ff" />
+      <stop offset="100%" stop-color="#4d4dff" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6600" />
+      <stop offset="100%" stop-color="#ff9933" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="#f0f0f0" />
+  <g transform="translate(40, 40)">
+    <path d="M60 0 C26.9 0 0 26.9 0 60 C0 93.1 26.9 120 60 120 C93.1 120 120 93.1 120 60 C120 26.9 93.1 0 60 0 Z" fill="#f0f0f0" opacity="0.2" />
+    <!-- VS符号 -->
+    <text x="60" y="65" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#666">VS</text>
+    <!-- Cursor符号 -->
+    <path d="M30 30 L50 45 L30 60 Z" fill="url(#gradient1)" />
+    <!-- Copilot符号 -->
+    <circle cx="85" cy="45" r="15" fill="url(#gradient2)" />
+    <path d="M75 45 L95 45 M85 35 L85 55" stroke="white" stroke-width="2" />
+    <!-- 代码符号 -->
+    <rect x="20" y="80" width="40" height="8" rx="2" fill="url(#gradient1)" opacity="0.7" />
+    <rect x="20" y="95" width="30" height="8" rx="2" fill="url(#gradient1)" opacity="0.7" />
+    <rect x="60" y="80" width="40" height="8" rx="2" fill="url(#gradient2)" opacity="0.7" />
+    <rect x="70" y="95" width="30" height="8" rx="2" fill="url(#gradient2)" opacity="0.7" />
+  </g>
+</svg> 
