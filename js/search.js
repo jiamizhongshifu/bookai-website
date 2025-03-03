@@ -1,118 +1,97 @@
-// 搜索功能实现
-class ArticleSearch {
-    constructor() {
-        this.searchIndex = [];
-        this.searchInput = document.getElementById('searchInput');
-        this.searchResults = document.getElementById('searchResults');
-        this.searchData = null;
-        
-        this.init();
+// 搜索数据
+const searchData = [
+    {
+        title: "ChatGPT注册指南",
+        description: "详细介绍如何注册和使用ChatGPT，包括常见问题解决方案。",
+        url: "articles/chatgpt-registration-guide.html",
+        category: "ChatGPT"
+    },
+    {
+        title: "ChatGPT提示词工程",
+        description: "学习如何编写高效的提示词，让AI更好地理解你的需求。",
+        url: "articles/chatgpt-prompt-engineering.html",
+        category: "ChatGPT"
+    },
+    {
+        title: "Cursor完全指南",
+        description: "从入门到精通的Cursor IDE使用教程。",
+        url: "articles/cursor-ultimate-guide.html",
+        category: "Cursor"
+    },
+    {
+        title: "Deepseek入门指南",
+        description: "全面了解Deepseek的功能和使用方法。",
+        url: "articles/deepseek-guide.html",
+        category: "Deepseek"
+    }
+];
+
+// 处理搜索
+function handleSearch(event) {
+    event.preventDefault();
+    const searchInput = document.getElementById('searchInput');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    
+    if (searchTerm === '') {
+        return;
     }
 
-    async init() {
-        try {
-            // 加载搜索数据
-            const response = await fetch('/search-data.json');
-            this.searchData = await response.json();
-            
-            // 初始化搜索事件监听
-            if (this.searchInput) {
-                this.searchInput.addEventListener('input', this.debounce(this.handleSearch.bind(this), 300));
-            }
-        } catch (error) {
-            console.error('Failed to initialize search:', error);
-        }
-    }
+    const results = searchData.filter(item => 
+        item.title.toLowerCase().includes(searchTerm) ||
+        item.description.toLowerCase().includes(searchTerm) ||
+        item.category.toLowerCase().includes(searchTerm)
+    );
 
-    // 处理搜索
-    handleSearch(event) {
-        const query = event.target.value.toLowerCase().trim();
-        
-        if (!query) {
-            this.clearResults();
-            return;
-        }
+    displaySearchResults(results);
+}
 
-        const results = this.searchData.filter(item => {
-            return item.title.toLowerCase().includes(query) ||
-                   item.description.toLowerCase().includes(query) ||
-                   item.content.toLowerCase().includes(query);
-        });
-
-        this.displayResults(results, query);
-    }
-
-    // 显示搜索结果
-    displayResults(results, query) {
-        if (!this.searchResults) return;
-
-        if (results.length === 0) {
-            this.searchResults.innerHTML = '<p class="text-center">未找到相关内容</p>';
-            return;
-        }
-
-        const resultsHtml = results.map(result => {
-            // 获取内容中包含搜索词的片段
-            const snippet = this.getContentSnippet(result.content, query);
-            
-            return `
-                <div class="search-result-item">
-                    <h3><a href="${result.url}">${this.highlightText(result.title, query)}</a></h3>
-                    <p class="text-muted">${this.highlightText(snippet, query)}</p>
-                </div>
+// 显示搜索结果
+function displaySearchResults(results) {
+    const searchResults = document.getElementById('searchResults');
+    const searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
+    
+    if (results.length === 0) {
+        searchResults.innerHTML = '<p class="text-center">未找到相关结果</p>';
+    } else {
+        let html = '<div class="list-group">';
+        results.forEach(result => {
+            html += `
+                <a href="${result.url}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">${result.title}</h5>
+                        <small class="text-muted">${result.category}</small>
+                    </div>
+                    <p class="mb-1">${result.description}</p>
+                </a>
             `;
-        }).join('');
-
-        this.searchResults.innerHTML = resultsHtml;
+        });
+        html += '</div>';
+        searchResults.innerHTML = html;
     }
-
-    // 获取内容片段
-    getContentSnippet(content, query) {
-        const maxLength = 200;
-        const queryIndex = content.toLowerCase().indexOf(query);
-        
-        if (queryIndex === -1) {
-            return content.substring(0, maxLength) + '...';
-        }
-
-        const start = Math.max(0, queryIndex - 100);
-        const end = Math.min(content.length, queryIndex + 100);
-        
-        let snippet = content.substring(start, end);
-        if (start > 0) snippet = '...' + snippet;
-        if (end < content.length) snippet = snippet + '...';
-        
-        return snippet;
-    }
-
-    // 高亮搜索词
-    highlightText(text, query) {
-        const regex = new RegExp(`(${query})`, 'gi');
-        return text.replace(regex, '<mark>$1</mark>');
-    }
-
-    // 清除搜索结果
-    clearResults() {
-        if (this.searchResults) {
-            this.searchResults.innerHTML = '';
-        }
-    }
-
-    // 防抖函数
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
+    
+    searchModal.show();
 }
 
 // 初始化搜索功能
 document.addEventListener('DOMContentLoaded', () => {
-    new ArticleSearch();
+    const searchForm = document.querySelector('form');
+    const searchInput = document.querySelector('input[type="search"]');
+    const searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
+
+    if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', handleSearch);
+
+        // 实时搜索（可选）
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            if (query.length >= 2) {
+                const results = searchData.filter(item => 
+                    item.title.toLowerCase().includes(query) ||
+                    item.description.toLowerCase().includes(query) ||
+                    item.category.toLowerCase().includes(query)
+                );
+                displaySearchResults(results);
+            }
+        });
+    }
 }); 

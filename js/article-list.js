@@ -5,115 +5,203 @@
 
 // 模拟文章数据（实际项目中应从服务器获取）
 const articleData = [
+    // ChatGPT系列
     {
         id: 1,
         title: "ChatGPT从零精通：万字长文教你玩转提示词工程",
-        summary: "学习如何编写高效的提示词，让ChatGPT输出更精准的内容。本文详细介绍了提示词工程的核心原则和实践技巧。",
-        date: "2024-02-25",
+        summary: "从基础概念到高级应用，全面掌握ChatGPT提示词工程，让AI更好地理解和执行你的需求。",
+        date: "2024-03-01",
         views: 12543,
         category: "ChatGPT",
-        url: "chatgpt-prompt-engineering.html"
+        url: "/chatgpt/chatgpt-prompt-engineering.html"
     },
     {
         id: 2,
-        title: "Cursor终极指南：AI写代码比Copilot更强？",
-        summary: "全面了解Cursor的功能和使用技巧，提升编程效率。本文对比了Cursor与其他AI编程助手的优缺点。",
-        date: "2024-02-22",
-        views: 8347,
-        category: "Cursor",
-        url: "cursor-ultimate-guide.html"
+        title: "ChatGPT被封号怎么办？2024最新国内访问稳定方案",
+        summary: "解决ChatGPT账号被封、无法访问等问题的最新方案，确保稳定使用ChatGPT。",
+        date: "2024-03-01",
+        views: 5932,
+        category: "ChatGPT",
+        url: "/chatgpt/chatgpt-access-solutions.html"
     },
     {
         id: 3,
-        title: "爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！",
-        summary: "全面的DeepSeek使用技巧和最佳实践，从基础操作到高级应用，一篇文章全部掌握。",
-        date: "2024-02-20",
-        views: 6723,
-        category: "DeepSeek",
-        url: "deepseek-tips.html"
+        title: "ChatGPT Python编程教程：入门到精通",
+        summary: "零基础也能快速上手Python，ChatGPT辅助编程实战指南，包含完整案例和实践技巧。",
+        date: "2024-03-02",
+        views: 3812,
+        category: "ChatGPT",
+        url: "/chatgpt/chatgpt-python-tutorial.html"
     },
     {
         id: 4,
-        title: "ChatGPT被封号怎么办？2024最新国内访问稳定方案",
-        summary: "解决ChatGPT访问限制问题的完整指南，包括账号注册、稳定访问和防封号技巧。",
-        date: "2024-02-18",
-        views: 5921,
+        title: "ChatGPT Plus全面评测：值不值得订阅？",
+        summary: "深度分析ChatGPT Plus的功能、价格和价值，帮你做出明智决定。全面对比免费版与Plus版本。",
+        date: "2024-03-02",
+        views: 4278,
         category: "ChatGPT",
-        url: "chatgpt-access-solutions.html"
+        url: "/chatgpt/chatgpt-plus-review.html"
     },
     {
         id: 5,
-        title: "GPTs商店完全指南：创建、使用与变现自定义GPT",
-        summary: "学习如何创建和使用自定义GPT，并探索变现机会。从零开始打造你的AI助手并获得收益。",
-        date: "2024-02-15",
-        views: 4231,
+        title: "ChatGPT写作指南：让AI成为你的专业写手",
+        summary: "学会使用ChatGPT创作高质量内容的完整教程，适合各类写作需求，从文案到学术论文全方位指导。",
+        date: "2024-03-02",
+        views: 3931,
         category: "ChatGPT",
-        url: "gpts-store-guide.html"
+        url: "/chatgpt/chatgpt-writing-guide.html"
     },
     {
         id: 6,
-        title: "DeepSeek新手必看：从注册到API调用的完整指南",
-        summary: "学习如何注册和使用DeepSeek，包括API调用方法。本文适合刚接触DeepSeek的新手用户。",
-        date: "2024-02-12",
-        views: 3876,
-        category: "DeepSeek",
-        url: "deepseek-guide.html"
+        title: "ChatGPT注册教程：国内用户从零开始的完整指南",
+        summary: "详细图文教程，解决国内用户注册ChatGPT的所有难题，包括手机验证和付款问题的解决方案。",
+        date: "2024-03-02",
+        views: 4765,
+        category: "ChatGPT",
+        url: "/chatgpt/chatgpt-registration-guide.html"
     },
     {
         id: 7,
-        title: "Cursor中文配置教程：如何用本地模型替代GPT-4？",
-        summary: "学习如何配置Cursor使用中文本地模型，提高响应速度，降低使用成本，提升开发效率。",
-        date: "2024-02-10",
-        views: 3542,
-        category: "Cursor",
-        url: "cursor-chinese-config.html"
+        title: "ChatGPT电商应用指南：提升销量和客户服务",
+        summary: "电商从业者必看，ChatGPT在产品描述、客服和营销中的应用技巧，让你的电商业务更上一层楼。",
+        date: "2024-03-02",
+        views: 3124,
+        category: "ChatGPT",
+        url: "/chatgpt/chatgpt-ecommerce-guide.html"
     },
     {
         id: 8,
-        title: "Cursor与GitHub Copilot对比：开发者真实体验报告",
-        summary: "详细对比两款AI编程助手的优缺点，帮助你做出选择。基于实际项目开发的真实体验分享。",
-        date: "2024-02-08",
-        views: 3128,
-        category: "Cursor",
-        url: "cursor-vs-copilot.html"
+        title: "ChatGPT教育应用指南：学习效率提升技巧",
+        summary: "学生和教师使用ChatGPT辅助学习和教学的最佳实践，提高学习效率和教学质量的完整方案。",
+        date: "2024-03-02",
+        views: 3789,
+        category: "ChatGPT",
+        url: "/chatgpt/chatgpt-education-guide.html"
     },
     {
         id: 9,
-        title: "DeepSeek高阶用法：如何用MoE架构优化企业级AI应用？",
-        summary: "探索DeepSeek的高级功能和企业级应用场景，了解混合专家模型如何提升AI应用性能。",
-        date: "2024-02-05",
-        views: 2876,
-        category: "DeepSeek",
-        url: "deepseek-advanced.html"
+        title: "ChatGPT赚钱指南：AI创业和副业全攻略",
+        summary: "利用ChatGPT开发产品、提供服务和创建内容的变现方法，从零开始打造你的AI业务。",
+        date: "2024-03-02",
+        views: 6823,
+        category: "ChatGPT",
+        url: "/chatgpt/chatgpt-money-making-guide.html"
     },
     {
         id: 10,
-        title: "ChatGPT变现案例分析：10个普通人月入过万的实操方法",
-        summary: "分析10个利用ChatGPT实现收入增长的真实案例，从内容创作到自动化服务，适合各类用户。",
-        date: "2024-02-02",
-        views: 2543,
+        title: "ChatGPT商店使用指南：发现和使用优质GPTs",
+        summary: "探索GPTs商店中的精品应用，提升ChatGPT使用效率。从挑选到使用自定义GPT的完整教程。",
+        date: "2024-03-02",
+        views: 4231,
         category: "ChatGPT",
-        url: "chatgpt-monetization-cases.html"
+        url: "/chatgpt/chatgpt-store-guide.html"
     },
+    
+    // Cursor系列
     {
         id: 11,
-        title: "Cursor团队协作指南：如何提升10人以上团队的开发效率",
-        summary: "探讨Cursor在团队环境中的应用策略，包括代码共享、协作编程和知识管理的最佳实践。",
-        date: "2024-01-30",
-        views: 2187,
+        title: "Cursor终极指南：AI写代码比Copilot更强？",
+        summary: "深入解析Cursor的核心功能和使用技巧，提升编程效率的必备工具。",
+        date: "2024-03-02",
+        views: 8321,
         category: "Cursor",
-        url: "cursor-team-efficiency.html"
+        url: "/cursor/cursor-ultimate-guide.html"
     },
     {
         id: 12,
-        title: "Monica与DeepSeek结合使用：打造最强AI助手工作流",
-        summary: "详解如何将Monica与DeepSeek结合使用，创建高效的AI辅助工作流程，提升工作效率。",
-        date: "2024-01-28",
-        views: 1986,
+        title: "Cursor vs Copilot：两大AI编程助手全方位对比",
+        summary: "深度对比Cursor和GitHub Copilot的功能、性能和使用体验，帮你选择最适合自己的AI编程助手。",
+        date: "2024-03-02",
+        views: 7214,
+        category: "Cursor",
+        url: "/cursor/cursor-vs-copilot.html"
+    },
+    {
+        id: 13,
+        title: "Cursor本地模型使用指南：离线也能高效编程",
+        summary: "Cursor本地模型的安装、配置和使用教程，适合无网络环境或对保密性要求高的开发场景。",
+        date: "2024-03-02",
+        views: 3542,
+        category: "Cursor",
+        url: "/cursor/cursor-local-model-guide.html"
+    },
+    {
+        id: 14,
+        title: "Cursor插件开发指南：打造你的专属AI编程工具",
+        summary: "从入门到精通，学习开发Cursor插件扩展AI编程功能，为特定编程场景定制化你的编程体验。",
+        date: "2024-03-02",
+        views: 2947,
+        category: "Cursor",
+        url: "/cursor/cursor-plugin-guide.html"
+    },
+    {
+        id: 15,
+        title: "Cursor团队协作指南：多人AI编程最佳实践",
+        summary: "如何在团队中高效使用Cursor，提升协作效率的技巧和工作流，让整个开发团队效率倍增。",
+        date: "2024-03-02",
+        views: 3265,
+        category: "Cursor",
+        url: "/cursor/cursor-team-guide.html"
+    },
+    {
+        id: 16,
+        title: "Cursor企业版全面介绍：为大型团队打造的AI编程解决方案",
+        summary: "Cursor企业版的功能、部署和管理指南，适合企业级用户。包含安全性、可扩展性和团队管理等方面的详细说明。",
+        date: "2024-03-02",
+        views: 2879,
+        category: "Cursor",
+        url: "/cursor/cursor-enterprise.html"
+    },
+    
+    // DeepSeek系列
+    {
+        id: 17,
+        title: "DeepSeek全面使用指南：中国最强开源大模型",
+        summary: "深入了解DeepSeek大模型的功能、优势和使用技巧，从基础操作到高级应用，一篇文章全部掌握。",
+        date: "2024-03-02",
+        views: 6154,
         category: "DeepSeek",
-        url: "monica-deepseek.html"
+        url: "/deepseek/deepseek-guide.html"
+    },
+    {
+        id: 18,
+        title: "DeepSeek API开发指南：接入中国顶级开源大模型",
+        summary: "DeepSeek API的接入、调用和最佳实践，适合开发者使用。从API申请到实际应用的全流程教程。",
+        date: "2024-03-03",
+        views: 3412,
+        category: "DeepSeek",
+        url: "/deepseek/deepseek-api-guide.html"
+    },
+    {
+        id: 19,
+        title: "DeepSeek MoE企业版详解：为企业打造的高性能AI模型",
+        summary: "DeepSeek MoE企业版的功能、部署和应用场景分析，适合企业级用户探索大模型应用的可能性。",
+        date: "2024-03-03",
+        views: 2731,
+        category: "DeepSeek",
+        url: "/deepseek/deepseek-moe-enterprise.html"
+    },
+    {
+        id: 20,
+        title: "DeepSeek R1微调指南：定制你的专属大模型",
+        summary: "从数据准备到模型部署，DeepSeek R1模型微调全流程教程，让大模型更好地适应你的特定需求。",
+        date: "2024-03-03",
+        views: 3158,
+        category: "DeepSeek",
+        url: "/deepseek/deepseek-r1-fine-tuning-guide.html"
+    },
+    {
+        id: 21,
+        title: "DeepSeek Monica R1使用指南：打造智能编程助手",
+        summary: "DeepSeek Monica R1模型的功能、性能和编程应用技巧，让编程效率和质量实现质的飞跃。",
+        date: "2024-03-03",
+        views: 2967,
+        category: "DeepSeek",
+        url: "/deepseek/deepseek-monica-r1-guide.html"
     }
 ];
+
+const articlesData = [];
 
 // 全局变量
 let currentPage = 1;

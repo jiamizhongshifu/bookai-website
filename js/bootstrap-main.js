@@ -14,40 +14,44 @@ document.addEventListener('DOMContentLoaded', function() {
  * 初始化暗色模式切换
  */
 function initDarkModeToggle() {
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const darkModeToggle = document.getElementById('darkModeToggle');
     const htmlElement = document.documentElement;
-    const darkModeIcon = darkModeToggle.querySelector('i');
+    const moonIcon = darkModeToggle.querySelector('i');
     
-    // 检查本地存储中的暗色模式设置
+    // 检查本地存储中的主题设置
     const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    
-    // 根据设置应用暗色模式
     if (isDarkMode) {
-        htmlElement.setAttribute('data-bs-theme', 'dark');
-        darkModeIcon.classList.remove('fa-moon');
-        darkModeIcon.classList.add('fa-sun');
+        enableDarkMode();
     }
-    
-    // 切换暗色模式
-    darkModeToggle.addEventListener('click', function() {
-        const currentTheme = htmlElement.getAttribute('data-bs-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        // 更新主题
-        htmlElement.setAttribute('data-bs-theme', newTheme);
-        
-        // 更新图标
-        if (newTheme === 'dark') {
-            darkModeIcon.classList.remove('fa-moon');
-            darkModeIcon.classList.add('fa-sun');
+
+    // 切换暗黑模式
+    darkModeToggle.addEventListener('click', () => {
+        if (htmlElement.getAttribute('data-bs-theme') === 'dark') {
+            disableDarkMode();
         } else {
-            darkModeIcon.classList.remove('fa-sun');
-            darkModeIcon.classList.add('fa-moon');
+            enableDarkMode();
         }
-        
-        // 保存设置到本地存储
-        localStorage.setItem('darkMode', newTheme === 'dark');
     });
+
+    // 启用暗黑模式
+    function enableDarkMode() {
+        htmlElement.setAttribute('data-bs-theme', 'dark');
+        moonIcon.classList.remove('fa-moon');
+        moonIcon.classList.add('fa-sun');
+        darkModeToggle.classList.remove('text-dark');
+        darkModeToggle.classList.add('text-light');
+        localStorage.setItem('darkMode', 'true');
+    }
+
+    // 禁用暗黑模式
+    function disableDarkMode() {
+        htmlElement.setAttribute('data-bs-theme', 'light');
+        moonIcon.classList.remove('fa-sun');
+        moonIcon.classList.add('fa-moon');
+        darkModeToggle.classList.remove('text-light');
+        darkModeToggle.classList.add('text-dark');
+        localStorage.setItem('darkMode', 'false');
+    }
 }
 
 /**

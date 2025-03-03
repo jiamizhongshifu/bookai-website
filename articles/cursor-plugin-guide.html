@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor插件开发指南：打造你的专属AI编程助手 - AiXueba</title>
+    <meta name="description" content="详细介绍如何开发Cursor插件，从环境搭建到发布上线的完整教程。包含插件架构设计、API调用、UI开发、调试技巧等实用内容，助你快速构建个性化的AI编程助手。">
+    <meta name="keywords" content="Cursor插件开发, AI编程助手, VSCode插件, JavaScript开发, TypeScript, WebView API, 插件调试">
+    
+    <!-- Open Graph 标签 -->
+    <meta property="og:title" content="Cursor插件开发指南：打造你的专属AI编程助手">
+    <meta property="og:description" content="从零开始学习Cursor插件开发，掌握AI编程助手开发技能，打造你的专属开发工具。">
+    <meta property="og:image" content="https://aixueba.club/images/cursor-plugin-dev.jpg">
+    <meta property="og:url" content="https://aixueba.club/articles/cursor-plugin-guide.html">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter 卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cursor插件开发指南：打造你的专属AI编程助手">
+    <meta name="twitter:description" content="从零开始学习Cursor插件开发，掌握AI编程助手开发技能，打造你的专属开发工具。">
+    <meta name="twitter:image" content="https://aixueba.club/images/cursor-plugin-dev.jpg">
+    
+    <!-- 样式表和资源引用 -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/article.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/article-detail.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    
+    <!-- 添加预加载关键资源 -->
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="preload" href="../css/article.css" as="style">
+    <link rel="preload" href="../css/icons.css" as="style">
+    <link rel="preload" href="../css/article-detail.css" as="style">
+    <link rel="preload" href="../fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+    
+    <!-- 添加字体显示优化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+</head>
+<body>
+    <!-- 阅读进度指示器 -->
+    <div class="reading-progress-container">
+        <div class="reading-progress-bar"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <span class="logo-text-bold">AiXueba</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="../index.html#featured">精选教程</a></li>
+                    <li><a href="../index.html#chatgpt">ChatGPT</a></li>
+                    <li><a href="../index.html#cursor">Cursor</a></li>
+                    <li><a href="../index.html#deepseek">Deepseek</a></li>
+                    <li><a href="../index.html#tools">AI工具</a></li>
+                </ul>
+            </nav>
+            <div class="nav-tools">
+                <div class="search-container">
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="搜索教程...">
+                        <button type="submit" class="search-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="search-results"></div>
+                </div>
+                <button class="dark-mode-toggle" aria-label="切换深色模式">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article-container">
+            <div class="container">
+                <!-- 面包屑导航 -->
+                <div class="breadcrumb">
+                    <a href="../index.html">首页</a>
+                    <i class="fas fa-angle-right"></i>
+                    <a href="../categories/cursor.html">Cursor教程</a>
+                    <i class="fas fa-angle-right"></i>
+                    <span>插件开发指南</span>
+                </div>
+                
+                <!-- 文章头部信息 -->
+                <div class="article-header">
+                    <div class="article-category">
+                        <a href="../categories/cursor.html" class="category-tag">Cursor</a>
+                    </div>
+                    <h1 class="article-title">Cursor插件开发指南：打造你的专属AI编程助手</h1>
+                    <div class="article-meta">
+                        <span class="article-author"><i class="fas fa-user"></i> 作者：加密钟师傅</span>
+                        <span class="article-date"><i class="fas fa-calendar"></i> 发布于：2024年3月16日</span>
+                        <span class="article-read-time"><i class="fas fa-clock"></i> 阅读时间：30分钟</span>
+                        <span class="article-views"><i class="fas fa-eye"></i> 阅读量：32,456</span>
+                    </div>
+                    <div class="article-tags">
+                        <i class="fas fa-tags"></i>
+                        <a href="../tags/cursor.html" class="tag">Cursor</a>
+                        <a href="../tags/plugin-dev.html" class="tag">插件开发</a>
+                        <a href="../tags/ai-coding.html" class="tag">AI编程</a>
+                        <a href="../tags/typescript.html" class="tag">TypeScript</a>
+                    </div>
+                </div>
+
+                <!-- 文章布局 -->
+                <div class="article-layout">
+                    <!-- 文章主体内容 -->
+                    <div class="article-main">
+                        <!-- 文章简介 -->
+                        <div class="article-intro">
+                            <p>Cursor作为新一代AI编程工具，其强大的插件系统为开发者提供了无限可能。本文将详细介绍如何开发Cursor插件，从环境搭建到发布上线的完整流程，帮助你打造专属的AI编程助手。</p>
+                            <p>无论你是想为特定编程语言开发智能提示，还是想构建项目管理工具，这份指南都能帮你实现目标。</p>
+                        </div>
+
+                        <!-- 文章内容 -->
+                        <div class="article-content">
+                            <!-- 第一部分：基础准备 -->
+                            <section id="basic-preparation" class="article-section">
+                                <h2>一、开发环境准备</h2>
+                                
+                                <div class="info-box">
+                                    <div class="info-icon"><i class="fas fa-info-circle"></i></div>
+                                    <div class="info-content">
+                                        <p>开发环境要求：</p>
+                                        <ul>
+                                            <li>Node.js 16.x 或更高版本</li>
+                                            <li>TypeScript 4.x 或更高版本</li>
+                                            <li>Cursor最新版本</li>
+                                            <li>VSCode（推荐用于开发）</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3>1.1 项目初始化</h3>
+                                <pre><code class="language-bash"># 创建插件项目
+mkdir my-cursor-plugin
+cd my-cursor-plugin
+
+# 初始化项目
+npm init -y
+
+# 安装必要依赖
+npm install --save-dev typescript @types/node @cursor/sdk
+npm install --save-dev webpack webpack-cli ts-loader</code></pre>
+
+                                <h3>1.2 配置文件设置</h3>
+                                <pre><code class="language-json">{
+  "name": "my-cursor-plugin",
+  "version": "1.0.0",
+  "engines": {
+    "cursor": "^1.0.0"
+  },
+  "activationEvents": [
+    "onCommand:myPlugin.start"
+  ],
+  "contributes": {
+    "commands": [{
+      "command": "myPlugin.start",
+      "title": "启动我的插件"
+    }]
+  }
+}</code></pre>
+                            </section>
+                            
+                            <!-- 第二部分：插件架构 -->
+                            <section id="plugin-architecture" class="article-section">
+                                <h2>二、插件架构设计</h2>
+                                
+                                <div class="architecture-box">
+                                    <h3>2.1 核心组件</h3>
+                                    <table class="content-table">
+                                        <thead>
+                                            <tr>
+                                                <th>组件名称</th>
+                                                <th>主要功能</th>
+                                                <th>示例代码</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>插件入口</td>
+                                                <td>初始化和生命周期管理</td>
+                                                <td>activate(), deactivate()</td>
+                                            </tr>
+                                            <tr>
+                                                <td>命令注册</td>
+                                                <td>注册插件命令</td>
+                                                <td>registerCommand()</td>
+                                            </tr>
+                                            <tr>
+                                                <td>API调用</td>
+                                                <td>调用Cursor API</td>
+                                                <td>cursor.api.xxx()</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <h3>2.2 插件入口示例</h3>
+                                    <pre><code class="language-typescript">import * as cursor from '@cursor/sdk';
+
+export function activate(context: cursor.ExtensionContext) {
+    console.log('插件已激活');
+
+    // 注册命令
+    let disposable = cursor.commands.registerCommand('myPlugin.start', () => {
+        cursor.window.showInformationMessage('Hello from My Cursor Plugin!');
+    });
+
+    context.subscriptions.push(disposable);
+}
+
+export function deactivate() {
+    console.log('插件已停用');
+}</code></pre>
+                                </div>
+                            </section>
+                            
+                            <!-- 第三部分：功能开发 -->
+                            <section id="feature-development" class="article-section">
+                                <h2>三、功能开发指南</h2>
+                                
+                                <div class="feature-box">
+                                    <h3>3.1 AI功能集成</h3>
+                                    <pre><code class="language-typescript">import * as cursor from '@cursor/sdk';
+
+// AI代码补全功能
+async function provideCompletions(document: cursor.TextDocument, position: cursor.Position) {
+    const text = document.getText();
+    const line = document.lineAt(position).text;
+    
+    // 调用AI模型获取补全建议
+    const suggestions = await cursor.ai.getCompletions(text, line);
+    
+    return suggestions.map(item => ({
+        label: item.text,
+        kind: cursor.CompletionItemKind.Text,
+        detail: item.description
+    }));
+}</code></pre>
+
+                                    <h3>3.2 用户界面开发</h3>
+                                    <pre><code class="language-typescript">// WebView面板创建
+const panel = cursor.window.createWebviewPanel(
+    'myPlugin',
+    '我的插件面板',
+    cursor.ViewColumn.One,
+    {
+        enableScripts: true,
+        retainContextWhenHidden: true
+    }
+);
+
+// 设置HTML内容
+panel.webview.html = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>插件面板</title>
+    <style>
+        body { padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>我的Cursor插件</h1>
+        <div id="content"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/bootstrap-main.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/article.js"></script>
+<script src="../js/article-detail.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+</body>
+</html>
+`;</code></pre>
+                                </div>
+                            </section>
+                            
+                            <!-- 第四部分：调试与测试 -->
+                            <section id="debugging" class="article-section">
+                                <h2>四、调试与测试</h2>
+                                
+                                <div class="debug-box">
+                                    <h3>4.1 调试配置</h3>
+                                    <pre><code class="language-json">{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "调试插件",
+            "type": "cursor-debug",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/extension.ts",
+            "args": ["--extensionDevelopmentPath=${workspaceFolder}"]
+        }
+    ]
+}</code></pre>
+
+                                    <h3>4.2 单元测试</h3>
+                                    <pre><code class="language-typescript">import * as assert from 'assert';
+import * as cursor from '@cursor/sdk';
+
+suite('插件测试套件', () => {
+    test('测试AI补全功能', async () => {
+        const result = await cursor.ai.getCompletions('test code');
+        assert.ok(result.length > 0);
+    });
+
+    test('测试命令注册', () => {
+        const command = cursor.commands.registerCommand('test.command', () => {});
+        assert.ok(command);
+    });
+});</code></pre>
+                                </div>
+                            </section>
+                            
+                            <!-- 第五部分：发布与维护 -->
+                            <section id="publishing" class="article-section">
+                                <h2>五、发布与维护</h2>
+                                
+                                <div class="publish-box">
+                                    <h3>5.1 打包发布</h3>
+                                    <pre><code class="language-bash"># 打包插件
+npm run package
+
+# 发布到Cursor插件市场
+cursor publish</code></pre>
+
+                                    <h3>5.2 版本更新流程</h3>
+                                    <ol>
+                                        <li>更新version字段</li>
+                                        <li>更新CHANGELOG.md</li>
+                                        <li>提交代码变更</li>
+                                        <li>创建新的Release</li>
+                                        <li>发布更新包</li>
+                                    </ol>
+                                </div>
+                            </section>
+                            
+                            <!-- 总结 -->
+                            <section id="conclusion" class="article-section">
+                                <h2>总结与展望</h2>
+                                <div class="conclusion-content">
+                                    <p>通过本教程的学习，你已经掌握了：</p>
+                                    <ul>
+                                        <li>Cursor插件开发的基础环境搭建</li>
+                                        <li>插件架构设计和功能实现方法</li>
+                                        <li>调试测试和发布维护流程</li>
+                                        <li>AI功能集成的具体实践</li>
+                                    </ul>
+                                    <blockquote>
+                                        <p>Cursor插件开发为AI编程工具带来了无限可能。通过开发插件，你不仅可以提升自己的开发效率，还可以帮助其他开发者提高生产力。</p>
+                                    </blockquote>
+                                </div>
+                            </section>
+                        </div>
+                        
+                        <!-- 文章分享 -->
+                        <div class="article-share">
+                            <span>分享文章：</span>
+                            <a href="#" class="share-twitter" aria-label="分享到Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-facebook" aria-label="分享到Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-linkedin" aria-label="分享到LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-weibo" aria-label="分享到微博"><i class="fab fa-weibo"></i></a>
+                            <a href="#" class="share-wechat" aria-label="分享到微信"><i class="fab fa-weixin"></i></a>
+                        </div>
+                        
+                        <!-- 相关推荐 -->
+                        <div class="related-articles">
+                            <h3>相关推荐</h3>
+                            <div class="related-grid">
+                                <div class="related-item">
+                                    <a href="#">
+                                        <h4>Cursor高级功能开发指南</h4>
+                                        <div class="related-meta">
+                                            <span class="related-date">2024-03-14</span>
+                                            <span class="related-views">28,567次阅读</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="related-item">
+                                    <a href="#">
+                                        <h4>AI编程工具开发实战</h4>
+                                        <div class="related-meta">
+                                            <span class="related-date">2024-03-12</span>
+                                            <span class="related-views">23,456次阅读</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="related-item">
+                                    <a href="#">
+                                        <h4>VSCode插件开发教程</h4>
+                                        <div class="related-meta">
+                                            <span class="related-date">2024-03-10</span>
+                                            <span class="related-views">19,234次阅读</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 文章侧边栏 -->
+                    <div class="article-sidebar">
+                        <!-- 目录导航 -->
+                        <div class="sidebar-toc">
+                            <h3>文章目录</h3>
+                            <div class="toc-content">
+                                <ul>
+                                    <li><a href="#basic-preparation">一、开发环境准备</a>
+                                        <ul>
+                                            <li><a href="#project-init">1.1 项目初始化</a></li>
+                                            <li><a href="#config-setup">1.2 配置文件设置</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#plugin-architecture">二、插件架构设计</a>
+                                        <ul>
+                                            <li><a href="#core-components">2.1 核心组件</a></li>
+                                            <li><a href="#entry-example">2.2 插件入口示例</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#feature-development">三、功能开发指南</a>
+                                        <ul>
+                                            <li><a href="#ai-integration">3.1 AI功能集成</a></li>
+                                            <li><a href="#ui-development">3.2 用户界面开发</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#debugging">四、调试与测试</a></li>
+                                    <li><a href="#publishing">五、发布与维护</a></li>
+                                    <li><a href="#conclusion">总结与展望</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- 作者信息 -->
+                        <div class="author-card">
+                            <div class="author-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">加密钟师傅</h4>
+                                <p class="author-bio">AI编程工具专家，专注插件开发与AI应用</p>
+                            </div>
+                            <div class="author-social">
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="知乎"><i class="fab fa-zhihu"></i></a>
+                            </div>
+                        </div>
+                        
+                        <!-- 热门文章 -->
+                        <div class="popular-articles">
+                            <h3>热门文章</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <span class="popular-article-title">Cursor插件开发实战</span>
+                                        <span class="popular-article-date">2024-03-15</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="popular-article-title">AI编程工具进阶</span>
+                                        <span class="popular-article-date">2024-03-13</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="popular-article-title">插件开发最佳实践</span>
+                                        <span class="popular-article-date">2024-03-10</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <span class="logo-text">AiXueba.club</span>
+                    </div>
+                    <p class="footer-description">提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="GitHub"><img src="../images/social/github.svg" alt="GitHub"></a>
+                        <a href="#" aria-label="Twitter"><img src="../images/social/twitter.svg" alt="Twitter"></a>
+                        <a href="#" aria-label="YouTube"><img src="../images/social/youtube.svg" alt="YouTube"></a>
+                        <a href="#" aria-label="微信"><img src="../images/social/wechat.svg" alt="微信"></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>GPTs</h4>
+                        <ul>
+                            <li><a href="#">更勤奋更聪明的GPT4</a></li>
+                            <li><a href="#">AI使用助手 by 加密钟师傅</a></li>
+                            <li><a href="#">AI阅读助手</a></li>
+                            <li><a href="#">GPT翻译-专业中英双语翻译</a></li>
+                            <li><a href="#">Claude 3 Opus</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>教程分类</h4>
+                        <ul>
+                            <li><a href="../index.html#chatgpt">ChatGPT教程</a></li>
+                            <li><a href="../index.html#cursor">Cursor教程</a></li>
+                            <li><a href="../index.html#deepseek">Deepseek教程</a></li>
+                            <li><a href="../index.html#tools">AI工具</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>关于我们</h4>
+                        <ul>
+                            <li><a href="../about.html">关于AiXueba</a></li>
+                            <li><a href="../contact.html">联系我们</a></li>
+                            <li><a href="../privacy.html">隐私政策</a></li>
+                            <li><a href="../terms.html">使用条款</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2024 AiXueba, Inc. 保留所有权利</p>
+                <p class="back-to-top"><a href="#top">返回顶部 <i class="fas fa-arrow-up"></i></a></p>
+            </div>
+        </div>
+</body>
+</html> 

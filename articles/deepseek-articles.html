@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepseek教程列表 - AiXueba</title>
+    <meta name="description" content="全面的Deepseek使用指南，从入门到精通">
+    <meta name="keywords" content="Deepseek教程, AI教程, Deepseek指南, Deepseek使用">
+    
+    <!-- Open Graph 标签 -->
+    <meta property="og:title" content="Deepseek教程列表 - AiXueba">
+    <meta property="og:description" content="全面的Deepseek使用指南，从入门到精通">
+    <meta property="og:image" content="https://aixueba.club/images/og-image.jpg">
+    <meta property="og:url" content="https://aixueba.club/articles/deepseek-articles.html">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter 卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Deepseek教程列表 - AiXueba">
+    <meta name="twitter:description" content="全面的Deepseek使用指南，从入门到精通">
+    <meta name="twitter:image" content="https://aixueba.club/images/og-image.jpg">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../css/bootstrap-style.css">
+    <link rel="stylesheet" href="../css/article.css">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    
+    <!-- 添加字体显示优化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../">AiXueba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#featured">精选教程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#chatgpt">ChatGPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#cursor">Cursor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#deepseek">Deepseek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ai-tools-guide.html">AI工具</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <form class="d-flex me-2" id="searchForm" onsubmit="handleSearch(event)">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="搜索教程..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-link text-dark dark-mode-toggle" id="darkModeToggle" aria-label="切换深色模式">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container py-5 mt-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">首页</a></li>
+                        <li class="breadcrumb-item active">Deepseek教程</li>
+                    </ol>
+                </nav>
+                <h1 class="display-5 fw-bold mb-4">Deepseek教程列表</h1>
+                <p class="lead text-muted mb-5">全面的Deepseek使用指南，从入门到精通</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Deepseek入门指南 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-book text-primary fa-2x me-3"></i>
+                            <h5 class="card-title mb-0">Deepseek入门指南</h5>
+                        </div>
+                        <p class="card-text">全面了解Deepseek的功能和使用方法。</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                                <a href="deepseek-guide.html" class="btn btn-primary">阅读详情</a>
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">阅读时间：15分钟</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deepseek API指南 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-code text-primary fa-2x me-3"></i>
+                            <h5 class="card-title mb-0">Deepseek API指南</h5>
+                        </div>
+                        <p class="card-text">学习如何使用Deepseek API开发应用。</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                                <a href="deepseek-api-guide.html" class="btn btn-primary">阅读详情</a>
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">阅读时间：20分钟</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deepseek企业版 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-building text-primary fa-2x me-3"></i>
+                            <h5 class="card-title mb-0">Deepseek企业版</h5>
+                        </div>
+                        <p class="card-text">深入了解Deepseek企业版的特色功能。</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                                <a href="deepseek-moe-enterprise.html" class="btn btn-primary">阅读详情</a>
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">阅读时间：12分钟</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deepseek Monica R1指南 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-robot text-primary fa-2x me-3"></i>
+                            <h5 class="card-title mb-0">Monica R1指南</h5>
+                        </div>
+                        <p class="card-text">探索Deepseek Monica R1模型的特性和应用。</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                                <a href="deepseek-monica--r1-guide.html" class="btn btn-primary">阅读详情</a>
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">阅读时间：18分钟</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deepseek R1微调指南 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-cogs text-primary fa-2x me-3"></i>
+                            <h5 class="card-title mb-0">R1微调指南</h5>
+                        </div>
+                        <p class="card-text">学习如何微调Deepseek R1模型以适应特定任务。</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                                <a href="deepseek-r1-fine-tuning-guide.html" class="btn btn-primary">阅读详情</a>
+                                <button type="button" class="btn btn-outline-secondary">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">阅读时间：25分钟</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AiXueba.club</h5>
+                    <p>提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <h5>教程分类</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="chatgpt-articles.html" class="text-light">ChatGPT教程</a></li>
+                                <li><a href="cursor-articles.html" class="text-light">Cursor教程</a></li>
+                                <li><a href="deepseek-articles.html" class="text-light">Deepseek教程</a></li>
+                                <li><a href="ai-tools-guide.html" class="text-light">AI工具</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <h5>关于我们</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="../about.html" class="text-light">关于AiXueba</a></li>
+                                <li><a href="../contact.html" class="text-light">联系我们</a></li>
+                                <li><a href="../privacy.html" class="text-light">隐私政策</a></li>
+                                <li><a href="../terms.html" class="text-light">使用条款</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>订阅更新</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="您的邮箱地址" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">订阅</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">Copyright © 2025 AiXueba, Inc. 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 搜索模态框 -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">搜索结果</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="searchResults">
+                        <!-- 搜索结果将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 自定义JS -->
+    <script src="../js/bootstrap-main.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/article.js"></script>
+
+    <style>
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
+    }
+    </style>
+</body>
+</html> 
