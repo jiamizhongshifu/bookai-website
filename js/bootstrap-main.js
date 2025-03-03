@@ -123,4 +123,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-}); 
+});
+
+/**
+ * 处理订阅表单提交
+ * @param {Event} event - 表单提交事件
+ */
+function handleSubscribe(event) {
+    event.preventDefault();
+    const email = document.getElementById('subscribeEmail').value;
+    
+    // 这里可以添加实际的订阅处理逻辑
+    // 目前仅显示成功消息
+    alert('感谢订阅！我们会将最新资讯发送到您的邮箱：' + email);
+    
+    // 清空输入框
+    document.getElementById('subscribeEmail').value = '';
+} 
