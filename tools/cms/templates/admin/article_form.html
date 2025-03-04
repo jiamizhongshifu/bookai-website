@@ -1,0 +1,132 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if article %}编辑文章{% else %}新建文章{% endif %} - 文章管理系统{% endblock %}
+
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" rel="stylesheet">
+<style>
+    .CodeMirror {
+        height: 500px;
+    }
+    .editor-toolbar {
+        border-radius: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{% if article %}编辑文章{% else %}新建文章{% endif %}</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="{{ url_for('admin') }}" class="btn btn-sm btn-outline-secondary">
+            <i class="fas fa-arrow-left"></i> 返回列表
+        </a>
+    </div>
+</div>
+
+<form method="POST" class="needs-validation" novalidate>
+    <div class="row g-3">
+        <div class="col-12">
+            <label for="title" class="form-label">文章标题</label>
+            <input type="text" class="form-control" id="title" name="title" required
+                   value="{{ article.title if article else '' }}">
+            <div class="invalid-feedback">
+                请输入文章标题
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="author" class="form-label">作者</label>
+            <input type="text" class="form-control" id="author" name="author" required
+                   value="{{ article.author if article else '' }}">
+            <div class="invalid-feedback">
+                请输入作者名称
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="category" class="form-label">分类</label>
+            <select class="form-select" id="category" name="category" required>
+                <option value="">选择分类...</option>
+                <option value="ChatGPT教程" {% if article and article.category == 'ChatGPT教程' %}selected{% endif %}>ChatGPT教程</option>
+                <option value="Cursor教程" {% if article and article.category == 'Cursor教程' %}selected{% endif %}>Cursor教程</option>
+                <option value="Deepseek教程" {% if article and article.category == 'Deepseek教程' %}selected{% endif %}>Deepseek教程</option>
+            </select>
+            <div class="invalid-feedback">
+                请选择文章分类
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="description" class="form-label">文章描述</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required>{{ article.description if article else '' }}</textarea>
+            <div class="invalid-feedback">
+                请输入文章描述
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="keywords" class="form-label">关键词（用逗号分隔）</label>
+            <input type="text" class="form-control" id="keywords" name="keywords" required
+                   value="{{ article.keywords if article else '' }}">
+            <div class="invalid-feedback">
+                请输入关键词
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="content" class="form-label">文章内容</label>
+            <textarea class="form-control" id="content" name="content" rows="10" required>{{ article.content if article else '' }}</textarea>
+            <div class="invalid-feedback">
+                请输入文章内容
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="status" class="form-label">文章状态</label>
+            <select class="form-select" id="status" name="status" required>
+                <option value="draft" {% if article and article.status == 'draft' %}selected{% endif %}>草稿</option>
+                <option value="published" {% if article and article.status == 'published' %}selected{% endif %}>发布</option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-save"></i> 保存文章
+            </button>
+            <a href="{{ url_for('admin') }}" class="btn btn-secondary">取消</a>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+<script>
+    // 初始化Markdown编辑器
+    var easyMDE = new EasyMDE({
+        element: document.getElementById('content'),
+        spellChecker: false,
+        autosave: {
+            enabled: true,
+            uniqueId: "article_{{ article.id if article else 'new' }}"
+        }
+    });
+
+    // 表单验证
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+{% endblock %} 

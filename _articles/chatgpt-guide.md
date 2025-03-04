@@ -2,7 +2,7 @@
 layout: article
 title: ChatGPT使用指南：从入门到精通
 date: 2025-02-15
-author: AI进化论-花生
+author: 加密钟师傅
 thumbnail: /images/chatgpt.svg
 excerpt: 掌握ChatGPT的各种使用技巧，让你的AI助手变得更加高效和智能。从基础操作到高级提示词技巧，全面提升你的AI使用体验。
 tags: [ChatGPT, AI工具, 使用技巧]

@@ -3,99 +3,151 @@
  * 包含目录导航、阅读进度条、返回顶部等功能
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 初始化各项功能
-    initTableOfContents();
-    initReadingProgress();
-    initBackToTop();
-    initTocToggle();
-    initCodeHighlight();
-    initImageLightbox();
-    initShareButtons();
-    initCommentForm();
-});
+// 文章功能模块
+const Article = {
+    // 初始化
+    init() {
+        this.generateTableOfContents();
+        this.setupCodeHighlighting();
+        this.setupImageLightbox();
+        this.setupScrollSpy();
+        this.setupShareButtons();
+        this.loadComments();
+    },
 
-/**
- * 初始化文章目录
- * 复制主目录到侧边栏固定目录
- * 添加目录项点击事件和滚动监听
- */
-function initTableOfContents() {
-    // 复制主目录到侧边栏
-    const mainToc = document.querySelector('.article-toc .toc-content');
-    const sidebarToc = document.querySelector('.sidebar-toc .toc-content');
-    
-    if (mainToc && sidebarToc) {
-        sidebarToc.innerHTML = mainToc.innerHTML;
-    }
-    
-    // 为所有目录链接添加平滑滚动效果
-    const tocLinks = document.querySelectorAll('.article-toc a, .sidebar-toc a');
-    
-    tocLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
+    // 生成文章目录
+    generateTableOfContents() {
+        const article = document.querySelector('.article-content');
+        const toc = document.getElementById('article-toc');
+        if (!article || !toc) return;
+
+        const headings = article.querySelectorAll('h2, h3');
+        if (headings.length === 0) {
+            toc.parentElement.style.display = 'none';
+            return;
+        }
+
+        const tocList = document.createElement('ul');
+        headings.forEach((heading, index) => {
+            // 为每个标题添加ID
+            heading.id = `heading-${index}`;
             
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = `#${heading.id}`;
+            a.textContent = heading.textContent;
+            a.classList.add(`toc-${heading.tagName.toLowerCase()}`);
             
-            if (targetElement) {
-                // 计算目标位置，考虑固定头部的高度
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-                
-                // 平滑滚动到目标位置
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // 更新URL，但不触发页面跳转
-                history.pushState(null, null, targetId);
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+
+        toc.appendChild(tocList);
+    },
+
+    // 代码高亮设置
+    setupCodeHighlighting() {
+        // Prism.js 会自动处理代码高亮
+        // 这里可以添加额外的配置
+        document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.classList.contains('language-')) {
+                block.classList.add('language-plaintext');
             }
         });
-    });
-    
-    // 监听滚动事件，高亮当前阅读的章节
-    window.addEventListener('scroll', highlightCurrentSection);
-}
+    },
 
-/**
- * 高亮当前阅读的章节
- */
-function highlightCurrentSection() {
-    const sections = document.querySelectorAll('.article-section');
-    const tocLinks = document.querySelectorAll('.article-toc a, .sidebar-toc a');
-    
-    // 获取当前滚动位置
-    const scrollPosition = window.scrollY;
-    const headerHeight = document.querySelector('header').offsetHeight;
-    
-    // 找到当前可见的章节
-    let currentSection = null;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - headerHeight - 50;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            currentSection = section.id;
-        }
-    });
-    
-    // 移除所有目录项的高亮
-    tocLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    // 高亮当前章节的目录项
-    if (currentSection) {
-        const activeLinks = document.querySelectorAll(`.article-toc a[href="#${currentSection}"], .sidebar-toc a[href="#${currentSection}"]`);
-        activeLinks.forEach(link => {
-            link.classList.add('active');
+    // 图片点击放大
+    setupImageLightbox() {
+        const images = document.querySelectorAll('.article-content img');
+        images.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.zIndex = '1000';
+
+                const modalImg = document.createElement('img');
+                modalImg.src = img.src;
+                modalImg.style.maxHeight = '90%';
+                modalImg.style.maxWidth = '90%';
+                modalImg.style.objectFit = 'contain';
+
+                modal.appendChild(modalImg);
+                document.body.appendChild(modal);
+
+                modal.addEventListener('click', () => {
+                    modal.remove();
+                });
+            });
         });
+    },
+
+    // 滚动监听
+    setupScrollSpy() {
+        const tocLinks = document.querySelectorAll('#article-toc a');
+        if (tocLinks.length === 0) return;
+
+        const observerOptions = {
+            rootMargin: '-100px 0px -70% 0px',
+            threshold: 1.0
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const link = document.querySelector(`#article-toc a[href="#${id}"]`);
+                
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(l => l.classList.remove('active'));
+                    link?.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.article-content h2, .article-content h3').forEach((heading) => {
+            observer.observe(heading);
+        });
+    },
+
+    // 设置分享按钮
+    setupShareButtons() {
+        const shareButtons = document.querySelectorAll('.share-buttons a');
+        shareButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = button.href;
+                window.open(url, 'share-dialog', 'width=626,height=436');
+            });
+        });
+    },
+
+    // 加载评论系统
+    loadComments() {
+        // 这里可以集成第三方评论系统，如 Disqus、Gitalk 等
+        const commentsContainer = document.getElementById('comments');
+        if (!commentsContainer) return;
+
+        // 示例：添加一个简单的评论提示
+        commentsContainer.innerHTML = `
+            <div class="alert alert-info">
+                评论系统正在开发中...
+            </div>
+        `;
     }
-}
+};
+
+// 当页面加载完成时初始化文章功能
+document.addEventListener('DOMContentLoaded', () => {
+    Article.init();
+});
 
 /**
  * 初始化阅读进度条
@@ -162,154 +214,6 @@ function initTocToggle() {
             } else {
                 icon.className = 'fas fa-chevron-up';
             }
-        });
-    }
-}
-
-/**
- * 初始化代码高亮
- * 注意：需要引入代码高亮库，如Prism.js或Highlight.js
- */
-function initCodeHighlight() {
-    // 检查是否已加载代码高亮库
-    if (window.Prism) {
-        Prism.highlightAll();
-    } else if (window.hljs) {
-        document.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightBlock(block);
-        });
-    } else {
-        // 如果没有加载代码高亮库，可以动态加载
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js';
-        script.onload = function() {
-            // 加载核心库后加载语言支持
-            const languageScript = document.createElement('script');
-            languageScript.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js';
-            languageScript.onload = function() {
-                Prism.highlightAll();
-            };
-            document.head.appendChild(languageScript);
-            
-            // 加载样式
-            const style = document.createElement('link');
-            style.rel = 'stylesheet';
-            style.href = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css';
-            document.head.appendChild(style);
-        };
-        document.head.appendChild(script);
-    }
-}
-
-/**
- * 初始化图片灯箱效果
- */
-function initImageLightbox() {
-    const articleImages = document.querySelectorAll('.article-content img');
-    
-    articleImages.forEach(img => {
-        // 为图片添加点击事件
-        img.addEventListener('click', function() {
-            // 创建灯箱元素
-            const lightbox = document.createElement('div');
-            lightbox.className = 'lightbox';
-            
-            // 创建灯箱内容
-            const lightboxContent = document.createElement('div');
-            lightboxContent.className = 'lightbox-content';
-            
-            // 创建关闭按钮
-            const closeButton = document.createElement('button');
-            closeButton.className = 'lightbox-close';
-            closeButton.innerHTML = '<i class="fas fa-times"></i>';
-            
-            // 创建图片元素
-            const lightboxImg = document.createElement('img');
-            lightboxImg.src = this.src;
-            lightboxImg.alt = this.alt;
-            
-            // 组装灯箱
-            lightboxContent.appendChild(closeButton);
-            lightboxContent.appendChild(lightboxImg);
-            lightbox.appendChild(lightboxContent);
-            document.body.appendChild(lightbox);
-            
-            // 防止页面滚动
-            document.body.style.overflow = 'hidden';
-            
-            // 关闭灯箱的事件
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox || e.target === closeButton || e.target === closeButton.querySelector('i')) {
-                    document.body.removeChild(lightbox);
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-        
-        // 添加可点击的视觉提示
-        img.style.cursor = 'pointer';
-    });
-}
-
-/**
- * 初始化分享按钮
- */
-function initShareButtons() {
-    const shareButtons = document.querySelectorAll('.article-share a');
-    
-    shareButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            let shareUrl = '';
-            
-            // 根据不同的分享平台设置分享URL
-            if (this.classList.contains('share-twitter')) {
-                shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-            } else if (this.classList.contains('share-facebook')) {
-                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-            } else if (this.classList.contains('share-linkedin')) {
-                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-            } else if (this.classList.contains('share-weibo')) {
-                shareUrl = `http://service.weibo.com/share/share.php?url=${url}&title=${title}`;
-            } else if (this.classList.contains('share-wechat')) {
-                // 微信分享需要生成二维码
-                // 这里可以使用第三方库如qrcode.js
-                alert('请截图后在微信中扫描分享');
-                return;
-            }
-            
-            // 打开分享窗口
-            window.open(shareUrl, '_blank', 'width=600,height=400');
-        });
-    });
-}
-
-/**
- * 初始化评论表单
- */
-function initCommentForm() {
-    const commentForm = document.querySelector('.comment-form');
-    
-    if (commentForm) {
-        commentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 获取表单数据
-            const name = document.getElementById('comment-name').value;
-            const email = document.getElementById('comment-email').value;
-            const content = document.getElementById('comment-content').value;
-            
-            // 这里可以添加评论提交逻辑
-            // 例如使用fetch API发送到后端
-            
-            // 模拟评论提交成功
-            alert('评论提交成功，等待审核后显示');
-            
-            // 清空表单
-            commentForm.reset();
         });
     }
 }

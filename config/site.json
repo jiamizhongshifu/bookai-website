@@ -1,0 +1,32 @@
+{
+  "site": {
+    "name": "加密钟师傅的AI编程教程",
+    "description": "专注于AI编程教育的技术博客",
+    "url": "https://tutorial.cryptomaster.com",
+    "language": "zh-CN"
+  },
+  "author": {
+    "name": "加密钟师傅",
+    "title": "AI编程教育专家",
+    "bio": "致力于让AI编程更简单、更有趣",
+    "avatar": "/images/author-avatar.svg",
+    "social": {
+      "github": "https://github.com/cryptomaster",
+      "twitter": "https://twitter.com/cryptomaster",
+      "email": "contact@cryptomaster.com"
+    }
+  },
+  "content": {
+    "postsPerPage": 10,
+    "defaultCategory": "教程",
+    "defaultTags": ["AI", "编程", "教程"],
+    "dateFormat": "YYYY-MM-DD",
+    "defaultReadingTime": "15分钟"
+  },
+  "features": {
+    "comments": true,
+    "search": true,
+    "darkMode": true,
+    "newsletter": true
+  }
+} 

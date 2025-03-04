@@ -2,7 +2,7 @@
 layout: article
 title: DeepSeek高阶用法：如何用MoE架构优化企业级AI应用？
 date: 2025-03-01
-author: AI进化论-花生
+author: 加密钟师傅
 thumbnail: /images/deepseek-advanced.svg
 excerpt: 深入解析DeepSeek的MoE架构技术原理，以及如何利用这一架构优化企业级AI应用，提升性能并降低成本。
 tags: [DeepSeek, MoE架构, 企业级AI, DeepSeek-R1, 模型优化]

@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="6" fill="#4A6CF7"/>
-  <path d="M8 16L14 22L24 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆 -->
+    <circle cx="256" cy="256" r="256" fill="#007AFF"/>
+    
+    <!-- AI文字 -->
+    <path d="M160 160L200 352M180 160V352M280 160H360M320 160V352" 
+          stroke="white" 
+          stroke-width="48" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <!-- 装饰性连接线 -->
+    <path d="M120 256H392" 
+          stroke="white" 
+          stroke-width="16" 
+          stroke-linecap="round" 
+          stroke-dasharray="4 12"/>
+    
+    <!-- 点缀元素 -->
+    <circle cx="180" cy="256" r="8" fill="white"/>
+    <circle cx="320" cy="256" r="8" fill="white"/>
 </svg> 

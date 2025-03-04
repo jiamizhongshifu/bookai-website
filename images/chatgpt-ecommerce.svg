@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆形 -->
+    <circle cx="120" cy="120" r="120" fill="#FDF4FF"/>
+    
+    <!-- 购物车 -->
+    <path d="M60 60h30l20 100h70" stroke="#D946EF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="120" cy="180" r="12" fill="#FFFFFF" stroke="#D946EF" stroke-width="4"/>
+    <circle cx="170" cy="180" r="12" fill="#FFFFFF" stroke="#D946EF" stroke-width="4"/>
+    
+    <!-- AI图标 -->
+    <rect x="140" y="80" width="40" height="40" rx="8" fill="#FFFFFF" stroke="#D946EF" stroke-width="4"/>
+    <path d="M150 100h20M160 90v20" stroke="#D946EF" stroke-width="4" stroke-linecap="round"/>
+</svg> 

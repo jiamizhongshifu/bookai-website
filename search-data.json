@@ -1,58 +1,146 @@
----
-layout: null
----
 [
-  {% for article in site.articles %}
-    {
-      "title": {{ article.title | jsonify }},
-      "url": {{ article.url | relative_url | jsonify }},
-      "date": {{ article.date | date: "%Y-%m-%d" | jsonify }},
-      "categories": {{ article.categories | jsonify }},
-      "tags": {{ article.tags | jsonify }},
-      "content": {{ article.content | strip_html | strip_newlines | jsonify }},
-      "excerpt": {{ article.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
-    }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-  {% if site.resources.size > 0 %}
-    {% if site.articles.size > 0 %},{% endif %}
-    {% for resource in site.resources %}
-      {
-        "title": {{ resource.title | jsonify }},
-        "url": {{ resource.url | relative_url | jsonify }},
-        "date": {{ resource.date | date: "%Y-%m-%d" | jsonify }},
-        "categories": {{ resource.categories | jsonify }},
-        "tags": {{ resource.tags | jsonify }},
-        "content": {{ resource.content | strip_html | strip_newlines | jsonify }},
-        "excerpt": {{ resource.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  {% endif %}
-  {% if site.apps.size > 0 %}
-    {% if site.articles.size > 0 or site.resources.size > 0 %},{% endif %}
-    {% for app in site.apps %}
-      {
-        "title": {{ app.title | jsonify }},
-        "url": {{ app.url | relative_url | jsonify }},
-        "date": {{ app.date | date: "%Y-%m-%d" | jsonify }},
-        "categories": {{ app.categories | jsonify }},
-        "tags": {{ app.tags | jsonify }},
-        "content": {{ app.content | strip_html | strip_newlines | jsonify }},
-        "excerpt": {{ app.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  {% endif %}
-  {% if site.tools.size > 0 %}
-    {% if site.articles.size > 0 or site.resources.size > 0 or site.apps.size > 0 %},{% endif %}
-    {% for tool in site.tools %}
-      {
-        "title": {{ tool.title | jsonify }},
-        "url": {{ tool.url | relative_url | jsonify }},
-        "date": {{ tool.date | date: "%Y-%m-%d" | jsonify }},
-        "categories": {{ tool.categories | jsonify }},
-        "tags": {{ tool.tags | jsonify }},
-        "content": {{ tool.content | strip_html | strip_newlines | jsonify }},
-        "excerpt": {{ tool.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }}
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  {% endif %}
-] 
+  {
+    "title": "ChatGPT编程实战教程",
+    "description": "全面的ChatGPT编程指南，从基础概念到高级应用，帮助你掌握AI编程技巧",
+    "url": "/articles/chatgpt/chatgpt-coding-tutorial.html",
+    "date": "2024-01-15",
+    "category": "ChatGPT",
+    "tags": ["ChatGPT", "AI编程", "教程", "代码生成", "提示词工程"],
+    "keywords": ["ChatGPT", "AI编程", "提示词工程", "代码生成", "AI助手", "编程教程", "人工智能"],
+    "content": "ChatGPT作为一个强大的AI助手，不仅可以帮助我们写代码，还能辅助调试、重构和优化代码。本教程将全面介绍如何使用ChatGPT进行编程。",
+    "image": "/images/chatgpt-coding.svg",
+    "author": "加密钟师傅",
+    "readingTime": "15分钟",
+    "difficulty": "入门",
+    "views": 1200,
+    "likes": 45,
+    "comments": 12,
+    "series": "ChatGPT系列教程",
+    "seriesOrder": 1,
+    "lastUpdated": "2024-01-20",
+    "relatedArticles": [
+      "/articles/chatgpt/chatgpt-writing-guide.html",
+      "/articles/cursor/cursor-plugin-development.html"
+    ]
+  },
+  {
+    "title": "ChatGPT写作指南",
+    "description": "学习如何使用ChatGPT生成高质量的SEO文章和营销文案，提升内容创作效率",
+    "url": "/articles/chatgpt/chatgpt-writing-guide.html",
+    "date": "2024-01-16",
+    "category": "ChatGPT",
+    "tags": ["ChatGPT", "写作", "SEO", "营销", "内容创作"],
+    "keywords": ["ChatGPT写作", "AI写作", "SEO优化", "内容营销", "文案创作", "营销文案"],
+    "content": "ChatGPT是一个强大的写作助手，可以帮助我们生成各种类型的文章和文案。本指南将教你如何使用ChatGPT提升写作效率。",
+    "image": "/images/chatgpt-writing.svg",
+    "author": "加密钟师傅",
+    "readingTime": "12分钟",
+    "difficulty": "入门",
+    "views": 980,
+    "likes": 38,
+    "comments": 8,
+    "series": "ChatGPT系列教程",
+    "seriesOrder": 2,
+    "lastUpdated": "2024-01-19",
+    "relatedArticles": [
+      "/articles/chatgpt/chatgpt-coding-tutorial.html",
+      "/articles/chatgpt/chatgpt-ecommerce-guide.html"
+    ]
+  },
+  {
+    "title": "ChatGPT电商应用指南",
+    "description": "如何使用ChatGPT实现跨境电商的选品、文案与客服自动化，提升运营效率",
+    "url": "/articles/chatgpt/chatgpt-ecommerce-guide.html",
+    "date": "2024-01-17",
+    "category": "ChatGPT",
+    "tags": ["ChatGPT", "电商", "自动化", "跨境电商", "客服"],
+    "keywords": ["ChatGPT电商", "跨境电商", "选品", "客服自动化", "电商运营", "AI客服"],
+    "content": "在电商领域，ChatGPT可以帮助我们实现多个环节的自动化，从选品分析到客服对话。本指南将详细介绍这些应用场景。",
+    "image": "/images/chatgpt-ecommerce.svg",
+    "author": "加密钟师傅",
+    "readingTime": "20分钟",
+    "difficulty": "进阶",
+    "views": 850,
+    "likes": 32,
+    "comments": 15,
+    "series": "ChatGPT系列教程",
+    "seriesOrder": 3,
+    "lastUpdated": "2024-01-18",
+    "relatedArticles": [
+      "/articles/chatgpt/chatgpt-writing-guide.html",
+      "/articles/chatgpt/chatgpt-education-guide.html"
+    ]
+  },
+  {
+    "title": "ChatGPT教育应用指南",
+    "description": "探索ChatGPT在教育领域的应用，包括课程设计、作业批改和个性化学习方案制定",
+    "url": "/articles/chatgpt/chatgpt-education-guide.html",
+    "date": "2024-01-18",
+    "category": "ChatGPT",
+    "tags": ["ChatGPT", "教育", "在线学习", "个性化教育"],
+    "keywords": ["ChatGPT教育", "AI教育", "个性化学习", "智能教学", "在线教育", "教育科技"],
+    "content": "ChatGPT在教育领域有着广泛的应用前景，从课程设计到个性化辅导。本指南将分享如何在教育中充分利用ChatGPT。",
+    "image": "/images/chatgpt-education.svg",
+    "author": "加密钟师傅",
+    "readingTime": "18分钟",
+    "difficulty": "进阶",
+    "views": 720,
+    "likes": 28,
+    "comments": 10,
+    "series": "ChatGPT系列教程",
+    "seriesOrder": 4,
+    "lastUpdated": "2024-01-17",
+    "relatedArticles": [
+      "/articles/chatgpt/chatgpt-ecommerce-guide.html",
+      "/articles/chatgpt/chatgpt-coding-tutorial.html"
+    ]
+  },
+  {
+    "title": "Cursor插件开发指南",
+    "description": "学习如何为Cursor开发插件，扩展AI编程助手的功能，打造个性化的开发工具",
+    "url": "/articles/cursor/cursor-plugin-development.html",
+    "date": "2024-01-19",
+    "category": "Cursor",
+    "tags": ["Cursor", "插件开发", "AI编程", "开发工具"],
+    "keywords": ["Cursor插件", "AI编程", "IDE扩展", "开发教程", "插件开发", "编程工具"],
+    "content": "Cursor支持强大的插件系统，让开发者可以扩展其AI编程功能。本指南将教你如何开发Cursor插件。",
+    "image": "/images/cursor-plugin.svg",
+    "author": "加密钟师傅",
+    "readingTime": "25分钟",
+    "difficulty": "高级",
+    "views": 560,
+    "likes": 22,
+    "comments": 7,
+    "series": "Cursor系列教程",
+    "seriesOrder": 1,
+    "lastUpdated": "2024-01-16",
+    "relatedArticles": [
+      "/articles/cursor/cursor-enterprise-security.html",
+      "/articles/chatgpt/chatgpt-coding-tutorial.html"
+    ]
+  },
+  {
+    "title": "Cursor企业级应用安全指南",
+    "description": "了解如何在企业环境中安全使用Cursor，保护代码和数据安全，确保合规性",
+    "url": "/articles/cursor/cursor-enterprise-security.html",
+    "date": "2024-01-20",
+    "category": "Cursor",
+    "tags": ["Cursor", "企业安全", "数据保护", "合规性"],
+    "keywords": ["Cursor安全", "企业应用", "数据保护", "安全配置", "合规部署", "安全最佳实践"],
+    "content": "在企业环境中使用Cursor需要特别注意安全性。本指南将介绍如何配置和使用Cursor以确保代码和数据安全。",
+    "image": "/images/cursor-security.svg",
+    "author": "加密钟师傅",
+    "readingTime": "22分钟",
+    "difficulty": "高级",
+    "views": 480,
+    "likes": 18,
+    "comments": 5,
+    "series": "Cursor系列教程",
+    "seriesOrder": 2,
+    "lastUpdated": "2024-01-15",
+    "relatedArticles": [
+      "/articles/cursor/cursor-plugin-development.html",
+      "/articles/chatgpt/chatgpt-coding-tutorial.html"
+    ]
+  }
+]

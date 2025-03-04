@@ -1,1 +1,67 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="450" fill="#1A1A2E"/>
+  
+  <!-- 装饰元素 -->
+  <circle cx="100" cy="100" r="60" fill="#16213E" stroke="#FF6B6B" stroke-width="2"/>
+  <circle cx="700" cy="350" r="80" fill="#16213E" stroke="#FF6B6B" stroke-width="2"/>
+  
+  <!-- 代码编辑器 -->
+  <rect x="200" y="125" width="400" height="200" rx="10" fill="#0F3460" stroke="#FF6B6B" stroke-width="2"/>
+  
+  <!-- 代码行号 -->
+  <rect x="200" y="125" width="30" height="200" rx="0" fill="#16213E"/>
+  <text x="215" y="150" font-family="monospace" font-size="14" fill="#8D8D8D" text-anchor="middle">1</text>
+  <text x="215" y="175" font-family="monospace" font-size="14" fill="#8D8D8D" text-anchor="middle">2</text>
+  <text x="215" y="200" font-family="monospace" font-size="14" fill="#8D8D8D" text-anchor="middle">3</text>
+  <text x="215" y="225" font-family="monospace" font-size="14" fill="#8D8D8D" text-anchor="middle">4</text>
+  <text x="215" y="250" font-family="monospace" font-size="14" fill="#8D8D8D" text-anchor="middle">5</text>
+  <text x="215" y="275" font-family="monospace" font-size="14" fill="#8D8D8D" text-anchor="middle">6</text>
+  <text x="215" y="300" font-family="monospace" font-size="14" fill="#8D8D8D" text-anchor="middle">7</text>
+  
+  <!-- 代码内容 -->
+  <text x="240" y="150" font-family="monospace" font-size="14" fill="#FF6B6B">function</text>
+  <text x="300" y="150" font-family="monospace" font-size="14" fill="#4CC9F0">generateCode</text>
+  <text x="390" y="150" font-family="monospace" font-size="14" fill="white">(prompt) {</text>
+  
+  <text x="250" y="175" font-family="monospace" font-size="14" fill="#4CC9F0">const</text>
+  <text x="290" y="175" font-family="monospace" font-size="14" fill="#F1CA89">ai</text>
+  <text x="310" y="175" font-family="monospace" font-size="14" fill="white">=</text>
+  <text x="325" y="175" font-family="monospace" font-size="14" fill="#4CC9F0">new</text>
+  <text x="355" y="175" font-family="monospace" font-size="14" fill="#FF6B6B">CursorAI</text>
+  <text x="425" y="175" font-family="monospace" font-size="14" fill="white">();</text>
+  
+  <text x="250" y="200" font-family="monospace" font-size="14" fill="#4CC9F0">const</text>
+  <text x="290" y="200" font-family="monospace" font-size="14" fill="#F1CA89">result</text>
+  <text x="340" y="200" font-family="monospace" font-size="14" fill="white">=</text>
+  <text x="355" y="200" font-family="monospace" font-size="14" fill="#4CC9F0">await</text>
+  <text x="395" y="200" font-family="monospace" font-size="14" fill="#F1CA89">ai</text>
+  <text x="410" y="200" font-family="monospace" font-size="14" fill="white">.</text>
+  <text x="420" y="200" font-family="monospace" font-size="14" fill="#4CC9F0">generate</text>
+  <text x="480" y="200" font-family="monospace" font-size="14" fill="white">(prompt);</text>
+  
+  <text x="250" y="225" font-family="monospace" font-size="14" fill="#4CC9F0">return</text>
+  <text x="300" y="225" font-family="monospace" font-size="14" fill="#F1CA89">result</text>
+  <text x="340" y="225" font-family="monospace" font-size="14" fill="white">;</text>
+  
+  <text x="240" y="250" font-family="monospace" font-size="14" fill="white">}</text>
+  
+  <text x="240" y="275" font-family="monospace" font-size="14" fill="#FF6B6B">generateCode</text>
+  <text x="340" y="275" font-family="monospace" font-size="14" fill="white">(</text>
+  <text x="350" y="275" font-family="monospace" font-size="14" fill="#F8D210">"创建一个Todo应用"</text>
+  <text x="490" y="275" font-family="monospace" font-size="14" fill="white">);</text>
+  
+  <!-- 光标 -->
+  <rect x="495" y="275" width="2" height="14" fill="#4CC9F0">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+  </rect>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">Cursor 终极指南</text>
+  <text x="400" y="380" font-family="Arial, sans-serif" font-size="24" fill="#FF6B6B" text-anchor="middle">AI驱动的编程新时代</text>
+  
+  <!-- 装饰线 -->
+  <line x1="150" y1="80" x2="650" y2="80" stroke="#4CC9F0" stroke-width="2"/>
+  <line x1="200" y1="380" x2="600" y2="380" stroke="#4CC9F0" stroke-width="2"/>
+</svg> 

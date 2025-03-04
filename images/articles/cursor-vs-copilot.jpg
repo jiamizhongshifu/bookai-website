@@ -1,1 +1,60 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="450" fill="#0D1117"/>
+  
+  <!-- 装饰元素 -->
+  <circle cx="120" cy="120" r="60" fill="#161B22" stroke="#58A6FF" stroke-width="2"/>
+  <circle cx="680" cy="330" r="80" fill="#161B22" stroke="#58A6FF" stroke-width="2"/>
+  
+  <!-- VS 文字 -->
+  <text x="400" y="225" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#58A6FF" text-anchor="middle">VS</text>
+  
+  <!-- Cursor 图标和文字 -->
+  <g transform="translate(200, 175)">
+    <rect width="120" height="120" rx="15" fill="#1A1A2E"/>
+    <text x="60" y="70" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FF6B6B" text-anchor="middle">Cursor</text>
+    <rect x="40" y="85" width="40" height="5" rx="2.5" fill="#FF6B6B"/>
+    <rect x="50" y="95" width="20" height="5" rx="2.5" fill="#FF6B6B"/>
+  </g>
+  
+  <!-- GitHub Copilot 图标和文字 -->
+  <g transform="translate(480, 175)">
+    <rect width="120" height="120" rx="15" fill="#161B22"/>
+    <text x="60" y="60" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#58A6FF" text-anchor="middle">GitHub</text>
+    <text x="60" y="85" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#58A6FF" text-anchor="middle">Copilot</text>
+    <!-- 简化的GitHub Copilot图标 -->
+    <path d="M40 100 L80 100 L60 120 Z" fill="#58A6FF"/>
+  </g>
+  
+  <!-- 特性比较 -->
+  <g transform="translate(200, 320)">
+    <circle cx="10" cy="10" r="5" fill="#FF6B6B"/>
+    <text x="25" y="15" font-family="Arial, sans-serif" font-size="14" fill="white">全文对话</text>
+    
+    <circle cx="10" cy="35" r="5" fill="#FF6B6B"/>
+    <text x="25" y="40" font-family="Arial, sans-serif" font-size="14" fill="white">代码解释</text>
+    
+    <circle cx="10" cy="60" r="5" fill="#FF6B6B"/>
+    <text x="25" y="65" font-family="Arial, sans-serif" font-size="14" fill="white">多模型支持</text>
+  </g>
+  
+  <g transform="translate(480, 320)">
+    <circle cx="10" cy="10" r="5" fill="#58A6FF"/>
+    <text x="25" y="15" font-family="Arial, sans-serif" font-size="14" fill="white">行内补全</text>
+    
+    <circle cx="10" cy="35" r="5" fill="#58A6FF"/>
+    <text x="25" y="40" font-family="Arial, sans-serif" font-size="14" fill="white">GitHub集成</text>
+    
+    <circle cx="10" cy="60" r="5" fill="#58A6FF"/>
+    <text x="25" y="65" font-family="Arial, sans-serif" font-size="14" fill="white">实时建议</text>
+  </g>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">Cursor vs GitHub Copilot</text>
+  <text x="400" y="120" font-family="Arial, sans-serif" font-size="24" fill="#58A6FF" text-anchor="middle">开发者真实体验报告</text>
+  
+  <!-- 装饰线 -->
+  <line x1="150" y1="80" x2="650" y2="80" stroke="#58A6FF" stroke-width="2"/>
+  <line x1="200" y1="120" x2="600" y2="120" stroke="#58A6FF" stroke-width="2"/>
+</svg> 

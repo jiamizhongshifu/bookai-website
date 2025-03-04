@@ -9,7 +9,8 @@ module.exports = {
   
   // 测试文件匹配模式
   testMatch: [
-    '**/tests/unit/**/*.test.js'
+    "**/tests/**/*.test.js",
+    "**/tests/**/*.spec.js"
   ],
   
   // 覆盖率收集
@@ -20,12 +21,16 @@ module.exports = {
     '!**/vendor/**'
   ],
   coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov'],
   
   // 测试超时时间
   testTimeout: 10000,
   
   // 测试报告
-  reporters: ['default', 'jest-junit'],
+  reporters: [
+    'default',
+    'jest-junit'
+  ],
   
   // 模块别名
   moduleNameMapper: {
@@ -35,5 +40,13 @@ module.exports = {
   // 在每个测试文件执行前设置
   setupFilesAfterEnv: [
     '<rootDir>/tests/unit/setup.js'
+  ],
+
+  moduleDirectories: ['node_modules'],
+  setupFiles: [],
+  transform: {},
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/'
   ]
 }; 
