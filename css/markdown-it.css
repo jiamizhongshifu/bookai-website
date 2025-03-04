@@ -1,5 +1,5 @@
 /**
- * markdown-it样式表
+ * markdown-it样式表 - 苹果风格设计
  * 
  * 包含：
  * - 代码高亮样式
@@ -22,7 +22,7 @@
 
 .reading-progress-bar {
   height: 4px;
-  background: linear-gradient(to right, #4CAF50, #8BC34A);
+  background: linear-gradient(to right, #0071e3, #2997ff);
   width: 0%;
   border-radius: 0 2px 2px 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -31,21 +31,23 @@
 
 /* 目录容器 */
 .toc-container {
-  background-color: #f8f9fa;
-  border: 1px solid #eaecef;
-  border-radius: 6px;
-  padding: 15px 20px;
-  margin: 20px 0;
-  font-size: 14px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .toc-container::before {
   content: "目录";
   display: block;
   font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--heading-color);
+  letter-spacing: -0.01em;
 }
 
 /* 目录列表 */
@@ -57,26 +59,28 @@
 
 .toc-list .toc-list {
   padding-left: 20px;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 .toc-item {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   line-height: 1.5;
 }
 
 /* 目录链接 */
 .toc-link {
-  color: #0366d6;
+  color: var(--primary-color);
   text-decoration: none;
   display: inline-block;
-  padding: 2px 0;
-  transition: color 0.2s ease;
+  padding: 4px 0;
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  font-weight: 400;
+  border-radius: 4px;
 }
 
 .toc-link:hover {
-  color: #0076ff;
-  text-decoration: underline;
+  color: var(--primary-hover);
+  transform: translateX(2px);
 }
 
 /* 标题锚点 */
@@ -85,7 +89,7 @@ h3 .header-anchor,
 h4 .header-anchor,
 h5 .header-anchor,
 h6 .header-anchor {
-  color: #ccc;
+  color: var(--text-light);
   font-size: 0.85em;
   margin-right: 0.25em;
   text-decoration: none;
@@ -101,22 +105,26 @@ h6:hover .header-anchor {
   opacity: 1;
 }
 
-/* 代码块 */
+/* 代码块样式 */
 pre {
-  background-color: #282c34;
-  border-radius: 6px;
-  padding: 16px;
+  background-color: var(--code-bg);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 24px 0;
   overflow: auto;
-  margin: 16px 0;
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 pre code {
-  color: #abb2bf;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 14px;
-  line-height: 1.5;
-  display: block;
+  line-height: 1.6;
+  color: var(--code-text);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  white-space: pre;
   tab-size: 2;
 }
 
@@ -125,112 +133,116 @@ pre::before {
   content: attr(data-language);
   position: absolute;
   top: 0;
-  right: 0;
-  padding: 2px 8px;
+  right: 12px;
   font-size: 12px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-bottom-left-radius: 4px;
-  border-top-right-radius: 6px;
+  color: var(--text-light);
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 8px;
+  border-radius: 0 0 6px 6px;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 /* 行内代码 */
 :not(pre) > code {
-  background-color: rgba(27, 31, 35, 0.05);
-  border-radius: 3px;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  font-size: 85%;
-  padding: 0.2em 0.4em;
-  margin: 0;
+  font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  background-color: var(--code-bg);
+  color: var(--primary-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  white-space: nowrap;
 }
 
 /* 图片懒加载 */
 .lazy-image {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  margin: 20px auto;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.3s ease;
+  border-radius: 12px;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .lazy-image[data-src] {
-  opacity: 0;
+  filter: blur(8px);
 }
 
 .lazy-image.loaded {
-  opacity: 1;
+  filter: blur(0);
 }
 
 /* 图片容器 */
 figure.article-image {
-  margin: 20px 0;
+  margin: 24px 0;
   text-align: center;
 }
 
 figure.article-image figcaption {
-  font-size: 14px;
-  color: #666;
   margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-light);
+  font-style: italic;
 }
 
 /* 表格样式 */
 table {
-  border-collapse: collapse;
   width: 100%;
-  margin: 20px 0;
-  overflow-x: auto;
-  display: block;
+  border-collapse: collapse;
+  margin: 24px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 table th,
 table td {
-  border: 1px solid #dfe2e5;
-  padding: 8px 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
   text-align: left;
 }
 
 table th {
-  background-color: #f6f8fa;
+  background-color: var(--bg-light);
   font-weight: 600;
 }
 
 table tr:nth-child(even) {
-  background-color: #f8f9fa;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 /* 引用样式 */
 blockquote {
-  border-left: 4px solid #dfe2e5;
-  color: #6a737d;
-  margin: 20px 0;
-  padding: 0 16px;
+  margin: 24px 0;
+  padding: 16px 24px;
+  border-left: 4px solid var(--primary-color);
+  background-color: var(--bg-light);
+  border-radius: 8px;
 }
 
 blockquote p {
-  margin: 10px 0;
+  margin-bottom: 8px;
 }
 
 blockquote cite {
   display: block;
-  font-style: italic;
-  text-align: right;
-  margin-top: 8px;
   font-size: 14px;
+  color: var(--text-light);
+  font-style: italic;
+  margin-top: 8px;
 }
 
-/* highlight.js主题覆盖 */
+/* 代码高亮样式 - 苹果风格 */
 .hljs-comment,
 .hljs-quote {
-  color: #a0a1a7;
+  color: #8e8e93;
   font-style: italic;
 }
 
 .hljs-doctag,
 .hljs-keyword,
 .hljs-formula {
-  color: #c678dd;
+  color: #af52de;
 }
 
 .hljs-section,
@@ -238,11 +250,11 @@ blockquote cite {
 .hljs-selector-tag,
 .hljs-deletion,
 .hljs-subst {
-  color: #e06c75;
+  color: #ff2d55;
 }
 
 .hljs-literal {
-  color: #56b6c2;
+  color: #5856d6;
 }
 
 .hljs-string,
@@ -250,12 +262,12 @@ blockquote cite {
 .hljs-addition,
 .hljs-attribute,
 .hljs-meta-string {
-  color: #98c379;
+  color: #34c759;
 }
 
 .hljs-built_in,
 .hljs-class .hljs-title {
-  color: #e6c07b;
+  color: #ff9500;
 }
 
 .hljs-attr,
@@ -266,7 +278,7 @@ blockquote cite {
 .hljs-selector-attr,
 .hljs-selector-pseudo,
 .hljs-number {
-  color: #d19a66;
+  color: #007aff;
 }
 
 .hljs-symbol,
@@ -275,7 +287,7 @@ blockquote cite {
 .hljs-meta,
 .hljs-selector-id,
 .hljs-title {
-  color: #61aeee;
+  color: #5ac8fa;
 }
 
 .hljs-emphasis {

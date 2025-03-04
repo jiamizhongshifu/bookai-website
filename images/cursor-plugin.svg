@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆形 -->
+    <circle cx="120" cy="120" r="120" fill="#F5F3FF"/>
+    
+    <!-- 插件图标 -->
+    <rect x="60" y="60" width="120" height="120" rx="16" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="4"/>
+    
+    <!-- 齿轮 -->
+    <circle cx="120" cy="120" r="30" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="4"/>
+    <path d="M120 90v-10M120 160v-10M90 120h-10M160 120h-10" stroke="#8B5CF6" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- 代码符号 -->
+    <path d="M100 110l-10 10 10 10M140 110l10 10-10 10" stroke="#8B5CF6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> 

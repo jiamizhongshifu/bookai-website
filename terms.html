@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用条款 - AiXueba</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/bootstrap-style.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/icons.css">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">AiXueba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#featured">精选教程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#chatgpt">ChatGPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#cursor">Cursor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#deepseek">Deepseek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles/ai-tools-guide.html">AI工具</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <form class="d-flex me-2" id="searchForm" onsubmit="handleSearch(event)">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="搜索教程..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-link text-dark dark-mode-toggle" id="darkModeToggle" aria-label="切换深色模式">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container py-5 mt-5">
+        <h1 class="mb-4">使用条款</h1>
+        
+        <section class="mb-4">
+            <h2>接受条款</h2>
+            <p>通过访问和使用AiXueba网站，您同意遵守这些使用条款。如果您不同意这些条款，请不要使用本网站。</p>
+        </section>
+
+        <section class="mb-4">
+            <h2>用户责任</h2>
+            <p>作为用户，您同意：</p>
+            <ul>
+                <li>提供准确的个人信息</li>
+                <li>保护您的账户安全</li>
+                <li>不进行任何非法或未经授权的活动</li>
+                <li>遵守所有适用的法律和法规</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>知识产权</h2>
+            <p>本网站的内容受到以下保护：</p>
+            <ul>
+                <li>所有内容均受版权保护</li>
+                <li>未经许可不得复制或分发</li>
+                <li>商标和标识为本公司所有</li>
+                <li>教程内容仅供个人学习使用</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>免责声明</h2>
+            <p>我们不对以下情况负责：</p>
+            <ul>
+                <li>使用本网站造成的任何损失</li>
+                <li>第三方链接的内容</li>
+                <li>服务中断或技术问题</li>
+                <li>用户提供的内容准确性</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>内容使用</h2>
+            <p>关于网站内容的使用规则：</p>
+            <ul>
+                <li>仅供个人非商业用途</li>
+                <li>需注明来源并保留版权信息</li>
+                <li>不得修改或篡改原始内容</li>
+                <li>不得用于违法或不当目的</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>账户管理</h2>
+            <p>关于用户账户的规定：</p>
+            <ul>
+                <li>用户需对账户活动负责</li>
+                <li>禁止共享或转让账户</li>
+                <li>违规账户可能被终止</li>
+                <li>需及时更新账户信息</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>服务变更</h2>
+            <p>我们保留以下权利：</p>
+            <ul>
+                <li>随时修改或终止服务</li>
+                <li>更新使用条款和政策</li>
+                <li>调整服务价格和内容</li>
+                <li>限制特定用户的访问</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>争议解决</h2>
+            <p>如有争议：</p>
+            <ul>
+                <li>优先通过友好协商解决</li>
+                <li>适用中华人民共和国法律</li>
+                <li>北京市法院具有管辖权</li>
+                <li>最终解释权归本公司所有</li>
+            </ul>
+        </section>
+
+        <section class="mb-4">
+            <h2>联系方式</h2>
+            <p>如有任何问题，请联系我们：</p>
+            <ul>
+                <li>电子邮件：terms@aixueba.club</li>
+                <li>地址：中国北京市朝阳区</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AiXueba.club</h5>
+                    <p>提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <h5>教程分类</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="articles/chatgpt-articles.html" class="text-light">ChatGPT教程</a></li>
+                                <li><a href="articles/cursor-articles.html" class="text-light">Cursor教程</a></li>
+                                <li><a href="articles/deepseek-articles.html" class="text-light">Deepseek教程</a></li>
+                                <li><a href="articles/ai-tools-guide.html" class="text-light">AI工具</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <h5>关于我们</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="about.html" class="text-light">关于AiXueba</a></li>
+                                <li><a href="contact.html" class="text-light">联系我们</a></li>
+                                <li><a href="privacy.html" class="text-light">隐私政策</a></li>
+                                <li><a href="terms.html" class="text-light">使用条款</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>订阅更新</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="您的邮箱地址" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">订阅</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">Copyright © 2025 AiXueba, Inc. 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 搜索模态框 -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">搜索结果</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="searchResults">
+                        <!-- 搜索结果将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 自定义JS -->
+    <script src="js/bootstrap-main.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html> 

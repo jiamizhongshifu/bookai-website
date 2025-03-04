@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI工具指南 - AiXueba</title>
+    <meta name="description" content="全面的AI工具使用指南，帮助你选择最适合的AI工具">
+    <meta name="keywords" content="AI工具, AI教程, 人工智能工具, AI应用">
+    
+    <!-- Open Graph 标签 -->
+    <meta property="og:title" content="AI工具指南 - AiXueba">
+    <meta property="og:description" content="全面的AI工具使用指南，帮助你选择最适合的AI工具">
+    <meta property="og:image" content="https://aixueba.club/images/og-image.jpg">
+    <meta property="og:url" content="https://aixueba.club/articles/ai-tools-guide.html">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter 卡片 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI工具指南 - AiXueba">
+    <meta name="twitter:description" content="全面的AI工具使用指南，帮助你选择最适合的AI工具">
+    <meta name="twitter:image" content="https://aixueba.club/images/og-image.jpg">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="../css/bootstrap-style.css">
+    <link rel="stylesheet" href="../css/article.css">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    
+    <!-- 添加字体显示优化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../">AiXueba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#featured">精选教程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#chatgpt">ChatGPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#cursor">Cursor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../#deepseek">Deepseek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ai-tools-guide.html">AI工具</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <form class="d-flex me-2" id="searchForm" onsubmit="handleSearch(event)">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="搜索教程..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-link text-dark dark-mode-toggle" id="darkModeToggle" aria-label="切换深色模式">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container py-5 mt-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">首页</a></li>
+                        <li class="breadcrumb-item active">AI工具指南</li>
+                    </ol>
+                </nav>
+                <h1 class="display-5 fw-bold mb-4">AI工具指南</h1>
+                <p class="lead text-muted mb-5">全面的AI工具使用指南，帮助你选择最适合的AI工具</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- AI工具分类 -->
+            <div class="col-12 mb-5">
+                <h2 class="mb-4">AI工具分类</h2>
+                <div class="row g-4">
+                    <!-- 文本生成 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-pen-fancy text-primary fa-2x me-3"></i>
+                                    <h5 class="card-title mb-0">文本生成工具</h5>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>ChatGPT
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Claude
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Bard
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 代码开发 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-code text-primary fa-2x me-3"></i>
+                                    <h5 class="card-title mb-0">代码开发工具</h5>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Cursor
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>GitHub Copilot
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Tabnine
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 图像生成 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-image text-primary fa-2x me-3"></i>
+                                    <h5 class="card-title mb-0">图像生成工具</h5>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Midjourney
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>DALL-E
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Stable Diffusion
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 音频处理 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-music text-primary fa-2x me-3"></i>
+                                    <h5 class="card-title mb-0">音频处理工具</h5>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Mubert
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Descript
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Soundraw
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 视频制作 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-video text-primary fa-2x me-3"></i>
+                                    <h5 class="card-title mb-0">视频制作工具</h5>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Synthesia
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Runway
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>D-ID
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 数据分析 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-chart-bar text-primary fa-2x me-3"></i>
+                                    <h5 class="card-title mb-0">数据分析工具</h5>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>Obviously AI
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>DataRobot
+                                        </a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#" class="text-decoration-none">
+                                            <i class="fas fa-check text-success me-2"></i>RapidMiner
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 工具选择指南 -->
+            <div class="col-12 mb-5">
+                <h2 class="mb-4">如何选择合适的AI工具</h2>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mb-3">选择标准</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        明确使用目的和场景
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        评估工具的易用性
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        考虑成本和预算
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        查看用户评价和反馈
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mb-3">注意事项</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <i class="fas fa-exclamation-circle text-warning me-2"></i>
+                                        数据安全和隐私保护
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-exclamation-circle text-warning me-2"></i>
+                                        API调用限制和稳定性
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-exclamation-circle text-warning me-2"></i>
+                                        技术支持和更新维护
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-exclamation-circle text-warning me-2"></i>
+                                        与现有工作流程的兼容性
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AiXueba.club</h5>
+                    <p>提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <h5>教程分类</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="chatgpt-articles.html" class="text-light">ChatGPT教程</a></li>
+                                <li><a href="cursor-articles.html" class="text-light">Cursor教程</a></li>
+                                <li><a href="deepseek-articles.html" class="text-light">Deepseek教程</a></li>
+                                <li><a href="ai-tools-guide.html" class="text-light">AI工具</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <h5>关于我们</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="../about.html" class="text-light">关于AiXueba</a></li>
+                                <li><a href="../contact.html" class="text-light">联系我们</a></li>
+                                <li><a href="../privacy.html" class="text-light">隐私政策</a></li>
+                                <li><a href="../terms.html" class="text-light">使用条款</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>订阅更新</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="您的邮箱地址" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">订阅</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">Copyright © 2025 AiXueba, Inc. 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 搜索模态框 -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">搜索结果</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="searchResults">
+                        <!-- 搜索结果将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 自定义JS -->
+    <script src="../js/bootstrap-main.js"></script>
+    <script src="../js/search.js"></script>
+    <script src="../js/article.js"></script>
+</body>
+</html> 

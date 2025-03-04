@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章检查管理</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .status-badge {
+            width: 80px;
+            text-align: center;
+        }
+        .check-time {
+            font-size: 0.85em;
+            color: #666;
+        }
+        .issue-item {
+            border-left: 3px solid #dc3545;
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .no-issues {
+            border-left: 3px solid #198754;
+        }
+        .check-result {
+            transition: all 0.3s ease;
+        }
+        .check-result:hover {
+            background-color: #f8f9fa;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>文章检查管理</h1>
+            <button id="checkNow" class="btn btn-primary">
+                立即检查
+            </button>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">检查统计</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">总文章数</h6>
+                                <h3 id="totalArticles">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">问题文章数</h6>
+                                <h3 id="issueArticles">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">最近检查时间</h6>
+                                <h3 id="lastCheckTime">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">检查状态</h6>
+                                <h3 id="checkStatus">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">检查历史</h5>
+                <div id="checkResults" class="list-group">
+                    <!-- 检查结果将在这里动态显示 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading d-none">
+        <div class="spinner-border loading-spinner text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 工具函数：格式化时间
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+        }
+
+        // 工具函数：显示/隐藏加载动画
+        function toggleLoading(show) {
+            document.getElementById('loading').classList.toggle('d-none', !show);
+        }
+
+        // 更新统计信息
+        function updateStats(data) {
+            const lastCheck = data[0];
+            document.getElementById('totalArticles').textContent = lastCheck.totalArticles || '-';
+            document.getElementById('issueArticles').textContent = lastCheck.issues.length || '0';
+            document.getElementById('lastCheckTime').textContent = formatDate(lastCheck.timestamp);
+            document.getElementById('checkStatus').textContent = lastCheck.issues.length ? '有问题' : '正常';
+        }
+
+        // 显示检查结果
+        function displayResults(results) {
+            const container = document.getElementById('checkResults');
+            container.innerHTML = '';
+
+            results.forEach(result => {
+                const hasIssues = result.issues.length > 0;
+                const element = document.createElement('div');
+                element.className = `check-result card mb-3 ${hasIssues ? 'border-danger' : 'border-success'}`;
+                
+                element.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <h6 class="mb-0">检查时间：${formatDate(result.timestamp)}</h6>
+                                <small class="text-muted">文章总数：${result.totalArticles || '-'}</small>
+                            </div>
+                            <span class="badge ${hasIssues ? 'bg-danger' : 'bg-success'} status-badge">
+                                ${hasIssues ? '有问题' : '正常'}
+                            </span>
+                        </div>
+                        ${hasIssues ? `
+                            <div class="issues-list">
+                                ${result.issues.map(issue => `
+                                    <div class="issue-item">
+                                        <small class="text-danger">${issue}</small>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : `
+                            <div class="issue-item no-issues">
+                                <small class="text-success">未发现问题</small>
+                            </div>
+                        `}
+                    </div>
+                `;
+                
+                container.appendChild(element);
+            });
+        }
+
+        // 工具函数：显示错误提示
+        function showError(message, details = '') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-danger alert-dismissible fade show';
+            alertDiv.innerHTML = `
+                <strong>错误：</strong> ${message}
+                ${details ? `<br><small class="text-muted">${details}</small>` : ''}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.querySelector('.container').insertBefore(alertDiv, document.querySelector('.container').firstChild);
+            
+            // 5秒后自动关闭
+            setTimeout(() => {
+                alertDiv.classList.remove('show');
+                setTimeout(() => alertDiv.remove(), 150);
+            }, 5000);
+        }
+
+        // 加载检查历史
+        async function loadCheckHistory() {
+            try {
+                toggleLoading(true);
+                const response = await fetch('/api/article-checks');
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.message || '服务器响应错误');
+                }
+                const data = await response.json();
+                if (data.length === 0) {
+                    document.getElementById('checkResults').innerHTML = `
+                        <div class="alert alert-info">
+                            暂无检查记录，点击"立即检查"开始第一次检查
+                        </div>
+                    `;
+                    return;
+                }
+                updateStats(data);
+                displayResults(data);
+            } catch (error) {
+                console.error('加载检查历史失败：', error);
+                showError('加载检查历史失败', error.message);
+            } finally {
+                toggleLoading(false);
+            }
+        }
+
+        // 执行新的检查
+        async function runCheck() {
+            try {
+                toggleLoading(true);
+                const response = await fetch('/api/check-articles', {
+                    method: 'POST'
+                });
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.message || '服务器响应错误');
+                }
+                const result = await response.json();
+                await loadCheckHistory(); // 重新加载历史
+            } catch (error) {
+                console.error('执行检查失败：', error);
+                showError('执行检查失败', error.message);
+            } finally {
+                toggleLoading(false);
+            }
+        }
+
+        // 事件监听
+        document.getElementById('checkNow').addEventListener('click', runCheck);
+
+        // 初始加载
+        loadCheckHistory();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - AiXueba</title>
+    <meta name="description" content="AiXueba：专注于AI编程教育的技术社区">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/bootstrap-style.css">
+    
+    <!-- 图标字体 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/icons.css">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">AiXueba</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#featured">精选教程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#chatgpt">ChatGPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#cursor">Cursor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#deepseek">Deepseek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles/ai-tools-guide.html">AI工具</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <form class="d-flex me-2" id="searchForm" onsubmit="handleSearch(event)">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="搜索教程..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-link text-dark dark-mode-toggle" id="darkModeToggle" aria-label="切换深色模式">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container mt-5 pt-5">
+        <article class="about-page">
+            <h1 class="text-center mb-5">关于加密钟师傅</h1>
+            
+            <section class="mb-5">
+                <h2>我们的使命</h2>
+                <p>加密钟师傅致力于帮助每一位想要学习编程的人，通过 AI 工具提升学习效率和编程能力。我们相信，AI 不是威胁，而是每个人都应该掌握的强大工具。</p>
+            </section>
+
+            <section class="mb-5">
+                <h2>我们的愿景</h2>
+                <p>打造中国最专业的 AI 编程学习社区，让每个人都能轻松掌握 AI 辅助编程技能。</p>
+            </section>
+
+            <section class="mb-5">
+                <h2>我们的价值观</h2>
+                <ul>
+                    <li><strong>专业性</strong> - 提供最专业、最实用的 AI 编程知识</li>
+                    <li><strong>实用性</strong> - 所有教程都经过实践验证</li>
+                    <li><strong>开放性</strong> - 鼓励知识分享和技术交流</li>
+                    <li><strong>创新性</strong> - 持续探索 AI 技术的最新应用</li>
+                </ul>
+            </section>
+
+            <section class="mb-5">
+                <h2>加入我们</h2>
+                <p>如果你也对 AI 编程充满热情，欢迎加入我们的社区：</p>
+                <ul>
+                    <li>关注我们的公众号：加密钟师傅</li>
+                    <li>加入我们的 QQ 群：123456789（验证码：AI编程）</li>
+                    <li>关注我们的 B 站账号：加密钟师傅</li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AiXueba.club</h5>
+                    <p>提供最新、最实用的AI工具教程和资源</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-2"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3">
+                            <h5>教程分类</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="articles/chatgpt-articles.html" class="text-light">ChatGPT教程</a></li>
+                                <li><a href="articles/cursor-articles.html" class="text-light">Cursor教程</a></li>
+                                <li><a href="articles/deepseek-articles.html" class="text-light">Deepseek教程</a></li>
+                                <li><a href="articles/ai-tools-guide.html" class="text-light">AI工具</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <h5>关于我们</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="about.html" class="text-light">关于AiXueba</a></li>
+                                <li><a href="contact.html" class="text-light">联系我们</a></li>
+                                <li><a href="privacy.html" class="text-light">隐私政策</a></li>
+                                <li><a href="terms.html" class="text-light">使用条款</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>订阅更新</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="您的邮箱地址" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">订阅</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">Copyright © 2025 AiXueba, Inc. 保留所有权利</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 搜索模态框 -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">搜索结果</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="searchResults">
+                        <!-- 搜索结果将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 自定义JS -->
+    <script src="js/bootstrap-main.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html> 

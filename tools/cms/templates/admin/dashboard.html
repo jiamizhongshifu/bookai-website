@@ -1,0 +1,65 @@
+{% extends "admin/base.html" %}
+
+{% block title %}仪表盘 - 文章管理系统{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">文章管理</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="{{ url_for('new_article') }}" class="btn btn-sm btn-outline-primary">
+            <i class="fas fa-plus"></i> 新建文章
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>作者</th>
+                <th>分类</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.author }}</td>
+                <td>{{ article.category }}</td>
+                <td>
+                    {% if article.status == 'published' %}
+                    <span class="badge bg-success">已发布</span>
+                    {% else %}
+                    <span class="badge bg-warning text-dark">草稿</span>
+                    {% endif %}
+                </td>
+                <td>{{ article.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="{{ url_for('edit_article', id=article.id) }}" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-edit"></i> 编辑
+                        </a>
+                        {% if article.status == 'published' %}
+                        <a href="/articles/{{ article.id }}.html" target="_blank" class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-eye"></i> 预览
+                        </a>
+                        {% endif %}
+                        <button type="button" class="btn btn-sm btn-outline-danger" 
+                                onclick="if(confirm('确定要删除这篇文章吗？')) document.getElementById('delete-form-{{ article.id }}').submit();">
+                            <i class="fas fa-trash"></i> 删除
+                        </button>
+                    </div>
+                    <form id="delete-form-{{ article.id }}" action="{{ url_for('delete_article', id=article.id) }}" method="POST" style="display: none;"></form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

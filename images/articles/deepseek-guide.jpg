@@ -1,1 +1,42 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="450" fill="#1A1A2E"/>
+  
+  <!-- DeepSeek标志 -->
+  <rect x="300" y="125" width="200" height="200" rx="30" fill="#4361EE"/>
+  <path d="M350 225C350 202.909 367.909 185 390 185H410C432.091 185 450 202.909 450 225C450 247.091 432.091 265 410 265H390C367.909 265 350 247.091 350 225Z" fill="white"/>
+  <path d="M390 165L410 285" stroke="white" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- 装饰元素 -->
+  <circle cx="150" cy="150" r="50" fill="#4361EE" fill-opacity="0.3"/>
+  <circle cx="650" cy="300" r="70" fill="#4361EE" fill-opacity="0.3"/>
+  
+  <!-- 代码元素 -->
+  <rect x="100" y="250" width="200" height="120" rx="10" fill="#0F3460" stroke="#4361EE" stroke-width="2"/>
+  <text x="120" y="280" font-family="monospace" font-size="14" fill="#E94560">import</text>
+  <text x="170" y="280" font-family="monospace" font-size="14" fill="#16C79A">deepseek</text>
+  
+  <text x="120" y="310" font-family="monospace" font-size="14" fill="#E94560">api_key</text>
+  <text x="180" y="310" font-family="monospace" font-size="14" fill="white">=</text>
+  <text x="195" y="310" font-family="monospace" font-size="14" fill="#F8D210">"YOUR_API_KEY"</text>
+  
+  <text x="120" y="340" font-family="monospace" font-size="14" fill="#E94560">model</text>
+  <text x="170" y="340" font-family="monospace" font-size="14" fill="white">=</text>
+  <text x="185" y="340" font-family="monospace" font-size="14" fill="#F8D210">"deepseek-r1"</text>
+  
+  <!-- API图示 -->
+  <rect x="500" y="250" width="200" height="120" rx="10" fill="#0F3460" stroke="#4361EE" stroke-width="2"/>
+  <text x="520" y="280" font-family="monospace" font-size="14" fill="#16C79A">POST</text>
+  <text x="560" y="280" font-family="monospace" font-size="14" fill="#F8D210">/v1/chat/completions</text>
+  
+  <text x="520" y="310" font-family="monospace" font-size="14" fill="#E94560">Authorization:</text>
+  <text x="620" y="310" font-family="monospace" font-size="14" fill="#F8D210">Bearer sk-***</text>
+  
+  <text x="520" y="340" font-family="monospace" font-size="14" fill="#E94560">Content-Type:</text>
+  <text x="620" y="340" font-family="monospace" font-size="14" fill="#F8D210">application/json</text>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">DeepSeek 新手指南</text>
+  <text x="400" y="380" font-family="Arial, sans-serif" font-size="24" fill="#4361EE" text-anchor="middle">从注册到API调用的完整教程</text>
+</svg> 

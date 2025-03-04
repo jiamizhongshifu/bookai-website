@@ -2,7 +2,7 @@
 layout: article
 title: 爆肝50小时，DeepSeek使用技巧，你收藏这一篇就够了！
 date: 2025-01-25
-author: AI进化论-花生
+author: 加密钟师傅
 thumbnail: /images/deepseek-tips.svg
 excerpt: 全面的DeepSeek使用技巧和最佳实践，从推理模型与指令模型的区别到有效的R1使用技巧，一篇文章帮你掌握DeepSeek的精髓。
 tags: [DeepSeek, AI工具, 使用技巧]

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文章管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* 原有样式 */
+        .container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+        }
+        .editor-area {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .operation-area {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-left: 1px solid #ddd;
+        }
+        .toolbar {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* 新增样式 */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 导航样式 */
+        .nav-list {
+            list-style: none;
+        }
+        .nav-list li {
+            margin-bottom: 10px;
+        }
+        .nav-list a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .nav-list a:hover {
+            color: #007bff;
+            padding-left: 5px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+            .main-content {
+                flex-direction: column;
+            }
+            .editor-area {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .operation-area {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">加载中...</div>
+    <div class="container">
+        <div class="sidebar">
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="/tools/cms/dashboard">首页</a></li>
+                    <li><a href="/tools/cms/articles">文章管理</a></li>
+                    <li><a href="/tools/cms/categories">分类管理</a></li>
+                    <li><a href="/tools/cms/tags">标签管理</a></li>
+                    <li><a href="/tools/cms/users">用户管理</a></li>
+                    <li><a href="/tools/cms/settings">系统设置</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="editor-area">
+                <!-- 编辑器区域 -->
+                {% block content %}{% endblock %}
+            </div>
+            <div class="operation-area">
+                <!-- 右侧操作区域 -->
+                {% block operation %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 页面加载状态控制
+        const loadingElement = document.querySelector('.loading');
+        
+        function showLoading() {
+            loadingElement.style.display = 'block';
+        }
+        
+        function hideLoading() {
+            loadingElement.style.display = 'none';
+        }
+        
+        // 页面加载完成后隐藏加载状态
+        document.addEventListener('DOMContentLoaded', function() {
+            hideLoading();
+            
+            // 为表单添加提交事件，显示加载状态
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    showLoading();
+                });
+            });
+            
+            // 为链接添加点击事件，显示加载状态
+            const links = document.querySelectorAll('a:not([target="_blank"])');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    showLoading();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

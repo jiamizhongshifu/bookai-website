@@ -53,54 +53,22 @@ function initLazyLoading() {
     // 检查是否支持IntersectionObserver
     if ('IntersectionObserver' in window) {
       // 创建观察者实例
-      const imageObserver = new IntersectionObserver((entries) => {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const lazyImage = entry.target;
-            
-            // 检查WebP支持并设置合适的图片源
-            checkWebPSupport().then(supportsWebP => {
-              // 检查文件类型
-              const isSvg = lazyImage.dataset.src && lazyImage.dataset.src.toLowerCase().endsWith('.svg');
-              
-              // SVG文件不需要WebP转换
-              if (isSvg) {
-                lazyImage.src = lazyImage.dataset.src;
-              } else if (supportsWebP && lazyImage.dataset.webp) {
-                lazyImage.src = lazyImage.dataset.webp;
-              } else {
-                lazyImage.src = lazyImage.dataset.src;
-              }
-              
-              // 图片加载错误时使用占位图
-              lazyImage.onerror = () => {
-                console.log(`图片加载失败: ${lazyImage.src}`);
-                lazyImage.src = 'images/placeholder.svg';
-                lazyImage.classList.add('img-error');
-                logError(new Error(`图片加载失败: ${lazyImage.dataset.src}`), '懒加载');
-              };
-              
-              // 图片加载完成后移除data-src属性
-              lazyImage.onload = () => {
-                lazyImage.removeAttribute('data-src');
-                if (!isSvg) {
-                  lazyImage.removeAttribute('data-webp');
-                }
-              };
-            });
-            
-            // 停止观察已处理的图片
-            imageObserver.unobserve(lazyImage);
+            const img = entry.target;
+            loadImage(img);
+            observer.unobserve(img);
           }
         });
       }, {
-        rootMargin: '50px 0px', // 提前50px开始加载
+        rootMargin: '50px 0px', // 提前50px加载
         threshold: 0.01 // 只要有1%可见就开始加载
       });
       
       // 开始观察所有懒加载图片
-      lazyImages.forEach(image => {
-        imageObserver.observe(image);
+      lazyImages.forEach(img => {
+        imageObserver.observe(img);
       });
       
     } else {
@@ -184,4 +152,59 @@ function initLazyLoading() {
 // 导出懒加载模块
 window.lazyLoadingModule = {
   init: initLazyLoading
-}; 
+};
+
+// 加载图片函数
+function loadImage(img) {
+  const src = img.getAttribute('data-src');
+  if (!src) return;
+
+  // 创建一个新的图片对象来预加载
+  const tempImage = new Image();
+  
+  tempImage.onload = function() {
+    img.src = src;
+    img.removeAttribute('data-src');
+    img.classList.add('lazy-loaded');
+  };
+
+  tempImage.onerror = function() {
+    console.error('图片加载失败:', src);
+    // 可以在这里设置一个默认的错误图片
+    img.src = '/images/error-image.png';
+    img.classList.add('lazy-load-error');
+  };
+
+  tempImage.src = src;
+}
+
+// 对于不支持 Intersection Observer 的浏览器，使用传统的滚动监听
+if (!('IntersectionObserver' in window)) {
+  const lazyLoad = () => {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    lazyImages.forEach(img => {
+      if (isInViewport(img)) {
+        loadImage(img);
+      }
+    });
+  };
+
+  // 检查元素是否在视口中
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // 添加滚动监听
+  window.addEventListener('scroll', lazyLoad);
+  window.addEventListener('resize', lazyLoad);
+  window.addEventListener('orientationchange', lazyLoad);
+
+  // 初始检查
+  lazyLoad();
+} 

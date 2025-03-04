@@ -1,198 +1,102 @@
----
-layout: default
-title: 搜索结果
----
-
-<div class="search-page">
-    <div class="container">
-        <header class="search-header">
-            <h1 class="search-title">搜索结果</h1>
-            <div class="search-form-container">
-                <form class="search-form" id="searchPageForm">
-                    <input type="text" class="search-input" id="searchPageInput" placeholder="搜索文章、教程和资源..." value="{{ page.query }}">
-                    <button type="submit" class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索 - 加密钟师傅</title>
+    <meta name="description" content="搜索加密钟师傅网站的所有教程和文章">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .search-result-item {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        .search-result-item h3 {
+            margin-bottom: 0.5rem;
+        }
+        .search-result-item p {
+            margin-bottom: 0;
+            color: #666;
+        }
+        mark {
+            background-color: #fff3cd;
+            padding: 0.2em;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">加密钟师傅</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles/README.html">教程目录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">关于我们</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">联系我们</a>
+                    </li>
+                </ul>
             </div>
-        </header>
-
-        <div class="search-info">
-            <p id="searchStats">正在搜索...</p>
         </div>
+    </nav>
 
-        <div class="search-results-container">
-            <div id="searchPageResults" class="search-results-grid">
-                <!-- 搜索结果将通过JavaScript动态加载 -->
-                <div class="search-loading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>正在搜索...</p>
+    <main class="container mt-5">
+        <div class="search-container">
+            <h1 class="text-center mb-4">搜索全站内容</h1>
+            
+            <div class="search-box mb-5">
+                <div class="input-group">
+                    <input type="search" id="searchInput" class="form-control form-control-lg" 
+                           placeholder="输入关键词搜索..." aria-label="搜索">
+                    <button class="btn btn-primary" type="button" id="searchButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                        搜索
+                    </button>
+                </div>
+            </div>
+
+            <div id="searchResults">
+                <!-- 搜索结果将在这里显示 -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 加密钟师傅. 保留所有权利.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="index.html" class="text-white me-3">首页</a>
+                    <a href="about.html" class="text-white me-3">关于我们</a>
+                    <a href="contact.html" class="text-white">联系我们</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 获取URL参数中的搜索词
-        const urlParams = new URLSearchParams(window.location.search);
-        const query = urlParams.get('q');
-        
-        // 如果有搜索词，填充到搜索框并执行搜索
-        if (query) {
-            const searchInput = document.getElementById('searchPageInput');
-            if (searchInput) {
-                searchInput.value = query;
-                performSearch(query);
-            }
-        }
-        
-        // 搜索表单提交事件
-        const searchForm = document.getElementById('searchPageForm');
-        if (searchForm) {
-            searchForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const searchInput = document.getElementById('searchPageInput');
-                if (searchInput) {
-                    const query = searchInput.value.trim();
-                    if (query.length >= 2) {
-                        // 更新URL，不刷新页面
-                        const url = new URL(window.location);
-                        url.searchParams.set('q', query);
-                        window.history.pushState({}, '', url);
-                        
-                        performSearch(query);
-                    } else {
-                        alert('请输入至少2个字符进行搜索');
-                    }
-                }
-            });
-        }
-    });
-    
-    // 执行搜索
-    function performSearch(query) {
-        const searchResults = document.getElementById('searchPageResults');
-        const searchStats = document.getElementById('searchStats');
-        
-        if (!searchResults || !searchStats) return;
-        
-        // 显示加载状态
-        searchResults.innerHTML = `
-            <div class="search-loading">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>正在搜索...</p>
-            </div>
-        `;
-        searchStats.textContent = '正在搜索...';
-        
-        // 使用fetch获取所有文章的JSON数据
-        fetch('/search-data.json')
-            .then(response => response.json())
-            .then(data => {
-                // 过滤搜索结果
-                const results = data.filter(item => {
-                    const titleMatch = item.title.toLowerCase().includes(query.toLowerCase());
-                    const contentMatch = item.content.toLowerCase().includes(query.toLowerCase());
-                    const tagsMatch = item.tags && item.tags.some(tag => 
-                        tag.toLowerCase().includes(query.toLowerCase())
-                    );
-                    const categoryMatch = item.categories && item.categories.some(category => 
-                        category.toLowerCase().includes(query.toLowerCase())
-                    );
-                    
-                    return titleMatch || contentMatch || tagsMatch || categoryMatch;
-                });
-                
-                // 更新搜索统计
-                searchStats.textContent = `找到 ${results.length} 个结果，搜索词: "${query}"`;
-                
-                // 显示搜索结果
-                if (results.length > 0) {
-                    let resultsHTML = '';
-                    
-                    results.forEach(result => {
-                        // 提取匹配的内容片段
-                        let contentPreview = '';
-                        const lowerContent = result.content.toLowerCase();
-                        const queryIndex = lowerContent.indexOf(query.toLowerCase());
-                        
-                        if (queryIndex !== -1) {
-                            // 获取匹配位置前后的一些文本
-                            const start = Math.max(0, queryIndex - 50);
-                            const end = Math.min(result.content.length, queryIndex + query.length + 50);
-                            contentPreview = result.content.substring(start, end);
-                            
-                            // 如果不是从头开始，添加省略号
-                            if (start > 0) {
-                                contentPreview = '...' + contentPreview;
-                            }
-                            
-                            // 如果不是到末尾结束，添加省略号
-                            if (end < result.content.length) {
-                                contentPreview += '...';
-                            }
-                            
-                            // 高亮匹配的文本
-                            const regex = new RegExp(query, 'gi');
-                            contentPreview = contentPreview.replace(regex, match => `<mark>${match}</mark>`);
-                        } else {
-                            // 如果在内容中没有找到匹配，使用前100个字符
-                            contentPreview = result.content.substring(0, 100) + '...';
-                        }
-                        
-                        // 高亮标题中的匹配
-                        let highlightedTitle = result.title;
-                        const titleRegex = new RegExp(query, 'gi');
-                        highlightedTitle = highlightedTitle.replace(titleRegex, match => `<mark>${match}</mark>`);
-                        
-                        resultsHTML += `
-                            <div class="search-result-item">
-                                <h2 class="result-title">
-                                    <a href="${result.url}">${highlightedTitle}</a>
-                                </h2>
-                                <div class="result-meta">
-                                    ${result.date ? `<span class="result-date"><i class="fas fa-calendar-alt"></i> ${result.date}</span>` : ''}
-                                    ${result.categories && result.categories.length > 0 ? 
-                                        `<span class="result-category">
-                                            <i class="fas fa-folder"></i> 
-                                            ${result.categories.map(cat => `<a href="/category/${cat.toLowerCase().replace(/\s+/g, '-')}/">${cat}</a>`).join(', ')}
-                                        </span>` : ''
-                                    }
-                                </div>
-                                <div class="result-excerpt">${contentPreview}</div>
-                                <div class="result-tags">
-                                    ${result.tags && result.tags.length > 0 ? 
-                                        result.tags.map(tag => `<a href="/tag/${tag.toLowerCase().replace(/\s+/g, '-')}/" class="tag">${tag}</a>`).join('') : ''
-                                    }
-                                </div>
-                                <a href="${result.url}" class="read-more">阅读全文 <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        `;
-                    });
-                    
-                    searchResults.innerHTML = resultsHTML;
-                } else {
-                    searchResults.innerHTML = `
-                        <div class="no-results">
-                            <i class="fas fa-search"></i>
-                            <h2>没有找到相关结果</h2>
-                            <p>尝试使用不同的关键词或更广泛的搜索词</p>
-                        </div>
-                    `;
-                }
-            })
-            .catch(error => {
-                console.error('搜索数据加载失败:', error);
-                searchResults.innerHTML = `
-                    <div class="search-error">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h2>搜索出错</h2>
-                        <p>加载搜索数据时出现错误，请稍后再试</p>
-                    </div>
-                `;
-                searchStats.textContent = '搜索出错';
-            });
-    }
-</script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html> 
